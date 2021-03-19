@@ -8,19 +8,19 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   userName = db.Column(db.String(30), nullable = False, unique = True)
-  firstName = db.Column(db.String(30), nullable - False)
-  lastName = db.Column(db.String(30), nullable - False)
+  firstName = db.Column(db.String(30), nullable = False)
+  lastName = db.Column(db.String(30), nullable = False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   profileImage = db.Column(db.String(255))
-  following = dub.Column(db.Array, nullable = False, default = [])
-  followers = dub.Column(db.Array, nullable = False, default = [])
+  following = db.Column(db.Array, nullable = False, default = [])
+  followers = db.Column(db.Array, nullable = False, default = [])
   hashed_password = db.Column(db.String(255), nullable = False)
   createdAt  = db.Column(db.DateTime,  default=db.func.current_timestamp())
   updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(),onupdate=db.func.current_timestamp())
 
   posts = db.relationship("Post", back_populates="user")
-
-
+  comments = db.relationship("Comment", back_populates="user")
+  likes = db.relationship("Like", back_populates="user")
   @property
   def password(self):
     return self.hashed_password
