@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 // import UsersList from "./components/Userlist";
 import User from "./components/User/index";
 import DiscoveryFeed from "./components/DiscoveryFeed/index";
-import { authenticate } from "./services/auth";
+import { authenticate } from "./store/auth";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
