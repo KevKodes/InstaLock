@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Redirect, NavLink } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login } from "../../store/auth";
 import './LogIn.css'
+
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);

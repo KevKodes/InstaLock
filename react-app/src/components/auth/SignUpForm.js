@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import { signUp } from '../../store/auth';
 import './SignUp.css'
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
