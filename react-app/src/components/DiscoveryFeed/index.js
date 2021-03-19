@@ -12,7 +12,7 @@ const FetchingPhoto = ({ photo }) => {
 
   return (
     <>
-      <img src={urls.regular} />
+      <img src={urls.regular} alt="photos" />
       <div>{user.name}</div>
     </>
   );
