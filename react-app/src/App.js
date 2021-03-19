@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/Navigation";
+import NavBar from "./components/Navigation/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 // import UsersList from "./components/Userlist";
-import User from "./components/User";
-import DiscoveryFeed from "./components/DiscoveryFeed";
+import User from "./components/User/index";
+import DiscoveryFeed from "./components/DiscoveryFeed/index";
 import { authenticate } from "./services/auth";
 
 function App() {

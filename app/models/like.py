@@ -11,13 +11,12 @@ class Like(db.Model):
     createdAt = db.Column(db.DateTime,  default=db.func.current_timestamp())
     updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
-
-    user = db.relationship("User", back_populates="likes")
-    post = db.relationship("Post", back_populates="likes")
-    comment = db.relationship("Comment", back_populates="likes")
+    user = db.relationship('User', backref='likes')
+    # user = db.relationship("User", back_populates="likes")
+    post = db.relationship("Post", backref="likes")
+    # comment = db.relationship("Comment", back_populates="likes")
+    comment = db.relationship('Comment', backref='likes')
 
 
     def to_list(self):
         return self.userId
-
-        

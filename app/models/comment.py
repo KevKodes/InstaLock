@@ -11,8 +11,11 @@ class Comment(db.Model):
     createdAt = db.Column(db.DateTime,  default=db.func.current_timestamp())
     updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
-    user = db.relationship("User", back_populates="comments")
-    post = db.relationship("Post", back_populates="comments")
+    # user = db.relationship("User", back_populates="comments")
+    # post = db.relationship("Post", back_populates="comments")
+    # like = db.relationship("Like", back_populates="comments")
+    user = db.relationship("User", backref="comments")
+    post = db.relationship("Post", backref="comments")
 
 
     def to_dict(self):
