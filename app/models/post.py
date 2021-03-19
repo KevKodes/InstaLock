@@ -12,9 +12,10 @@ class Post(db.Model):
     createdAt = db.Column(db.DateTime,  default=db.func.current_timestamp())
     updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
-    user = db.relationship("User", back_populates="posts")
-    comments = db.relationship("Comment", back_populates="post")
-    likes = db.relationship("Like", back_populates="post")
+    # user = db.relationship("User", back_populates="posts")
+    # comment = db.relationship("Comment", back_populates="posts")
+    # like = db.relationship("Like", back_populates="posts")
+    user = db.relationship('User', backref="posts")
 
 
     def to_dict(self):

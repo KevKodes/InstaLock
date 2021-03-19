@@ -21,10 +21,10 @@ class User(db.Model, UserMixin):
   createdAt  = db.Column(db.DateTime,  default=db.func.current_timestamp())
   updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(),onupdate=db.func.current_timestamp())
 
-  posts = db.relationship("Post", back_populates="user")
-  comments = db.relationship("Comment", back_populates="user")
-  likes = db.relationship("Like", back_populates="user")
-  
+  # post = db.relationship("Post", back_populates="users")
+  # comment = db.relationship("Comment", back_populates="users")
+  # like = db.relationship("Like", back_populates="users")
+
   followers = db.relationship(
     "User",
     secondary=follows,
