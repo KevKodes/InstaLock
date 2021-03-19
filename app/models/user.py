@@ -2,6 +2,11 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+follows = db.Table(
+  "follows",
+  db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+  db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
+)
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -12,8 +17,6 @@ class User(db.Model, UserMixin):
   lastName = db.Column(db.String(30), nullable = False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   profileImage = db.Column(db.String(255))
-  following = db.Column(db.Array, nullable = False, default = [])
-  followers = db.Column(db.Array, nullable = False, default = [])
   hashed_password = db.Column(db.String(255), nullable = False)
   createdAt  = db.Column(db.DateTime,  default=db.func.current_timestamp())
   updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(),onupdate=db.func.current_timestamp())
@@ -21,6 +24,17 @@ class User(db.Model, UserMixin):
   posts = db.relationship("Post", back_populates="user")
   comments = db.relationship("Comment", back_populates="user")
   likes = db.relationship("Like", back_populates="user")
+  
+  followers = db.relationship(
+    "User",
+    secondary=follows,
+    primaryjoin=(follows.c.follower_id == id),
+    secondaryjoin=(follows.c.followed_id == id),
+    backref=db.backref("follows", lazy="dynamic"),
+    lazy="dynamic"
+  )
+
+
   @property
   def password(self):
     return self.hashed_password
@@ -43,7 +57,5 @@ class User(db.Model, UserMixin):
       "lastName": self.lastName,
       "email": self.email,
       "profileImage": self.profileImage,
-      "following": self.following,
-      "followers": self.followers,
 
     }
