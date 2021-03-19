@@ -4,7 +4,7 @@ from .db import db
 class Post(db.Model):
     __tablename__ = 'posts'
 
-    id = db.Column(db.integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     photoURL = db.Column(db.Text)
     caption = db.Column(db.Text)
