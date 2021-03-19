@@ -17,14 +17,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
   if (authenticated) {
     return <Redirect to="/" />;
   }
@@ -37,13 +29,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         ))}
       </div>
       <div>
-        <label htmlFor="email">Email</label>
         <input
           name="email"
           type="text"
           placeholder="Email"
           value={email}
-          onChange={updateEmail}
+          onChange={e => setEmail(e.target.value)}
         />
       </div>
       <div>
@@ -53,7 +44,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={updatePassword}
+          onChange={e => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
       </div>

@@ -5,33 +5,17 @@ import { signUp } from '../../services/auth';
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+    const user = await signUp(username, email, password);
+    if (!user.errors) {
+      setAuthenticated(true);
     }
-  };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
   };
 
   if (authenticated) {
@@ -41,43 +25,50 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
         <input
           type="text"
           name="email"
-          onChange={updateEmail}
+          placeholder="Email"
+          onChange={e => setEmail(e.target.value)}
           value={email}
         ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
+          name="firstName"
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          name="lastName"
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={e => setLastName(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          onChange={e => setUsername(e.target.value)}
+          value={username}
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
         <input
           type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
+          name="password"
+          onChange={e => setPassword(e.target.value)}
+          value={password}
         ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <button type="submit">Sign up</button>
     </form>
   );
 };
