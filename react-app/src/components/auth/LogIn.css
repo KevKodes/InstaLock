@@ -1,0 +1,41 @@
+.login-form {
+  background-color: #fafafa;
+}
+
+.login-form h1 {
+  font-family: 'Neue Helvetica';
+}
+
+.login-form form {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 10px;
+  max-width: 350px;
+  margin: 0 auto;
+
+}
+
+.login-form input {
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  color: rgb(38, 38, 38);
+  margin: 0 40px 6px;
+  padding: 10px;  
+}
+
+.login-form button {
+  background-color: #0095f6;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin: 0 40px 6px;
+  padding: 10px;
+}
+
+.signup-link-box {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 10px;
+  max-width: 350px;
+  margin: 10px auto;
+}
