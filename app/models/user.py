@@ -19,8 +19,8 @@ class User(db.Model, UserMixin):
   updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(),onupdate=db.func.current_timestamp())
 
   posts = db.relationship("Post", back_populates="user")
-
-
+  comments = db.relationship("Comment", back_populates="user")
+  likes = db.relationship("Like", back_populates="user")
   @property
   def password(self):
     return self.hashed_password
