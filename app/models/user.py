@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
   createdAt  = db.Column(db.DateTime,  default=db.func.current_timestamp())
   updatedAt = db.Column(db.DateTime,  default=db.func.current_timestamp(),onupdate=db.func.current_timestamp())
 
-  
+  posts = db.relationship("Post", back_populates="user")
 
 
   @property
