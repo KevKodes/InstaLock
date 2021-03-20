@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function Profile() {
-  const posts = useSelector((state) => state?.posts?.allPost);
+  const posts = useSelector((state) => state?.post?.allPost);
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const { userName } = useParams();
@@ -22,7 +22,7 @@ function Profile() {
     dispatch(getAllPosts(user.id));
   }, [dispatch, user.id, userName]);
 
-  const postComponents = posts?.map((post) => {
+  const postComponents = posts && Object.entries(posts).map((post) => {
     return (
       <li>
         <img src={post.photoURL} alt="photoURL">
