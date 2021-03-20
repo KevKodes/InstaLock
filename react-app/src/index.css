@@ -1,1 +1,19 @@
 /* TODO Add site wide styles */
+ul {
+    list-style-type: none;
+    display: flex;
+    margin-right: 20px;
+    float: right;
+
+
+}
+ul A {
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+    font-weight: bolder;
+}
+ul A:hover {
+    border-bottom: 3px solid rgb(0, 145, 202);
+}
+
