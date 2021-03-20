@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User/index";
 import DiscoveryFeed from "./components/DiscoveryFeed/index";
 import { authenticate } from "./store/auth";
+import Profile from "./components/Profile/index";
+import PersonalFeed from "./components/PersonalFeed/index";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -58,7 +60,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          
+          <PersonalFeed />
         </ProtectedRoute>
         <ProtectedRoute
           path="/discoveryfeed"
@@ -66,6 +68,13 @@ function App() {
           authenticated={authenticated}
         >
           <DiscoveryFeed />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/:userName"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Profile />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
