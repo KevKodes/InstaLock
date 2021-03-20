@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllPosts } from "../../store/posts";
+import { getAllPosts, getEverySinglePosts } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -20,6 +20,8 @@ function Profile() {
     };
     getUser();
     dispatch(getAllPosts(user.id));
+    dispatch(getEverySinglePosts());
+    // dispatch(getAllPosts());
   }, [dispatch, user.id, userName]);
 
   const postComponents = posts?.map((post) => {

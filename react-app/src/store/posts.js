@@ -26,6 +26,14 @@ export const getAllPosts = (userId) => async (dispatch) => {
   }
 };
 
+export const getEverySinglePosts = () => async (dispatch) => {
+  const response = await fetch(`/api/posts`);
+  if (response.ok) {
+    const posts = await response.json();
+    dispatch(load(posts));
+  }
+};
+
 // postObjectThatWillPhotoUrlAndCaptionOptionallyOnOurComponent it will have a photoURL and caption and userId
 // export const createPost = (payload) => async (dispatch) => {};
 
