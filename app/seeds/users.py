@@ -1,16 +1,31 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User
+from faker import Faker
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    faker = Faker()
+    password = 'password'
 
     demo = User(userName='Demo',
-                firstName='Dem',
-                lastName='Oh',
+                firstName='Demo',
+                lastName='User',
                 email='demo@aa.io',
-                password='password')
+                password=password)
 
     db.session.add(demo)
+
+    count = 0
+    while count < 50:
+        newUser = User(
+            userName= faker.user_name(),
+            firstName= faker.first_name(),
+            lastName= faker.last_name(),
+            email= faker.email(),
+            password= (f'password{count}')
+        )
+        count = count + 1
+        db.session.add(newUser)
 
     db.session.commit()
 
