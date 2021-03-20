@@ -26,6 +26,14 @@ export const getAllPosts = (userId) => async (dispatch) => {
   }
 };
 
+// export const getEverySinglePosts = () => async (dispatch) => {
+//   const response = await fetch(`/api/posts`);
+//   if (response.ok) {
+//     const posts = await response.json();
+//     dispatch(load(posts));
+//   }
+// };
+
 // postObjectThatWillPhotoUrlAndCaptionOptionallyOnOurComponent it will have a photoURL and caption and userId
 // export const createPost = (payload) => async (dispatch) => {};
 
@@ -33,15 +41,17 @@ const initialState = {};
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_POSTS:
+      console.log('action.posts.posts: ', action.posts.posts)
       const allPost = {};
-      Object.entries(action.posts).forEach((post) => {
+      Object.values(action.posts.posts).forEach((post) => {
         allPost[post.id] = post;
       });
+      console.log('allPost: ', allPost)
 
       return {
         ...state,
         ...allPost,
-        allPost: action.posts,
+        // allPost: action.posts,
       };
     default:
       return state;

@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import postReducer from "./posts";
 
 const rootReducer = combineReducers({
-  post: postReducer,
+  posts: postReducer,
 });
 
 let enhancer;

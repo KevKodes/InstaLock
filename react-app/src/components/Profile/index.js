@@ -1,11 +1,11 @@
 import React from "react";
-import { getAllPosts } from "../../store/posts";
+import { getAllPosts, getEverySinglePosts } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function Profile() {
-  const posts = useSelector((state) => state?.post?.allPost);
+  const posts = useSelector((state) => state?.posts);
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const { userName } = useParams();
@@ -20,14 +20,15 @@ function Profile() {
     };
     getUser();
     dispatch(getAllPosts(user.id));
+    // dispatch(getEverySinglePosts());
+    // dispatch(getAllPosts());
   }, [dispatch, user.id, userName]);
-
-  const postComponents = posts && Object.entries(posts).map((post) => {
+  console.log('posts in profile: ', posts)
+  const postComponents = posts && Object.values(posts).map((post) => {
     return (
       <li>
-        <img src={post.photoURL} alt="photoURL">
-          {post.caption}
-        </img>
+        <img src={post.photoURL} alt="photoURL" />
+        {post.caption}
       </li>
     );
   });
