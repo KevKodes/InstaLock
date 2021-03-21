@@ -1,3 +1,5 @@
+// Basic Skeleton auth.js im 99.99% sure we dont have to change anything in this file, including sign up.
+
 export const authenticate = async() => {
   const response = await fetch('/api/auth/',{
     headers: {

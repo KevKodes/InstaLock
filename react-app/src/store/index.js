@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 // import { login } from '../react-app/src/services';
 import postReducer from "./posts";
+import commentsReducer from './comments'
 
 const rootReducer = combineReducers({
   posts: postReducer,
+  comments: commentsReducer,
 });
 
 let enhancer;
