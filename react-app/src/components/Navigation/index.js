@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ setAuthenticated, userName }) => {
+  console.log('userName in nav: ', userName)
   return (
     <nav>
       <ul id="nav">
@@ -24,6 +25,11 @@ const NavBar = ({ setAuthenticated }) => {
         <li>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={`/${userName}`} exact={true} activeClassName="active">
+            Profile
           </NavLink>
         </li>
         <li>

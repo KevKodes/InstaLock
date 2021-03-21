@@ -52,24 +52,18 @@ export const updateLikes = (like) => async (dispatch) => {
 //   }
 // };
 
-// postObjectThatWillPhotoUrlAndCaptionOptionallyOnOurComponent it will have a photoURL and caption and userId
-// export const createPost = (payload) => async (dispatch) => {};
-
 const initialState = {};
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_POSTS:
-      console.log('action.posts.posts: ', action.posts.posts)
       const allPost = {};
       Object.values(action.posts.posts).forEach((post) => {
         allPost[post.id] = post;
       });
-      console.log('allPost: ', allPost)
 
       return {
         ...state,
         ...allPost,
-        // allPost: action.posts,
       };
 
     case LIKE_POST:
