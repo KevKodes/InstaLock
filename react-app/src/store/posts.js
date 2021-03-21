@@ -1,6 +1,6 @@
 const LOAD_POSTS = "LOAD_POSTS";
-const REMOVE_POST = "REMOVE_POST";
-const CREATE_POST = "CREATE_POST";
+// const REMOVE_POST = "REMOVE_POST";
+// const CREATE_POST = "CREATE_POST";
 const LIKE_POST = "LIKE_POST"
 
 const load = (posts) => ({
@@ -8,15 +8,15 @@ const load = (posts) => ({
   posts,
 });
 
-const createPost = (posts) => ({
-  type: CREATE_POST,
-  posts,
-});
+// const createPost = (posts) => ({
+//   type: CREATE_POST,
+//   posts,
+// });
 
-const removePost = (postId) => ({
-  type: REMOVE_POST,
-  postId,
-});
+// const removePost = (postId) => ({
+//   type: REMOVE_POST,
+//   postId,
+// });
 
 const likePost = (post) => ({
   type: LIKE_POST,

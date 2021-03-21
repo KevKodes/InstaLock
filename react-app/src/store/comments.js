@@ -1,5 +1,5 @@
 const SET_COMMENTS = 'SET_COMMENTS';
-const CREATE_COMMENTS = 'CREATE_COMMENTS';
+// const CREATE_COMMENTS = 'CREATE_COMMENTS';
 const DELETE_COMMENTS = 'DELETE_COMMENTS';
 
 const setComments = (comments) => ({
@@ -7,10 +7,10 @@ const setComments = (comments) => ({
     comments,
 });
 
-const createComments = (comments) => ({
-    type: CREATE_COMMENTS,
-    comments,
-});
+// const createComments = (comments) => ({
+//     type: CREATE_COMMENTS,
+//     comments,
+// });
 
 const deleteComments = (id) => ({
     type: DELETE_COMMENTS,
@@ -42,7 +42,7 @@ export const createComment = (userId, postId, body) => async (dispatch) => {
     return dispatch(setComments([data]));
 };
 
-export const deleteComments = (id) => async (dispatch) => {
+export const deleteComment = (id) => async (dispatch) => {
     await dispatch(deleteComments(id));
     const build = {
         method: "DELETE",

@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-ul {
+#nav {
     list-style-type: none;
     display: flex;
     margin-right: 20px;
@@ -7,13 +7,12 @@ ul {
 
 
 }
-ul A {
+#nav A {
     text-decoration: none;
     margin-right: 20px;
     color: black;
     font-weight: bolder;
 }
-ul A:hover {
+#nav A:hover {
     border-bottom: 3px solid rgb(0, 145, 202);
 }
-
