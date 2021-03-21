@@ -15,10 +15,10 @@ def posts():
 
 
 @post_routes.route('/<int:id>')
-#feed all user posts into user's feed
+#feed all user posts into user's feed based on userId
 def post(id):
-    post = Post.query.get(id)
-    return post.to_dict()
+    posts = Post.query.filter_by(userId=id).all()
+    return {"posts": [post.to_dict() for post in posts]}
 
 
 @post_routes.route('/create_post', methods=['POST'])
