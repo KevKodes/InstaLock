@@ -1,52 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { createApi } from "unsplash-js";
-// const mode = process.env.NODE_ENV;
-// const apiKey = process.env.ACCESS_KEY;
+import "./DiscoveryFeed.css";
 
-const photosApi = createApi({
-  accessKey: "az_UO2AxnG4t9EGPDqXAGshoAUSKG-a83fAF9BpulZo",
-});
+const DiscoveryFeed = () => {
+  const [allPosts, setAllPosts] = useState({});
 
-const FetchingPhoto = ({ photo }) => {
-  const { urls, user } = photo;
+
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const response = await fetch("/api/posts/");
+      const data = await response.json();
+      setAllPosts(data);
+    };
+    getPosts();
+  }, []);
+
+  const allPostsComponents =
+    allPosts &&
+    Object.values(allPosts).map((posts) => {
+      return Object.values(posts).map((singlePost) => {
+
+        return (
+          <li key={singlePost.id}>
+            <img
+              src={singlePost.photoURL}
+              alt="photoURL"
+              className="allImages"
+            />
+          </li>
+        );
+      });
+    });
 
   return (
     <>
-      <img src={urls.regular} alt="photos" />
-      <div>{user.name}</div>
+      <h1>You made it to the Discovery Page!</h1>
+      <div className="pageContainer">
+        <ul>{allPostsComponents}</ul>
+      </div>
     </>
   );
-};
-
-const DiscoveryFeed = () => {
-  const [photos, setPhotos] = useState(null);
-
-  useEffect(() => {
-    photosApi.photos
-      .list({ order_by: "popular" })
-      .then((result) => {
-        setPhotos(result);
-      })
-      .catch(() => {
-        console.log("Error! Try again!");
-      });
-  }, []);
-
-  if (photos === null) {
-    return <div>Please wait..</div>;
-  } else {
-    return (
-      <div>
-        <ul>
-          {photos.response.results.map((photo) => (
-            <li key={photo.id}>
-              <FetchingPhoto photo={photo} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
 };
 
 export default DiscoveryFeed;

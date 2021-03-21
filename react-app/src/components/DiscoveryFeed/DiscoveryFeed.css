@@ -1,0 +1,13 @@
+.allImages {
+  max-width: 50%;
+  height: auto;
+}
+
+li {
+  list-style-type: none;
+}
+
+.pageContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
