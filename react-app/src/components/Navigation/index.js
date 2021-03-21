@@ -1,12 +1,16 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "../auth/LogoutButton";
 
 const NavBar = ({ setAuthenticated, userName }) => {
-
   return (
     <nav>
       <ul id="nav">
+        <li>
+          <NavLink to="/discoveryfeed" exact={true} activeClassName="active">
+            Discovery Feed
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
@@ -38,6 +42,6 @@ const NavBar = ({ setAuthenticated, userName }) => {
       </ul>
     </nav>
   );
-}
+};
 
 export default NavBar;
