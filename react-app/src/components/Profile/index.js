@@ -1,8 +1,10 @@
 import React from "react";
-import { getAllPosts, getEverySinglePosts } from "../../store/posts";
+import { getAllPosts } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+// removed getEverySinglePosts from import
 
 function Profile() {
   const posts = useSelector((state) => state?.posts);
@@ -36,7 +38,7 @@ function Profile() {
   return (
     <div>
       <h1> You made it to the profile! </h1>
-      <div> UserName: {user.userName}</div>
+      <div> Beta: UserName: {user.userName}</div>
       <ul>{postComponents}</ul>
     </div>
   );
