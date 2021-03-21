@@ -4,15 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-// removed getEverySinglePosts from import
 
 function Profile() {
   const posts = useSelector((state) => state?.posts);
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const { userName } = useParams();
-
-  console.log("THIS IS POSTS", posts);
 
   useEffect(() => {
     const getUser = async () => {
@@ -22,10 +19,8 @@ function Profile() {
     };
     getUser();
     dispatch(getAllPosts(user.id));
-    // dispatch(getEverySinglePosts());
-    // dispatch(getAllPosts());
   }, [dispatch, user.id, userName]);
-  console.log('posts in profile: ', posts)
+
   const postComponents = posts && Object.values(posts).map((post) => {
     return (
       <li>

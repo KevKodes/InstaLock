@@ -16,10 +16,13 @@ def users():
 @login_required
 def user(id):
     user = User.query.get(id)
-    return user.to_dict()
+    return user.to_dict()  # this line is throwing and error
 
 @user_routes.route('/<userName>')
 @login_required
 def userName(userName):
     user = User.query.filter_by(userName=userName).first()
     return user.to_dict()
+
+
+# Restore the session user
