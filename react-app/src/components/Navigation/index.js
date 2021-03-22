@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 
 const NavBar = ({ setAuthenticated, userName }) => {
-  console.log("userName in nav: ", userName);
   return (
     <nav>
       <ul id="nav">

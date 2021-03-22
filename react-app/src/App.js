@@ -62,7 +62,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <PersonalFeed />
+          <PersonalFeed sessionUser={sessionUser} />
         </ProtectedRoute>
         <ProtectedRoute
           path="/discoveryfeed"

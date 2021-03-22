@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Post
+from app.models import db, Post, follows
 from app.forms.post_form import PostForm
 
 post_routes = Blueprint("posts", __name__)
@@ -38,3 +38,13 @@ def create_post():
         return post.to_dict()
     print(form.errors)
     return {'errors': form.errors}
+
+
+@post_routes.route('/following/<int:id>')
+def following_posts(id):
+    print(f"input userId: {id}")
+    following = db.session.query(follows).filter_by(follower_id=id).all()
+    followingIds = [y for x,y in following]
+    # following = follows.select().where(follows.c.follower_id == id)
+    posts = Post.query.filter(Post.userId.in_(followingIds)).all()
+    return {"posts": [post.to_dict() for post in posts]}
