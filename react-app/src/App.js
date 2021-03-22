@@ -10,6 +10,7 @@ import DiscoveryFeed from "./components/DiscoveryFeed/index";
 import { authenticate } from "./store/auth";
 import Profile from "./components/Profile/index";
 import PersonalFeed from "./components/PersonalFeed/index";
+import Upload from "./components/Upload"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -70,6 +71,13 @@ function App() {
           authenticated={authenticated}
         >
           <DiscoveryFeed />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/upload"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Upload />
         </ProtectedRoute>
         <ProtectedRoute
           path="/:userName"
