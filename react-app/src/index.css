@@ -5,23 +5,94 @@
     display: flex;
     margin-right: 20px;
     height: 100px;
-    background-color: black;
+    background-color: rgb(20, 20, 20);
     background-size: cover;
     margin: 0;
-
     background-repeat: no-repeat;
     align-items: center;
 }
 #nav A {
+    display: block;
     text-decoration: none;
     margin-right: 20px;
     color: white;
     font-weight: bolder;
+    font-size: 17px;
 }
-#nav A:hover {
-    border-bottom: 3px solid rgb(0, 145, 202);
+/* #nav A:hover, #nav button:hover {
+    border-bottom: 3px solid rgb(0, 87, 7);
+} */
+#nav button {
+    display: block;
+    color: white;
+    border:none;
+    margin:0;
+    padding:0;
+    text-decoration: none;
+    background-color: rgb(20, 20, 20);
+    cursor: pointer;
+    outline: none;
 }
 
+
+@media screen and (min-width: 1900px) {
+    #ez {
+        margin-left: 1200px;
+    }
+}
+.liner {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(20, 20, 20);
+}
+.gif {
+    width: 300px;
+    margin-left: 30px;
+    background-color: rgb(20, 20, 20);
+    background-image: url("./doppppe.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
 #ez {
-    margin-left: 1325px;
+    width: 40px;
+    height: 40px;
+    background-image: url("./Jungle_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#ez2 {
+    width: 40px;
+    height: 40px;
+    background-image: url("./Fighter_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#ez3 {
+    width: 40px;
+    height: 40px;
+    background-image: url("./Marksman_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#ez4 {
+    width: 40px;
+    height: 40px;
+    background-image: url("./Tank_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#ez5 {
+    width: 40px;
+    height: 40px;
+    background-image: url("./Slayer_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#ez6 {
+    width: 40px;
+    height: 40px;
+    background-image: url("./Controller_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }

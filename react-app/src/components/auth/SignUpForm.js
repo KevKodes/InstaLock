@@ -25,9 +25,12 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
+    <div className="Big">
+      <div className="flag1"></div>
+      <div className="flag2"></div>
     <div className="signup-form">
       <form onSubmit={onSignUp}>
-        <h1>Photohaven</h1>
+        <h1>InstaLock</h1>
         <h2>Sign up to see photos and videos from your friends.</h2>
         <div>
           <input
@@ -84,6 +87,10 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           </NavLink>
         </div>
       </div>
+      <div className="banner1"></div>
+    </div>
+    <div className="flag3"></div>
+    <div className="flag5"></div>
     </div>
   );
 };
