@@ -3,13 +3,15 @@ import { getAllPosts } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import './Profile.css'
 
 function Profile() {
-  const posts = useSelector((state) => state?.posts);
-  const [user, setUser] = useState({});
-  const dispatch = useDispatch();
   const { userName } = useParams();
+  const [user, setUser] = useState({});
+  const posts = useSelector((state) => state.posts);
+
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUser = async () => {
@@ -24,17 +26,25 @@ function Profile() {
   const postComponents = posts && Object.values(posts).map((post) => {
     return (
       <li>
-        <img src={post.photoURL} alt="photoURL" />
-        {post.caption}
+        <img className="image" src={post.photoURL} alt="photoURL" />
       </li>
     );
   });
 
   return (
-    <div>
-      <h1> You made it to the profile! </h1>
-      <div> Beta: UserName: {user.userName}</div>
-      <ul>{postComponents}</ul>
+    <div className="MainPage">
+      <div className="TopLess">
+        <h1> Album Scroll </h1>
+      </div>
+      <div className="BottomMost">
+        <div className="QuadsPage">
+          <div className="Quad1">User Info Including picture and follow buttons</div>
+          <div className="Qaud2">
+            <ul>{postComponents}</ul>
+          </div>
+          <div className="Quad3"></div>
+        </div>
+      </div>
     </div>
   );
 }
