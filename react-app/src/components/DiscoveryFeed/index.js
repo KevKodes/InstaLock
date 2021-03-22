@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Redirect, Link } from "react-router-dom";
 import "./DiscoveryFeed.css";
 
 const DiscoveryFeed = () => {
   const [allPosts, setAllPosts] = useState({});
-
-
 
   useEffect(() => {
     const getPosts = async () => {
@@ -19,14 +18,15 @@ const DiscoveryFeed = () => {
     allPosts &&
     Object.values(allPosts).map((posts) => {
       return Object.values(posts).map((singlePost) => {
-
         return (
           <li key={singlePost.id}>
-            <img
-              src={singlePost.photoURL}
-              alt="photoURL"
-              className="allImages"
-            />
+            <Link to={`/${singlePost.userName}`}>
+              <img
+                src={singlePost.photoURL}
+                alt="photoURL"
+                className="allImages"
+              />
+            </Link>
           </li>
         );
       });

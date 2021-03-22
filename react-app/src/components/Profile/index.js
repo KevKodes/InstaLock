@@ -3,13 +3,12 @@ import { getAllPosts } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import './Profile.css'
+import "./Profile.css";
 
 function Profile() {
   const { userName } = useParams();
   const [user, setUser] = useState({});
   const posts = useSelector((state) => state.posts);
-
 
   const dispatch = useDispatch();
 
@@ -23,13 +22,16 @@ function Profile() {
     dispatch(getAllPosts(user.id));
   }, [dispatch, user.id, userName]);
 
-  const postComponents = posts && Object.values(posts).map((post) => {
-    return (
-      <li>
-        <img className="image" src={post.photoURL} alt="photoURL" />
-      </li>
-    );
-  });
+  const postComponents =
+    posts &&
+    Object.values(posts).map((post) => {
+      console.log("THESE ARE ALL THE POSTS", posts);
+      return (
+        <li>
+          <img className="image" src={post.photoURL} alt="photoURL" />
+        </li>
+      );
+    });
 
   return (
     <div className="MainPage">
@@ -38,7 +40,9 @@ function Profile() {
       </div>
       <div className="BottomMost">
         <div className="QuadsPage">
-          <div className="Quad1">User Info Including picture and follow buttons</div>
+          <div className="Quad1">
+            User Info Including picture and follow buttons
+          </div>
           <div className="Qaud2">
             <ul>{postComponents}</ul>
           </div>

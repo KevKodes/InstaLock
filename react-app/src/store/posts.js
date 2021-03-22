@@ -1,7 +1,7 @@
 const LOAD_POSTS = "LOAD_POSTS";
 // const REMOVE_POST = "REMOVE_POST";
 // const CREATE_POST = "CREATE_POST";
-const LIKE_POST = "LIKE_POST"
+const LIKE_POST = "LIKE_POST";
 
 const load = (posts) => ({
   type: LOAD_POSTS,
@@ -21,7 +21,7 @@ const load = (posts) => ({
 const likePost = (post) => ({
   type: LIKE_POST,
   post,
-})
+});
 
 export const getAllPosts = (userId) => async (dispatch) => {
   // get all posts of the user's feed
@@ -30,6 +30,8 @@ export const getAllPosts = (userId) => async (dispatch) => {
     const posts = await response.json();
     dispatch(load(posts));
   }
+
+  return response;
 };
 
 export const updateLikes = (like) => async (dispatch) => {
@@ -43,13 +45,14 @@ export const updateLikes = (like) => async (dispatch) => {
 };
 
 export const getFollowingPosts = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/posts/following/${userId}`)
+  const response = await fetch(`/api/posts/following/${userId}`);
   if (response.ok) {
     const posts = await response.json();
-    dispatch(load(posts))
+    dispatch(load(posts));
   }
-}
 
+  return response;
+};
 
 // export const getEverySinglePosts = () => async (dispatch) => {
 //   const response = await fetch(`/api/posts`);
@@ -69,7 +72,7 @@ const postReducer = (state = initialState, action) => {
       });
 
       return {
-        ...state,
+        // ...state, #we do not want to expand our state.
         ...allPost,
       };
 
