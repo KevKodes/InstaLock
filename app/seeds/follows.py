@@ -15,28 +15,17 @@ def seed_follows():
 
   users = User.query.all()
   # print(users)
+  user= users[0]
 
-  user= users[2]
-  followers = user.follows
-  print('FOLLOWS USER', list(followers))
-  # user.followers.append(users[2])
-  # db.session.commit()
+  for i in range(1, 35):
+    user.followers.append(users[i])
 
-  # op.bulk_insert(follows, [
-  #   { 'followed_Id':2, 'follower_Id':1},
-  #   { 'followed_Id':3, 'follower_Id':1},
-  #   { 'followed_Id':4, 'follower_Id':1},
-  #   { 'followed_Id':5, 'follower_Id':1},
-  #   { 'followed_Id':6, 'follower_Id':1},
-  #   { 'followed_Id':7, 'follower_Id':1},
-  #   { 'followed_Id':8, 'follower_Id':1},
-  #   { 'followed_Id':9, 'follower_Id':1},
-  #   { 'followed_Id':10, 'follower_Id':1},
-  #   { 'followed_Id':11, 'follower_Id':1},
-  #   { 'followed_Id':12, 'follower_Id':1},
-  # ])
+  db.session.commit()
 
-
+  # methods for accessing follows
+  # followers = user.follows
+  # print('FOLLOWS USER', list(followers))
+  
 
 def undo_follows():
   db.session.execute('TRUNCATE follows;')

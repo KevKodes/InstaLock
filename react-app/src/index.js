@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import { csrfFetch } from './store/csrf';
-import App from './App';
-import configureStore from './store/index'
-import * as sessionActions from './store/session';
-import * as postActions from './store/posts'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { csrfFetch } from "./store/csrf";
+import App from "./App";
+import configureStore from "./store/index";
+import * as authActions from "./store/auth";
+import * as postActions from "./store/posts";
 
 const store = configureStore();
 
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== "production") {
 
   window.csrfFetch = csrfFetch;
   window.store = store;
-  window.sessionActions = sessionActions;
+  window.authActions = authActions;
   window.postActions = postActions;
   // window.sessionActions = sessionActions;
 }
@@ -35,5 +35,5 @@ ReactDOM.render(
   <React.StrictMode>
     <Root />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
