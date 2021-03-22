@@ -42,6 +42,13 @@ export const updateLikes = (like) => async (dispatch) => {
   return response;
 };
 
+export const getFollowingPosts = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/posts/following/${userId}`)
+  if (response.ok) {
+    const posts = await response.json();
+    dispatch(load(posts))
+  }
+}
 
 
 // export const getEverySinglePosts = () => async (dispatch) => {

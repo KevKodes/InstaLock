@@ -1,4 +1,4 @@
-from app.models import db, Follow
+from app.models import db, follows
 
 # add users in range to Demo's followers
 def seed_follows():
