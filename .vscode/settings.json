@@ -1,6 +1,7 @@
 {
-    "python.pythonPath": "/home/echo/dev/appacademy/starters/python-project-starter/.venv/bin/python",
+    "python.pythonPath": "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.linting.pycodestyleEnabled": false
+    "python.linting.pycodestyleEnabled": false,
+    "python.formatting.provider": "black"
 }

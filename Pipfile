@@ -27,12 +27,17 @@ python-dateutil = "==2.8.1"
 python-editor = "==1.0.4"
 Mako = "==1.1.3"
 PyJWT = "==1.7.1"
-faker = "*"
+Faker = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
 autopep8 = "*"
-pylint = "*"
+pylint = "<2.0.0"
+yapf = "*"
+black = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
