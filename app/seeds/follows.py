@@ -1,18 +1,31 @@
-from app.models import db, follows
+from app.models import db, follows, User
+from alembic import op
 
 # add users in range to Demo's followers
 def seed_follows():
 
-  for i in range(2, 35):
-    new_follower = Follow(
-      followedId = 1,
-      followerId = i
-    )
-    db.session.add(new_follower)
+  # for i in range(2, 35):
+  #   new_follower = Follow(
+  #     followedId = 1,
+  #     followerId = i
+  #   )
+  #   db.session.add(new_follower)
   
+  # db.session.commit()
+
+  users = User.query.all()
+  # print(users)
+  user= users[0]
+
+  for i in range(1, 35):
+    user.followers.append(users[i])
+
   db.session.commit()
 
-
+  # methods for accessing follows
+  # followers = user.follows
+  # print('FOLLOWS USER', list(followers))
+  
 
 def undo_follows():
   db.session.execute('TRUNCATE follows;')
