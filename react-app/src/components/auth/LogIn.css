@@ -1,14 +1,77 @@
+.Big {
+  display: flex;
+  width: 100%;
+  height: 93vh;
+
+}
+.flag1 {
+  width: 300px;
+  height: 500px;
+  background-image: url("./bronzecolorflag.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 8vw;
+}
+.flag2 {
+  width: 300px;
+  height: 500px;
+  background-image: url("./bluecolorflag.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.flag3 {
+  width: 300px;
+  height: 500px;
+  margin-left: 12px;
+  background-image: url("./purplecolorflag.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.flag4 {
+  width: 300px;
+  height: 500px;
+  background-image: url("./greencolorflag.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.flag5 {
+  width: 300px;
+  height: 500px;
+  background-image: url("./supergreencolorflag2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.banner1 {
+  height: 500px;
+  background-image: url("./banner.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.err {
+  color: red;
+  font-weight: bolder;
+  text-align: left;
+  margin-left: 43px;
+}
+
 .login-form {
   background-color: #fafafa;
+  margin-bottom: 500px;
+  margin-left: 0;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .login-form h1 {
   font-family: 'Neue Helvetica';
+  text-align: center;
+  font-size: 40px;
 }
 
 .login-form form {
-  background-color: #fff;
-  border: 1px solid #dbdbdb;
   padding: 10px;
   max-width: 350px;
   margin: 0 auto;
@@ -21,15 +84,21 @@
   border-radius: 3px;
   color: rgb(38, 38, 38);
   margin: 0 40px 6px;
-  padding: 10px;  
+  padding: 10px;
+  width: 250px;
 }
 
 .login-form button {
-  background-color: #0095f6;
-  border: 1px solid transparent;
+  background: linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
+  color: white;
+  font-weight: bolder;
+  font-size: 18px;
+  outline: none;
+  border: none;
   border-radius: 4px;
   margin: 0 40px 6px;
   padding: 10px;
+  width: 272px;
 }
 
 .signup-link-box {
@@ -38,4 +107,21 @@
   padding: 10px;
   max-width: 350px;
   margin: 10px auto;
+}
+
+.login-form button:hover {
+  background: linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
+  background-size: 300% 300%;
+  animation: easy 4s ease-in-out infinite;
+}
+@keyframes easy {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
