@@ -1,18 +1,27 @@
 /* TODO Add site wide styles */
 #nav {
+    width: 100%;
     list-style-type: none;
     display: flex;
     margin-right: 20px;
-    float: right;
+    height: 100px;
+    background-color: black;
+    background-size: cover;
+    margin: 0;
 
-
+    background-repeat: no-repeat;
+    align-items: center;
 }
 #nav A {
     text-decoration: none;
     margin-right: 20px;
-    color: black;
+    color: white;
     font-weight: bolder;
 }
 #nav A:hover {
     border-bottom: 3px solid rgb(0, 145, 202);
+}
+
+#ez {
+    margin-left: 1325px;
 }
