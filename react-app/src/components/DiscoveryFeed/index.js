@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./DiscoveryFeed.css";
 
 const DiscoveryFeed = () => {

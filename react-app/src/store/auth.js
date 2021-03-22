@@ -75,7 +75,7 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       newState = Object.assign({}, state);
-      newState.user = action.payload;
+      newState.user = action.user;
       return newState;
     case REMOVE_USER:
       newState = Object.assign({}, state);
