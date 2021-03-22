@@ -24,42 +24,50 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <div className="login-form">
-      <form onSubmit={onLogin}>
-        <h1>Photohaven</h1>
-        <div>
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
-        </div>
-        <div>
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <button type="submit">Login</button>
-        </div>
-      </form>
-      <div className="signup-link-box">
-        <div className="signup-link-text">
-        Don't have an account?
-          <NavLink to="/signup">
-            Sign up
-          </NavLink>
-        </div>
-        </div>
+    <div className="Big">
+      <div className="flag1"></div>
+      <div className="flag2"></div>
+
+      <div className="login-form">
+        <form onSubmit={onLogin}>
+          <h1>InstaLock</h1>
+          <div>
+            <input
+              name="email"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              />
+          </div>
+          <div>
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              />
+            <button type="submit">Login</button>
+              <div className="err">
+                {errors.map((error) => (
+                  <div>{error}</div>
+                  ))}
+              </div>
+          </div>
+        </form>
+        <div className="signup-link-box">
+          <div className="signup-link-text">
+          Don't have an account?
+            <NavLink to="/signup">
+              Sign up
+            </NavLink>
+          </div>
+          </div>
+        <div className="banner1"></div>
+      </div>
+      <div className="flag3"></div>
+      <div className="flag5"></div>
     </div>
   );
 };
