@@ -14,13 +14,14 @@ import PersonalFeed from "./components/PersonalFeed/index";
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [sessionUser, setSessionUser] = useState({})
+  const [sessionUser, setSessionUser] = useState({});
 
   useEffect(() => {
     (async () => {
       const user = await authenticate();
+      console.log("THIS IS THE USER", user);
       if (!user.errors) {
-        setSessionUser(user)
+        setSessionUser(user);
         setAuthenticated(true);
       }
       setLoaded(true);
@@ -33,7 +34,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} userName={sessionUser.userName} />
+      <NavBar
+        setAuthenticated={setAuthenticated}
+        userName={sessionUser.userName}
+      />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
