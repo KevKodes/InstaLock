@@ -1,5 +1,6 @@
 import React from "react";
 import { getAllPosts } from "../../store/posts";
+import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -10,6 +11,11 @@ function Profile() {
   const [user, setUser] = useState({});
   const [isFollowing, setIsFollowing] = useState(false);
   const posts = useSelector((state) => state.posts);
+  const sessionUser = useSelector((state) => state?.session?.user);
+  const followers = useSelector((state) => state.follow?.followers);
+  const following = useSelector((state) => state?.follow?.following);
+  console.log("THESE ARE THE FOLLOWERS", followers);
+  console.log("THESE ARE THE FOLLOWING", following);
 
   const dispatch = useDispatch();
 
@@ -20,8 +26,10 @@ function Profile() {
       setUser(data);
     };
     getUser();
+    dispatch(getAllFollowers(user.id));
+    dispatch(getAllFollowedBy(user.id));
     dispatch(getAllPosts(user.id));
-  }, [dispatch, user.id, userName]);
+  }, [dispatch, user.id, userName, sessionUser]);
 
   const postComponents =
     posts &&
@@ -32,11 +40,6 @@ function Profile() {
         </li>
       );
     });
-
-  console.log("This is posts ", posts);
-  console.log("This is user ", user);
-
-  // type="button" value={isFollowing} onClick={e => setIsFollowing(e.target.value)}
 
   return (
     <div className="MainPage">
@@ -53,13 +56,19 @@ function Profile() {
           </div>
           <div>{Object.entries(posts).length} Post</div>
           <div>
-            <button
-              value={isFollowing}
-              onClick={(e) => setIsFollowing(e.target.value)}
-            >
-              Follow
-            </button>
+            {followers?.length}
+            Follow
+            {sessionUser?.userName !== userName && (
+              <button
+                type="button"
+                value={isFollowing}
+                onClick={(e) => setIsFollowing(e.target.value)}
+              >
+                Follow
+              </button>
+            )}
           </div>
+          <div>{following?.length}Following</div>
           <div className="Qaud2">
             <ul>{postComponents}</ul>
           </div>
