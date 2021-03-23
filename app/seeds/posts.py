@@ -69,10 +69,10 @@ def seed_posts():
     urlList = [
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_7.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_27.jpg',
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_15.jpg',
         'https://img.rankedboost.com/wp-content/plugins/league-of-legends-wild-rift/assets/skins/Moo%20Cow%20Alistar.jpg',
         'https://img.rankedboost.com/wp-content/plugins/league-of-legends-wild-rift/assets/skins/Infernal%20Amumu.jpg',
-        'https://img.rankedboost.com/wp-content/plugins/league-of-legends-wild-rift/assets/skins/Infernal%20Amumu.jpg',
-        'https://static.wikia.nocookie.net/leagueoflegends/images/4/4c/01FR024-full.png/revision/latest?cb=20200407020110',
+        'https://c4.wallpaperflare.com/wallpaper/295/161/138/league-of-legends-anivia-wallpaper-preview.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_8.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_11.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_11.jpg',
