@@ -26,8 +26,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div className="Big">
-      <div className="flag1"></div>
-      <div className="flag2"></div>
+      <div className="flag1 flag"></div>
+      <div className="flag2 flag"></div>
     <div className="signup-form">
       <form onSubmit={onSignUp}>
         <h1>InstaLock</h1>
@@ -89,8 +89,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       </div>
       <div className="banner1"></div>
     </div>
-    <div className="flag3"></div>
-    <div className="flag5"></div>
+    <div className="flag3 flag"></div>
+    <div className="flag4 flag"></div>
     </div>
   );
 };
