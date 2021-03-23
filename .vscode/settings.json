@@ -1,7 +1,7 @@
 {
     "python.pythonPath": ".venv/bin/python3.8",
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.linting.enabled": false,
-    "python.linting.pycodestyleEnabled": false,
+    "python.linting.pycodestyleEnabled": true,
     "python.formatting.provider": "autopep8"
 }
