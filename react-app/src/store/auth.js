@@ -1,8 +1,7 @@
-import { csrfFetch } from "./csrf";
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
-const setUser = (user) => ({
+export const setUser = (user) => ({
   type: SET_USER,
   user,
 });
@@ -21,8 +20,8 @@ export const authenticate = async () => {
   return await response.json();
 };
 
-export const login = (email, password) => async (dispatch) => {
-  const response = await csrfFetch("/api/auth/login/", {
+export const login = async (email, password) => {
+  const response = await fetch("/api/auth/login/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,8 +32,7 @@ export const login = (email, password) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data));
-  return response;
+  return data;
 };
 
 export const logout = () => async (dispatch) => {
@@ -65,7 +63,7 @@ export const signUp = (
       password,
     }),
   };
-  const response = await csrfFetch("/api/auth/signup/", build);
+  const response = await fetch("/api/auth/signup/", build);
   const data = await response.json();
   dispatch(setUser(data.user));
   return response;

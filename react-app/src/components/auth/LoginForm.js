@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/auth";
-import './LogIn.css'
-
+import "./LogIn.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +15,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     const user = await login(email, password);
     if (!user.errors) {
+      dispatch(setUser(user));
       setAuthenticated(true);
     } else {
       setErrors(user.errors);
@@ -37,8 +40,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               type="text"
               placeholder="Email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
-              />
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div>
             <input
@@ -46,24 +49,22 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
-              />
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <button type="submit">Login</button>
-              <div className="err">
-                {errors.map((error) => (
-                  <div>{error}</div>
-                  ))}
-              </div>
+            <div className="err">
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
           </div>
         </form>
         <div className="signup-link-box">
           <div className="signup-link-text">
-          Don't have an account?
-            <NavLink to="/signup">
-              Sign up
-            </NavLink>
+            Don't have an account?
+            <NavLink to="/signup">Sign up</NavLink>
           </div>
-          </div>
+        </div>
         <div className="banner1"></div>
       </div>
       <div className="flag3"></div>
