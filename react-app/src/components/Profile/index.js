@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Profile.css";
+import { newFollowUser, newUnfollowUser } from "../../store/follow";
 
 function Profile() {
   const { userName } = useParams();
@@ -12,12 +13,22 @@ function Profile() {
   const [isFollowing, setIsFollowing] = useState(false);
   const posts = useSelector((state) => state.posts);
   const sessionUser = useSelector((state) => state?.session?.user);
-  const followers = useSelector((state) => state.follow?.followers);
+  const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
-  console.log("THESE ARE THE FOLLOWERS", followers);
-  console.log("THESE ARE THE FOLLOWING", following);
 
   const dispatch = useDispatch();
+
+  const follow = async (e) => {
+    e.preventDefault();
+    dispatch(newFollowUser(sessionUser?.id, user?.id));
+    setIsFollowing(true);
+  };
+
+  const unfollow = async (e) => {
+    e.preventDefault();
+    dispatch(newUnfollowUser(sessionUser?.id, user?.id));
+    setIsFollowing(false);
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -57,19 +68,18 @@ function Profile() {
           <div>{Object.entries(posts).length} Post</div>
           <div>
             {followers?.length}
-            Follow
-            {sessionUser?.userName !== userName && (
-              <button
-                type="button"
-                value={isFollowing}
-                onClick={(e) => setIsFollowing(e.target.value)}
-              >
-                Follow
-              </button>
-            )}
+            Follows
+            <form onSubmit={isFollowing ? unfollow : follow}>
+              <input name="follow" type="hidden" value={user.id} />
+              {sessionUser?.userName !== userName && (
+                <button type="submit">
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </button>
+              )}
+            </form>
           </div>
           <div>{following?.length}Following</div>
-          <div className="Qaud2">
+          <div className="Quad2">
             <ul>{postComponents}</ul>
           </div>
           <div className="Quad3"></div>
