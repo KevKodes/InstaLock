@@ -24,20 +24,25 @@ def post(id):
 @post_routes.route('/create_post', methods=['POST'])
 #creates the post aka the holy grail
 def create_post():
-    # form = PostForm()
-    print('HERES THE FORM USER', request.form)
+    form = PostForm()
+    data = form.data
+    print('HERES THE FORM USER', data)
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        post = Post(
+    # if form.validate_on_submit():
+    if True:
+        new_post = Post(
             userId=form.data['userId'],
             photoURL=form.data['photoURL'],
             caption=form.data['caption'],
             vaulted=form.data['vaulted']
         )
-        db.session.add(post)
+        # new_post = Post()
+        # form.populate_obj(new_post)
+        print(new_post)
+        db.session.add(new_post)
         db.session.commit()
-        return post.to_dict()
-    print(form.errors)
+        return new_post.to_dict()
+    print('ERRORS: ', form.errors)
     return {'errors': form.errors}
 
 

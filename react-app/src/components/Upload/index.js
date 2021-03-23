@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading';
 import { createNewPost } from '../../store/posts';
 
 import './Upload.css'
 
 const Upload = () => {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [image, setImage] = useState([]);
   const [caption, setCaption] = useState('');
@@ -38,10 +39,10 @@ const Upload = () => {
       caption,
       vaulted,
     }
-    console.log(newPost)
     const res = dispatch(createNewPost(newPost));
-    if (res.ok) {
-      return <Redirect to="/" />
+
+    if (res) {
+      return history.push('/')
 
     }
   }

@@ -59,16 +59,20 @@ export const getFollowingPosts = (userId) => async (dispatch) => {
 };
 
 export const createNewPost = newPost => async (dispatch) => {
+  console.log('THIS IS THE POST IN THE THUNK: ', newPost)
   const response = await fetch(`/api/posts/create_post`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      newPost
-    })
+    body: JSON.stringify(newPost)
   })
-  return await response.json();
+  if (response.ok) {
+    const addedPost = await response.json()
+    console.log(addedPost)
+    return addedPost
+  }
+  return "error with creating post";
 }
 
 // REDUCER
