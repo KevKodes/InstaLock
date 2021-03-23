@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import postReducer from "./posts";
 import commentsReducer from "./comments";
 import sessionReducer from "./auth";
+import followSession from "./follow";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postReducer,
   comments: commentsReducer,
+  follow: followSession,
 });
 
 let enhancer;

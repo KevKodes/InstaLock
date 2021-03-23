@@ -1,17 +1,34 @@
 import React from "react";
 import { getAllPosts } from "../../store/posts";
+import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Profile.css";
+import { newFollowUser, newUnfollowUser } from "../../store/follow";
 
 function Profile() {
   const { userName } = useParams();
   const [user, setUser] = useState({});
   const [isFollowing, setIsFollowing] = useState(false);
   const posts = useSelector((state) => state.posts);
+  const sessionUser = useSelector((state) => state?.session?.user);
+  const followers = useSelector((state) => state?.follow?.followers);
+  const following = useSelector((state) => state?.follow?.following);
 
   const dispatch = useDispatch();
+
+  const follow = async (e) => {
+    e.preventDefault();
+    dispatch(newFollowUser(sessionUser?.id, user?.id));
+    setIsFollowing(true);
+  };
+
+  const unfollow = async (e) => {
+    e.preventDefault();
+    dispatch(newUnfollowUser(sessionUser?.id, user?.id));
+    setIsFollowing(false);
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -20,8 +37,10 @@ function Profile() {
       setUser(data);
     };
     getUser();
+    dispatch(getAllFollowers(user.id));
+    dispatch(getAllFollowedBy(user.id));
     dispatch(getAllPosts(user.id));
-  }, [dispatch, user.id, userName]);
+  }, [dispatch, user.id, userName, sessionUser]);
 
   const postComponents =
     posts &&
@@ -36,11 +55,6 @@ function Profile() {
       );
     });
 
-  console.log("This is posts ", posts);
-  console.log("This is user ", user);
-
-  // type="button" value={isFollowing} onClick={e => setIsFollowing(e.target.value)}
-
   return (
     <div className="OuterMost">
       <div className="outerTop"></div>
@@ -49,6 +63,7 @@ function Profile() {
           <div className="MiddleQuad">
             {postComponents}
           </div>
+
           <div className="RightQuad2">
             <div className="nameandphoto">
               <img src={user.profileImage} alt="" className="photohere" />
@@ -63,6 +78,7 @@ function Profile() {
               </button>
             </div>
           </div>
+
       </div>
     </div>
   );

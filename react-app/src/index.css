@@ -1,5 +1,6 @@
 /* TODO Add site wide styles */
 #nav {
+
     width: 100%;
     list-style-type: none;
     display: flex;
@@ -8,30 +9,33 @@
     background-color: rgb(20, 20, 20);
     background-size: cover;
     margin: 0;
+
     background-repeat: no-repeat;
-    align-items: center;
+    align-items      : center;
 }
+
 #nav A {
-    display: block;
+    display        : block;
     text-decoration: none;
-    margin-right: 20px;
-    color: white;
-    font-weight: bolder;
-    font-size: 17px;
+    margin-right   : 20px;
+    color          : white;
+    font-weight    : bolder;
+    font-size      : 17px;
 }
+
 /* #nav A:hover, #nav button:hover {
     border-bottom: 3px solid rgb(0, 87, 7);
 } */
 #nav button {
-    display: block;
-    color: white;
-    border:none;
-    margin:0;
-    padding:0;
-    text-decoration: none;
+    display         : block;
+    color           : white;
+    border          : none;
+    margin          : 0;
+    padding         : 0;
+    text-decoration : none;
     background-color: rgb(20, 20, 20);
-    cursor: pointer;
-    outline: none;
+    cursor          : pointer;
+    outline         : none;
 }
 .search {
     display: flex;
@@ -42,6 +46,7 @@
 }
 
 .liner {
+
     position: fixed;
     top: 0;
     left: 0;
@@ -49,9 +54,12 @@
     width: 100%;
 
     flex-direction: row;
+
     background-color: rgb(20, 20, 20);
 }
+
 .gif {
+
     width: 250px;
     margin-left: 440px;
     background-color: rgb(20, 20, 20);
@@ -72,46 +80,81 @@
     width: 1000px;
     background-color: rgb(20, 20, 20);
 }
+
 #ez {
-    width: 40px;
-    height: 40px;
-    background-image: url("./Jungle_icon.png");
-    background-size: contain;
+    width            : 40px;
+    height           : 40px;
+    background-image : url("./Jungle_icon.png");
+    background-size  : contain;
     background-repeat: no-repeat;
     margin-left: 16px;
 }
+
+/* Added hover spin effect to navIcons */
+.navIcon {
+    transition: transform .7s ease-in-out;
+}
+
+/* Added hover spin effect to navIcons */
+.navIcon:hover {
+    /* transform: rotate(360deg); */
+    /* transform   : rotateX(720deg); */
+    /* transform   : rotateY(360deg); */
+    /* transform: rotateZ(360deg); */
+    animation-name           : spinning;
+    animation-duration       : 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    /* linear | ease | ease-in | ease-out | ease-in-out */
+}
+
+/* Added keyframes for spin effect for navIcons */
+@keyframes spinning {
+    from {
+        transform: rotateY(0deg)
+    }
+
+    to {
+        transform: rotateY(360deg)
+    }
+}
+
 #ez2 {
-    width: 40px;
-    height: 40px;
-    background-image: url("./Fighter_icon.png");
-    background-size: contain;
+    width            : 40px;
+    height           : 40px;
+    background-image : url("./Fighter_icon.png");
+    background-size  : contain;
     background-repeat: no-repeat;
 }
+
 #ez3 {
-    width: 40px;
-    height: 40px;
-    background-image: url("./Marksman_icon.png");
-    background-size: contain;
+    width            : 40px;
+    height           : 40px;
+    background-image : url("./Marksman_icon.png");
+    background-size  : contain;
     background-repeat: no-repeat;
 }
+
 #ez4 {
-    width: 40px;
-    height: 40px;
-    background-image: url("./Tank_icon.png");
-    background-size: contain;
+    width            : 40px;
+    height           : 40px;
+    background-image : url("./Tank_icon.png");
+    background-size  : contain;
     background-repeat: no-repeat;
 }
+
 #ez5 {
-    width: 40px;
-    height: 40px;
-    background-image: url("./Slayer_icon.png");
-    background-size: contain;
+    width            : 40px;
+    height           : 40px;
+    background-image : url("./Slayer_icon.png");
+    background-size  : contain;
     background-repeat: no-repeat;
 }
+
 #ez6 {
-    width: 40px;
-    height: 40px;
-    background-image: url("./Controller_icon.png");
-    background-size: contain;
+    width            : 40px;
+    height           : 40px;
+    background-image : url("./Controller_icon.png");
+    background-size  : contain;
     background-repeat: no-repeat;
 }
