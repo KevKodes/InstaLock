@@ -4,8 +4,6 @@ import LogoutButton from "../auth/LogoutButton";
 import "./Navigation.css"
 
 const NavBar = ({ setAuthenticated, userName }) => {
-  if ({setAuthenticated}) return null;
-  else {
     return (
       <nav className="liner">
         <div className="gif"></div>
@@ -64,7 +62,7 @@ const NavBar = ({ setAuthenticated, userName }) => {
         </ul>
       </nav>
     );
-  }
+
 };
 
 export default NavBar;

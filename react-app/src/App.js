@@ -39,10 +39,8 @@ function App() {
 
   return (
     <>
-      <NavBar
-        setAuthenticated={setAuthenticated}
-        userName={sessionUser.userName}
-      />
+    {authenticated && <NavBar setAuthenticated={setAuthenticated} userName={sessionUser.userName} />}
+     
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
