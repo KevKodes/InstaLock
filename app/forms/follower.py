@@ -3,4 +3,4 @@ from wtforms import HiddenField
 
 
 class FollowForm(FlaskForm):
-    followId = HiddenField('follow')
+    follower_id = HiddenField('follow')

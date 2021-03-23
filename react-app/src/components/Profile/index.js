@@ -1,17 +1,34 @@
 import React from "react";
 import { getAllPosts } from "../../store/posts";
+import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Profile.css";
+import { newFollowUser, newUnfollowUser } from "../../store/follow";
 
 function Profile() {
   const { userName } = useParams();
   const [user, setUser] = useState({});
   const [isFollowing, setIsFollowing] = useState(false);
   const posts = useSelector((state) => state.posts);
+  const sessionUser = useSelector((state) => state?.session?.user);
+  const followers = useSelector((state) => state?.follow?.followers);
+  const following = useSelector((state) => state?.follow?.following);
 
   const dispatch = useDispatch();
+
+  const follow = async (e) => {
+    e.preventDefault();
+    dispatch(newFollowUser(sessionUser?.id, user?.id));
+    setIsFollowing(true);
+  };
+
+  const unfollow = async (e) => {
+    e.preventDefault();
+    dispatch(newUnfollowUser(sessionUser?.id, user?.id));
+    setIsFollowing(false);
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -20,8 +37,10 @@ function Profile() {
       setUser(data);
     };
     getUser();
+    dispatch(getAllFollowers(user.id));
+    dispatch(getAllFollowedBy(user.id));
     dispatch(getAllPosts(user.id));
-  }, [dispatch, user.id, userName]);
+  }, [dispatch, user.id, userName, sessionUser]);
 
   const postComponents =
     posts &&
@@ -32,11 +51,6 @@ function Profile() {
         </li>
       );
     });
-
-  console.log("This is posts ", posts);
-  console.log("This is user ", user);
-
-  // type="button" value={isFollowing} onClick={e => setIsFollowing(e.target.value)}
 
   return (
     <div className="MainPage">
@@ -53,14 +67,19 @@ function Profile() {
           </div>
           <div>{Object.entries(posts).length} Post</div>
           <div>
-            <button
-              value={isFollowing}
-              onClick={(e) => setIsFollowing(e.target.value)}
-            >
-              Follow
-            </button>
+            {followers?.length}
+            Follows
+            <form onSubmit={isFollowing ? unfollow : follow}>
+              <input name="follow" type="hidden" value={user.id} />
+              {sessionUser?.userName !== userName && (
+                <button type="submit">
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </button>
+              )}
+            </form>
           </div>
-          <div className="Qaud2">
+          <div>{following?.length}Following</div>
+          <div className="Quad2">
             <ul>{postComponents}</ul>
           </div>
           <div className="Quad3"></div>

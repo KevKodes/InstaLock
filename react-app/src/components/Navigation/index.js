@@ -8,32 +8,44 @@ const NavBar = ({ setAuthenticated, userName }) => {
       <div className="gif"></div>
       <ul id="nav">
         <li>
-          <NavLink id="ez" to="/discoveryfeed" exact={true} activeClassName="active"></NavLink>
+          <NavLink
+            id="ez"
+            to="/discoveryfeed"
+            exact={true}
+            activeClassName="active"
+          ></NavLink>
         </li>
         <li>
-          <NavLink id="ez2" to="/" exact={true} activeClassName="active">
-            
-          </NavLink>
+          <NavLink
+            id="ez2"
+            to="/"
+            exact={true}
+            activeClassName="active"
+          ></NavLink>
         </li>
         <li>
-          <NavLink id="ez3" to="/login" exact={true} activeClassName="active">
-
-          </NavLink>
+          <NavLink
+            id="ez3"
+            to="/login"
+            exact={true}
+            activeClassName="active"
+          ></NavLink>
         </li>
         <li>
-          <NavLink id="ez4" to="/signup" exact={true} activeClassName="active">
-
-          </NavLink>
+          <NavLink
+            id="ez4"
+            to="/signup"
+            exact={true}
+            activeClassName="active"
+          ></NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li> */}
         <li>
-          <NavLink id="ez5" to={`/${userName}`} exact={true} activeClassName="active">
-
-          </NavLink>
+          <NavLink
+            id="ez5"
+            to={`/${userName}`}
+            exact={true}
+            activeClassName="active"
+          ></NavLink>
         </li>
         <li>
           <LogoutButton setAuthenticated={setAuthenticated} />

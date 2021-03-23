@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowingPosts } from "../../store/posts";
 import "./PersonalFeed.css";
 import { Link } from "react-router-dom";
 
-const PersonalFeed = ({ sessionUser }) => {
+
+const PersonalFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state?.posts);
+  const sessionUser = useSelector((state) => state?.session?.user);
 
   // set the state with the user's following posts
   useEffect(() => {
-    dispatch(getFollowingPosts(sessionUser.id));
-  }, [dispatch, sessionUser.id]);
+    dispatch(getFollowingPosts(sessionUser?.id));
+  }, [dispatch, sessionUser]);
 
   // create a post component for each of the posts
   const followingPosts =
@@ -48,6 +50,7 @@ const PersonalFeed = ({ sessionUser }) => {
           <div className="username"></div>
           <div className="first-last">
             <div>{followingPosts}</div>
+            <div></div>
           </div>
         </div>
       </div>
