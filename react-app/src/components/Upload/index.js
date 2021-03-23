@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading';
+import { createNewPost } from '../../store/posts';
 
 import './Upload.css'
 
 const Upload = () => {
+  const dispatch = useDispatch();
   const [image, setImage] = useState([]);
   const [caption, setCaption] = useState('');
   const [vaulted, setVaulted] = useState(false);
+  const [errors, setErrors] = useState([]);
   const sessionUser = useSelector(state => state.session.user)
   const maxNumber = 1;
   // console.log('image url: ', image[0]?.data_url)
@@ -22,18 +25,25 @@ const Upload = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const photoURL = image[0]?.data_url
     // validate the post
+    if (!photoURL) {
+      setErrors(['Please upload a photo to create your post'])
+    }
 
     // add the post to the database
     const newPost = {
       userId: sessionUser.id,
-      photoURL: image[0]?.data_url,
+      photoURL,
       caption,
       vaulted,
     }
     console.log(newPost)
-    
-    // return <Redirect to="/" />
+    const res = dispatch(createNewPost(newPost));
+    if (res.ok) {
+      return <Redirect to="/" />
+
+    }
   }
 
   const imageDiv = image[0]?.data_url && (
@@ -47,13 +57,18 @@ const Upload = () => {
           value={caption}
           onChange={e => setCaption(e.target.value)}
         ></input>
-        <label for="vaulted">Vault my photo</label>
+        <label htmlFor="vaulted">Vault my photo</label>
         <input
           type="checkbox"
           name="vaulted"
           checked={vaulted}
           onChange={e => setVaulted(e.target.checked)}
         ></input>
+        <ul className='res-form-errors'>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
         <button type="submit">Upload Photo</button>
       </form>
     </div>

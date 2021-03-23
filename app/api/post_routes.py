@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from app.models import db, Post, follows
-from app.forms.post_form import PostForm
+from app.forms import PostForm
 
 post_routes = Blueprint("posts", __name__)
 
@@ -24,11 +24,12 @@ def post(id):
 @post_routes.route('/create_post', methods=['POST'])
 #creates the post aka the holy grail
 def create_post():
-    form = PostForm()
+    # form = PostForm()
+    print('HERES THE FORM USER', request.form)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         post = Post(
-            userId=2,
+            userId=form.data['userId'],
             photoURL=form.data['photoURL'],
             caption=form.data['caption'],
             vaulted=form.data['vaulted']
