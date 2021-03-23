@@ -8,44 +8,34 @@ const NavBar = ({ setAuthenticated, userName }) => {
       <div className="gif"></div>
       <ul id="nav">
         <li>
-          <NavLink
-            id="ez"
-            to="/discoveryfeed"
-            exact={true}
-            activeClassName="active"
-          ></NavLink>
+
+          {/* Added className navIcon */}
+          <NavLink id="ez" to="/discoveryfeed" exact={true} className="navIcon" activeClassName="active"></NavLink>
         </li>
         <li>
-          <NavLink
-            id="ez2"
-            to="/"
-            exact={true}
-            activeClassName="active"
-          ></NavLink>
+          {/* Added className navIcon */}
+          <NavLink id="ez2" to="/" exact={true} className="navIcon" activeClassName="active">
+
+          </NavLink>
         </li>
         <li>
-          <NavLink
-            id="ez3"
-            to="/login"
-            exact={true}
-            activeClassName="active"
-          ></NavLink>
+          {/* Added className navIcon */}
+          <NavLink id="ez3" to="/login" exact={true} className="navIcon" activeClassName="active">
+
+          </NavLink>
         </li>
         <li>
-          <NavLink
-            id="ez4"
-            to="/signup"
-            exact={true}
-            activeClassName="active"
-          ></NavLink>
+          {/* Added className navIcon */}
+          <NavLink id="ez4" to="/signup" exact={true} className="navIcon" activeClassName="active">
+
+          </NavLink>
         </li>
         <li>
-          <NavLink
-            id="ez5"
-            to={`/${userName}`}
-            exact={true}
-            activeClassName="active"
-          ></NavLink>
+
+          {/* Added className navIcon*/}
+          <NavLink id="ez5" to={`/${userName}`} exact={true} className="navIcon" activeClassName="active">
+
+          </NavLink>
         </li>
         <li>
           <LogoutButton setAuthenticated={setAuthenticated} />
