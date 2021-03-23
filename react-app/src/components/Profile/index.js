@@ -27,9 +27,12 @@ function Profile() {
     posts &&
     Object.values(posts).map((post) => {
       return (
-        <li>
-          <img className="image" src={post.photoURL} alt="photoURL" />
-        </li>
+        <div className="boxxy">
+          <img
+          src={post.photoURL}
+          className="allImages"
+          alt="photoURL" />
+        </div>
       );
     });
 
@@ -39,32 +42,27 @@ function Profile() {
   // type="button" value={isFollowing} onClick={e => setIsFollowing(e.target.value)}
 
   return (
-    <div className="MainPage">
-      <div className="TopLess">
-        <h1>{user.userName}</h1>
-      </div>
-      <div className="BottomMost">
-        <div className="QuadsPage">
-          <div className="Quad1">
-            {user.firstName} {user.lastName}
+    <div className="OuterMost">
+      <div className="outerTop"></div>
+      <div className="outerBottom">
+          <div className="LeftQuad"></div>
+          <div className="MiddleQuad">
+            {postComponents}
           </div>
-          <div>
-            <img src={user.profileImage} alt="profileImg" />
+          <div className="RightQuad2">
+            <div className="nameandphoto">
+              <img src={user.profileImage} alt="" className="photohere" />
+              {user.userName}
+            </div>
+            <div className="followbuttons">
+              <button
+                className="fbutton"
+                value={isFollowing}
+                onClick={(e) => setIsFollowing(e.target.value)}>
+                Follow
+              </button>
+            </div>
           </div>
-          <div>{Object.entries(posts).length} Post</div>
-          <div>
-            <button
-              value={isFollowing}
-              onClick={(e) => setIsFollowing(e.target.value)}
-            >
-              Follow
-            </button>
-          </div>
-          <div className="Qaud2">
-            <ul>{postComponents}</ul>
-          </div>
-          <div className="Quad3"></div>
-        </div>
       </div>
     </div>
   );
