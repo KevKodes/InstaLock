@@ -1,5 +1,5 @@
-const SET_USER = "setUser";
-const REMOVE_USER = "removeUser";
+const SET_USER = "auth/SET_USER";
+const REMOVE_USER = "auth/REMOVE_USER";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -16,23 +16,26 @@ export const authenticate = async () => {
       "Content-Type": "application/json",
     },
   });
-  console.log("THIS IS THE RESPONSE", response);
+
   return await response.json();
 };
 
 export const login = (email, password) => async (dispatch) => {
-  const build = {
+  const response = await fetch("/api/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       email,
       password,
     }),
-  };
-  const response = await fetch("/api/auth/login", build);
-  const user = await response.json();
-  dispatch(setUser(user));
-  return user;
+  });
+  console.log("THIS IS THE RESPPONNSSSSSSSSEEEE", response);
+  const data = await response.json();
+  console.log("THIS IS THE DATAAAAAAAAAA", data);
+  dispatch(setUser(data.user));
+  return data;
 };
 
 export const logout = () => async (dispatch) => {
@@ -69,7 +72,7 @@ export const signUp = (
   return user;
 };
 
-const initialState = { user: {} };
+const initialState = { user: null };
 
 const authReducer = (state = initialState, action) => {
   let newState;
