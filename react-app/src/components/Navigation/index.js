@@ -8,6 +8,7 @@ const NavBar = ({ setAuthenticated, userName }) => {
       <div className="gif"></div>
       <ul id="nav">
         <li>
+
           {/* Added className navIcon */}
           <NavLink id="ez" to="/discoveryfeed" exact={true} className="navIcon" activeClassName="active"></NavLink>
         </li>
@@ -29,12 +30,8 @@ const NavBar = ({ setAuthenticated, userName }) => {
 
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li> */}
         <li>
+
           {/* Added className navIcon*/}
           <NavLink id="ez5" to={`/${userName}`} exact={true} className="navIcon" activeClassName="active">
 

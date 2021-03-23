@@ -1,16 +1,19 @@
+// ACTION TYPES
 const LOAD_POSTS = "LOAD_POSTS";
 // const REMOVE_POST = "REMOVE_POST";
 // const CREATE_POST = "CREATE_POST";
 const LIKE_POST = "LIKE_POST";
 
+
+// ACTION CREATORS
 const load = (posts) => ({
   type: LOAD_POSTS,
   posts,
 });
 
-// const createPost = (posts) => ({
+// const createPost = (post) => ({
 //   type: CREATE_POST,
-//   posts,
+//   post,
 // });
 
 // const removePost = (postId) => ({
@@ -23,6 +26,7 @@ const likePost = (post) => ({
   post,
 });
 
+// THUNKS
 export const getAllPosts = (userId) => async (dispatch) => {
   // get all posts of the user's feed
   const response = await fetch(`/api/posts/${userId}`);
@@ -54,14 +58,24 @@ export const getFollowingPosts = (userId) => async (dispatch) => {
   return response;
 };
 
-// export const getEverySinglePosts = () => async (dispatch) => {
-//   const response = await fetch(`/api/posts`);
-//   if (response.ok) {
-//     const posts = await response.json();
-//     dispatch(load(posts));
-//   }
-// };
+export const createNewPost = newPost => async (dispatch) => {
+  console.log('THIS IS THE POST IN THE THUNK: ', newPost)
+  const response = await fetch(`/api/posts/create_post`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPost)
+  })
+  if (response.ok) {
+    const addedPost = await response.json()
+    console.log(addedPost)
+    return addedPost
+  }
+  return "error with creating post";
+}
 
+// REDUCER
 const initialState = {};
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
