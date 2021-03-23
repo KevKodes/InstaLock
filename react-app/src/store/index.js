@@ -3,10 +3,10 @@ import thunk from "redux-thunk";
 // import { login } from '../react-app/src/services';
 import postReducer from "./posts";
 import commentsReducer from "./comments";
-import authReducer from "./auth";
+import sessionReducer from "./auth";
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  session: sessionReducer,
   posts: postReducer,
   comments: commentsReducer,
 });

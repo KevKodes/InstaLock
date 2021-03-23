@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const PersonalFeed = ({ sessionUser }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state?.posts);
-  const activeSessionUser = useSelector((state) => state?.user);
-  console.log("THIS IS THE ACTIVE SESSION:", activeSessionUser);
 
   // set the state with the user's following posts
   useEffect(() => {
