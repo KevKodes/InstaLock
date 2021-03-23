@@ -33,8 +33,6 @@ Faker = "*"
 psycopg2-binary = "==2.8.6"
 autopep8 = "*"
 pylint = "<2.0.0"
-yapf = "*"
-black = "*"
 
 [requires]
 python_version = "3.8"
