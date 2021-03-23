@@ -16,6 +16,7 @@ export const authenticate = async () => {
       "Content-Type": "application/json",
     },
   });
+  console.log("THIS IS THE RESPONSE", response);
   return await response.json();
 };
 
