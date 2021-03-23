@@ -1,13 +1,76 @@
 .allImages {
-  max-width: 50%;
-  height   : auto;
+
+  max-width: 335px;
+  min-width: 335px;
+  min-height: auto;
+  height: 200px;
+  margin: 0;
+  padding: 2px;
+
 }
 
-li {
-  list-style-type: none;
+.OuterMost {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
-.pageContainer {
-  display  : flex;
+.outerTop {
+  text-align: center;
+  width: 100%;
+  height: 91px;
+
+}
+
+
+.outerBottom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.RightQuad {
+  width: 22%;
+}
+.LeftQuad {
+  width: 24%
+}
+.MiddleQuad {
+  width: 54%;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  background-color: rgb(20, 20, 20);
 }
+.RightQuad2 {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+}
+.nameandphoto {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  margin-left: 10px;
+}
+.photohere {
+  height: 75px;
+  width: 75px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.followbuttons {
+  width: 150px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fbutton {
+  margin-bottom: 80px;
+  margin-right: 50px;
+}
+

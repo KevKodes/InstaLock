@@ -19,7 +19,7 @@ const DiscoveryFeed = () => {
     Object.values(allPosts).map((posts) => {
       return Object.values(posts).map((singlePost) => {
         return (
-          <li key={singlePost.id}>
+          <div key={singlePost.id} className="boxxy">
             <Link to={`/${singlePost.userName}`}>
               <img
                 src={singlePost.photoURL}
@@ -27,18 +27,28 @@ const DiscoveryFeed = () => {
                 className="allImages"
               />
             </Link>
-          </li>
+          </div>
         );
       });
     });
 
   return (
-    <>
-      <h1>You made it to the Discovery Page!</h1>
-      <div className="pageContainer">
-        <ul>{allPostsComponents}</ul>
+    <div className="OuterMost">
+      <div className="outerTop">
+
       </div>
-    </>
+      <div className="outerBottom">
+        <div className="LeftQuad">
+
+        </div>
+        <div className="MiddleQuad">
+          {allPostsComponents}
+        </div>
+        <div className="RightQuad">
+
+        </div>
+      </div>
+    </div>
   );
 };
 
