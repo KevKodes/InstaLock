@@ -1,127 +1,249 @@
-.Big {
-  display: flex;
-  width: 100%;
-  height: 87vh;
+/* Added CSS variables */
+:root {
+  --flag-height   : 500px;
+  --flag-width    : 300px;
+  --flag-bg-size  : contain;
+  --flag-bg-repeat: no-repeat;
+  --flag-tf-origin: top;
+  --flag-rotation : 35deg;
+}
 
+.Big {
+  display              : flex;
+  width                : 100%;
+  /* Added to display for even space */
+  justify-content      : space-around;
+  /* Bo's CSS */
+  /* height            : 87vh; */
 }
+
+/* Added a flag group to apply to all flags */
+.flag {
+  width                  : var(--flag-width);
+  height                 : var(--flag-height);
+  background-size        : var(--flag-bg-size);
+  background-repeat      : var(--flag-bg-repeat);
+  transform-origin       : var(--flag-tf-origin);
+  /* transform-origin    : top; */
+}
+
 .flag1 {
-  width: 300px;
-  height: 500px;
-  background-image: url("./bronzecolorflag.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-left: 8vw;
+  background-image: url("./bronzeflag.png");
+  animation       : wave 8s ease-in-out 0s infinite,
+    flutter 8s ease-in-out 0s infinite alternate;
+  /* Bo's CSS */
+  /* width            : 300px;
+  height              : 500px;
+  background-size     : contain;
+  background-repeat   : no-repeat;
+  margin-left         : 8vw; */
 }
+
 .flag2 {
-  width: 300px;
-  height: 500px;
-  background-image: url("./bluecolorflag.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-image: url("./blueflag.png");
+  animation       : wave 8.3s ease-in-out 0s infinite,
+    flutter 8.3s ease-in-out 0s infinite alternate;
+  /* Bo's CSS */
+  /* width            : 300px;
+  height              : 500px;
+  background-size     : contain;
+  background-repeat   : no-repeat; */
 }
+
 .flag3 {
-  width: 300px;
-  height: 500px;
-  margin-left: 12px;
-  background-image: url("./purplecolorflag.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-image: url("./purpleflag.png");
+  animation       : wave 8.1s ease-in-out 0s infinite,
+    flutter 8.1s ease-in-out 0s infinite alternate;
+  /* Bo's CSS */
+  /* width            : 300px;
+  height              : 500px;
+  margin-left         : 12px;
+  background-size     : contain;
+  background-repeat   : no-repeat; */
 }
+
 .flag4 {
-  width: 300px;
-  height: 500px;
-  background-image: url("./greencolorflag.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-image: url("./greenflag.png");
+  animation       : wave 8.2s ease-in-out 0s infinite,
+    flutter 8.2s ease-in-out 0s infinite alternate;
+  /* Bo's CSS */
+  /* width            : 300px;
+  height              : 500px;
+  background-size     : contain;
+  background-repeat   : no-repeat; */
 }
-.flag5 {
-  width: 300px;
-  height: 500px;
-  background-image: url("./supergreencolorflag2.png");
-  background-size: contain;
+
+/* Bo's CSS */
+/* .flag5 {
+  width            : 300px;
+  height           : 500px;
+  background-image : url("./supergreencolorflag2.png");
+  background-size  : contain;
   background-repeat: no-repeat;
-}
+} */
+
 .banner1 {
-  height: 500px;
-  background-image: url("./banner.png");
-  background-size: contain;
+  height           : 500px;
+  background-image : url("./banner.png");
+  background-size  : contain;
   background-repeat: no-repeat;
 }
+
 .err {
-  color: red;
+  color      : red;
   font-weight: bolder;
-  text-align: left;
+  text-align : left;
   margin-left: 43px;
 }
 
 .login-form {
-  background-color: #fafafa;
-  margin-bottom: 500px;
-  margin-left: 0;
-  height: 600px;
-  display: flex;
+  /* Bo's CSS */
+  /* background-color: #fafafa; */
+  margin-bottom  : 500px;
+  margin-left    : 0;
+  height         : 600px;
+  display        : flex;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
+  flex-direction : column;
+  text-align     : center;
 }
 
 .login-form h1 {
   font-family: 'Neue Helvetica';
-  text-align: center;
-  font-size: 40px;
-  color: rgb(20, 20, 20);
+  text-align : center;
+  font-size  : 40px;
+  color      : rgb(20, 20, 20);
 }
 
 .login-form form {
-  padding: 10px;
+  padding  : 10px;
   max-width: 350px;
-  margin: 0 auto;
+  margin   : 0 auto;
 
 }
 
 .login-form input {
   background-color: #fafafa;
-  border: 1px solid #dbdbdb;
-  border-radius: 3px;
-  color: rgb(38, 38, 38);
-  margin: 0 40px 6px;
-  padding: 10px;
-  width: 250px;
+  border          : 1px solid #dbdbdb;
+  border-radius   : 3px;
+  color           : rgb(38, 38, 38);
+  margin          : 0 40px 6px;
+  padding         : 10px;
+  width           : 250px;
 }
 
 .login-form button {
-  background: linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
-  color: white;
-  font-weight: bolder;
-  font-size: 18px;
-  outline: none;
-  border: none;
+  background   : linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
+  color        : white;
+  font-weight  : bolder;
+  font-size    : 18px;
+  outline      : none;
+  border       : none;
   border-radius: 4px;
-  margin: 0 40px 6px;
-  padding: 10px;
-  width: 272px;
+  margin       : 0 40px 6px;
+  padding      : 10px;
+  width        : 272px;
 }
 
 .signup-link-box {
   background-color: #fff;
-  padding: 10px;
-  max-width: 350px;
-  margin: 10px auto;
+  padding         : 10px;
+  max-width       : 350px;
+  margin          : 10px auto;
 }
 
 .login-form button:hover {
-  background: linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
+  background     : linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
   background-size: 300% 300%;
-  animation: easy 4s ease-in-out infinite;
+  animation      : easy 4s ease-in-out infinite;
 }
+
 @keyframes easy {
   0% {
     background-position: 0% 0%;
   }
+
   50% {
     background-position: 100% 100%;
   }
+
   100% {
     background-position: 0% 0%;
+  }
+}
+
+/* Added keyframe for a wave in the wind effect */
+@keyframes wave {
+
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+
+  20% {
+    transform: translate3d(0, 0, 0) rotateX(calc(var(--flag-rotation)*0.64));
+  }
+
+  40% {
+    transform: translate3d(0, 0, 0) rotateX(var(--flag-rotation));
+  }
+
+  60% {
+    transform: translate3d(0, 0, 0) rotateX(calc(var(--flag-rotation)*0.48));
+  }
+
+  80% {
+    transform: translate3d(0, 0, 0) rotateX(calc(var(--flag-rotation)*0.56));
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+  }
+}
+
+/* Added keyframe for a flutter left and right effect */
+@keyframes flutter {
+
+  0% {
+    background-position: 2% 0px;
+  }
+
+  10% {
+    background-position: 4% 0px;
+  }
+
+  20% {
+    background-position: 5% 0px;
+  }
+
+  30% {
+    background-position: 4% 0px;
+  }
+
+  40% {
+    background-position: 2% 0px;
+  }
+
+  50% {
+    background-position: 0% 0px;
+  }
+
+  60% {
+    background-position: -2% 0px;
+  }
+
+  70% {
+    background-position: -4% 0px;
+  }
+
+  80% {
+    background-position: -5% 0px;
+  }
+
+  90% {
+    background-position: -4% 0px;
+  }
+
+  100% {
+    background-position: -2% 0px;
   }
 }

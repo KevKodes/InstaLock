@@ -1,6 +1,6 @@
 .allImages {
   max-width: 50%;
-  height: auto;
+  height   : auto;
 }
 
 li {
@@ -8,6 +8,6 @@ li {
 }
 
 .pageContainer {
-  display: flex;
+  display  : flex;
   flex-wrap: wrap;
 }
