@@ -36,28 +36,36 @@ def user_followed_by(id):
 
 
 
-@follow_routes.route('/<int:id>/follows', methods=['POST'])
-def follow_user(id):
-    followed_user = User.query.filter(User.id == id).first()
+@follow_routes.route('/<int:followedId>/follows', methods=['POST'])
+def follow_user(followedId):
+    followed_user = User.query.filter(User.id == followedId).first()
     form = FollowForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        follower_id = form.data['follower_id']
+        session_user_id = form.data['follower_id']
 
-        new_follower = User.query.filter(User.id == follower_id).first()
+        session_user = User.query.filter(User.id == session_user_id).first()
         followers = followed_user.followers.all()
-        followed_user.followers.append(new_follower)
+        followed_user.followers.append(session_user)
         # db.session.add(followed_user)
         db.session.commit()
+        return {"follows":[user.to_dict() for user in followed_user.followers]}
+    return {'errors': form.errors}
 
 
-@follow_routes.route('/<int:id>/follows', methods=['DELETE'])
-def unfollow_user(id):
-    followed_user = User.query.filter(User.id == id).first()
+
+@follow_routes.route('/<int:followedId>/follows', methods=['DELETE'])
+def unfollow_user(followedId):
+    followed_user = User.query.filter(User.id == followedId).first()
     form = FollowForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        follower_id = form.data['follower_id']
-        follower = User.query.filter(User.id == follower_id).first()
-        followed_user.follows.remove(follower)
+        session_user_id = form.data['follower_id']
+
+        session_user = User.query.filter(User.id == session_user_id).first()
+        followers = followed_user.followers.all()
+        followed_user.follows.remove(session_user)
+        # db.session.add(followed_user)
         db.session.commit()
+        return {"follows":[user.to_dict() for user in followed_user.followers]}
+    return {'errors': form.errors}

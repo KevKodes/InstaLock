@@ -10,11 +10,16 @@ import { newFollowUser, newUnfollowUser } from "../../store/follow";
 function Profile() {
   const { userName } = useParams();
   const [user, setUser] = useState({});
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false); // needs to query
   const posts = useSelector((state) => state.posts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
+
+  console.log('followers: ', followers)
+
+  // check if the session user follows the profile's user and 
+  //      setIsFollowing(true) if true
 
   const dispatch = useDispatch();
 
@@ -40,13 +45,20 @@ function Profile() {
     dispatch(getAllFollowers(user.id));
     dispatch(getAllFollowedBy(user.id));
     dispatch(getAllPosts(user.id));
+
+    for (let eachUser in followers) {
+      if (eachUser.id === user.id) {
+        setIsFollowing(true)
+      }
+    }
+
   }, [dispatch, user.id, userName, sessionUser]);
 
   const postComponents =
     posts &&
     Object.values(posts).map((post) => {
       return (
-        <div className="boxxy">
+        <div className="boxxy" key={post.id}>
           <img
           src={post.photoURL}
           className="allImages"
@@ -68,14 +80,24 @@ function Profile() {
             <div className="nameandphoto">
               <img src={user.profileImage} alt="" className="photohere" />
               {user.userName}
+              <div>
+                {following?.length} Following
+              </div>
+              <div>
+                {followers?.length} Follows
+              </div>
+
             </div>
             <div className="followbuttons">
-              <button
-                className="fbutton"
-                value={isFollowing}
-                onClick={(e) => setIsFollowing(e.target.value)}>
-                Follow
-              </button>
+            <form onSubmit={isFollowing ? unfollow : follow}>
+              <input name="follow" type="hidden" value={user.id} />
+
+              {sessionUser?.userName !== userName && (
+                <button type="submit" className="fbutton">
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </button>
+              )}
+            </form>
             </div>
           </div>
 

@@ -13,16 +13,14 @@ const loadFollowedBy = (followed_by) => ({
   followed_by,
 });
 
-const followUser = (follows, userId) => ({
+const followUser = (follows) => ({
   type: FOLLOW_USER,
   follows,
-  userId,
 });
 
-const unfollowUser = (followerId, followedById) => ({
+const unfollowUser = (followers) => ({
   type: UNFOLLOW_USER,
-  followerId,
-  followedById,
+  followers
 });
 
 export const getAllFollowers = (userId) => async (dispatch) => {
@@ -47,47 +45,53 @@ export const getAllFollowedBy = (userId) => async (dispatch) => {
   return response;
 };
 
-export const newFollowUser = (user1Id, user2Id) => async (dispatch) => {
-  const response = await fetch(`/api/follow/${user1Id}/follows`, {
+export const newFollowUser = (followerId, followedId) => async (dispatch) => {
+  const response = await fetch(`/api/follow/${followedId}/follows`, {
     method: "POST",
     headers: { "Content-Type": "application/JSON" },
-    body: JSON.stringify({ follower_id: user2Id }),
+    body: JSON.stringify({ follower_id: followerId }),
   });
   if (response.ok) {
-    const data = await response.json();
-    dispatch(followUser(data, user2Id));
+    const followers = await response.json();
+    dispatch(followUser(followers));
   }
 };
 
-export const newUnfollowUser = (user1Id, user2Id) => async (dispatch) => {
-  const response = await fetch(`/api/follow/${user1Id}/follows`, {
+export const newUnfollowUser = (followerId, followedId) => async (dispatch) => {
+  const response = await fetch(`/api/follow/${followedId}/follows`, {
     method: "DELETE",
     headers: { "Content-Type": "application/JSON" },
-    body: JSON.stringify({ follower_id: user2Id }),
+    body: JSON.stringify({ follower_id: followerId }),
   });
   if (response.ok) {
-    const data = await response.json();
-    dispatch(unfollowUser(data, user2Id));
+    const followers = await response.json();
+    dispatch(unfollowUser(followers));
   }
 };
 
 const initialState = {};
 
 const followSession = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case IS_FOLLOWING:
       return { ...state, following: action.followers.follows };
     case IS_FOLLOWED_BY:
       return { ...state, followers: action.followed_by.followed };
     case FOLLOW_USER:
-      newState = Object.assign({}, state);
-      newState[action.userId] = action.followers;
-      return newState;
+      // newState = Object.assign({}, state);
+      // newState[action.userId] = action.follows;
+      const newFollowers = action.follows
+      console.log('newFollowers: ', newFollowers)
+      return {
+        ...state,
+        // followers: [...newFollowers]
+      };
     case UNFOLLOW_USER:
-      newState = Object.assign({}, state);
-      delete newState[action.followedById][action.followerId];
-      return newState;
+      const updatedFollowers = action.follows
+      return {
+        ...state,
+        followers: [...updatedFollowers]
+      };
     default:
       return state;
   }
