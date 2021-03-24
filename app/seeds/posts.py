@@ -14,6 +14,7 @@ def seed_posts():
         'im sad',
         'on my wings',
         'tibbers',
+        'So many weapons, Aphelios. The deadliest is your faith.',
         'bite my arrow',
         'naturally',
         'spawn',
@@ -114,7 +115,7 @@ def seed_posts():
         'How about a magic trick?',
         'A demonstration of superior judgement',
         'They are nothing before me',
-        'How about a drink?'
+        'How about a drink?',
         'Rest is for the living!',
         'I always take my toll - blood, or gold.',
         'My stinger brings ugly death',
@@ -123,7 +124,7 @@ def seed_posts():
         'Fear the power you do not see',
         'No more cages!',
         'So much untapped power',
-        'Call me King! Call me Demon! Water forgets the name of the drowned..'
+        'Call me King! Call me Demon! Water forgets the name of the drowned..',
         'Know the loom. Be the stone',
         'Live and die by the blade.',
         'That glimer of hope you see, thats me',
@@ -158,7 +159,7 @@ def seed_posts():
         'This will be a blast!',
         'I knew you would do that...',
         'Yes! This will be fun! Right?',
-        'Feel the thorns embrace!'
+        'Feel the thorns embrace!',
     ]
     capt = len(captionList)
 
@@ -170,8 +171,8 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Alistar_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Amumu_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Anivia_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aphelios_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_0.jpg',
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aphelios_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ashe_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/AurelionSol_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg',
@@ -324,7 +325,7 @@ def seed_posts():
     images = len(urlList)
 
     count = 0
-    while count < 155:
+    while count < 154:
         new_post = Post(
             userId = (count + 1),
             photoURL = urlList[count],
