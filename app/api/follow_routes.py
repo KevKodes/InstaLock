@@ -35,7 +35,7 @@ def follow_user(followedId):
         # format is: follower.followers.append(followed)
         session_user.followers.append(followed_user)
         db.session.commit()
-        return {"follows":[user.to_dict() for user in followed_user.followers]}
+        return {"follows":[user.to_dict() for user in followed_user.follows]}
     return {'errors': form.errors}
 
 
@@ -50,5 +50,5 @@ def unfollow_user(followedId):
         session_user = User.query.filter(User.id == session_user_id).first()
         session_user.followers.remove(followed_user)
         db.session.commit()
-        return {"follows":[user.to_dict() for user in followed_user.followers]}
+        return {"follows":[user.to_dict() for user in followed_user.follows]} # check what is returning
     return {'errors': form.errors}

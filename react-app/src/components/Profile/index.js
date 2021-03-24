@@ -10,7 +10,7 @@ import { newFollowUser, newUnfollowUser } from "../../store/follow";
 function Profile() {
   const { userName } = useParams();
   const [user, setUser] = useState({});
-  const [isFollowing, setIsFollowing] = useState(false); // needs to query
+  const [isFollowing, setIsFollowing] = useState(false);
   const [numFollowers, setNumFollowers] = useState(0);
   const [numFollowing, setNumFollowing] = useState(0);
   const posts = useSelector((state) => state.posts);
@@ -18,8 +18,6 @@ function Profile() {
   const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
   const dispatch = useDispatch();
-
-  console.log('followers: ', followers)
 
   // check if the session user follows the visited profile
   useEffect(() => {
@@ -32,8 +30,10 @@ function Profile() {
       }})
       return returnBool
     }
-    const followingBoolean = checkFollowing(followers)
-    setIsFollowing(followingBoolean)
+    if (followers?.length) {
+      const followingBoolean = checkFollowing(followers)
+      setIsFollowing(followingBoolean)
+    }
   },[followers, sessionUser])
 
   // update the numFollowers and numFollowing
@@ -95,10 +95,10 @@ function Profile() {
               <img src={user.profileImage} alt="" className="photohere" />
               {user.userName}
               <div>
-                 Following {numFollowing} {/* needs to update */}
+                 Following {numFollowing ? numFollowing : 0}
               </div>
               <div>
-                {numFollowers} Follows {/* needs to update */}
+                {numFollowers ? numFollowers : 0} Follows
               </div>
 
             </div>
