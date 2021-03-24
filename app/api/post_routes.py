@@ -17,7 +17,7 @@ def posts():
 @post_routes.route('/<int:id>')
 #feed all user posts into user's feed based on userId
 def post(id):
-    posts = Post.query.filter_by(userId=id).all()
+    posts = Post.query.filter_by(userId=id).order_by(Post.updatedAt.desc()).all()
     return {"posts": [post.to_dict() for post in posts]}
 
 
@@ -26,8 +26,8 @@ def post(id):
 def create_post():
     form = PostForm()
     data = form.data
-    print('HERES THE FORM USER', data)
     form['csrf_token'].data = request.cookies['csrf_token']
+    id = form.data['userId']
     # if form.validate_on_submit():
     if True:
         new_post = Post(
@@ -36,21 +36,37 @@ def create_post():
             caption=form.data['caption'],
             vaulted=form.data['vaulted']
         )
-        # new_post = Post()
         # form.populate_obj(new_post)
-        print(new_post)
+
         db.session.add(new_post)
         db.session.commit()
-        return new_post.to_dict()
+
+        # return new_post.to_dict()
+
+        # get the followers posts for return so it component can redirect there
+        print('============================ userID in create', id)
+        # get the list of user id's that follow the session user
+        following = db.session.query(follows).filter_by(follower_id=id).all()
+        following_ids = [y for x,y in following]
+        # add in the session user's id to the list so their posts show on the feed also
+        following_ids.append(id)
+        following_set = set(following_ids)
+        # Query posts with a userId in the ids set (ordered with newest first)
+        posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.updatedAt.desc()).all()
+        return {"posts": [post.to_dict() for post in posts]}
+
     print('ERRORS: ', form.errors)
     return {'errors': form.errors}
 
 
 @post_routes.route('/following/<int:id>')
 def following_posts(id):
-    print(f"input userId: {id}")
+    # get the list of user id's that follow the session user
     following = db.session.query(follows).filter_by(follower_id=id).all()
-    followingIds = [y for x,y in following]
-    # following = follows.select().where(follows.c.follower_id == id)
-    posts = Post.query.filter(Post.userId.in_(followingIds)).all()
+    following_ids = [y for x,y in following]
+    # add in the session user's id to the list so their posts show on the feed also
+    following_ids.append(id)
+    following_set = set(following_ids)
+    # Query posts with a userId in the ids set (ordered with newest first)
+    posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.updatedAt.desc()).all()
     return {"posts": [post.to_dict() for post in posts]}

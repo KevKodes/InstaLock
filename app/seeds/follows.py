@@ -4,15 +4,6 @@ from alembic import op
 # add users in range to Demo's followers
 def seed_follows():
 
-  # for i in range(2, 35):
-  #   new_follower = Follow(
-  #     followedId = 1,
-  #     followerId = i
-  #   )
-  #   db.session.add(new_follower)
-  
-  # db.session.commit()
-
   users = User.query.all()
   # print(users)
   user= users[0]
