@@ -193,6 +193,7 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Evelynn_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiddlesticks_0.jpg',
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiora_0.jpg'
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fizz_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Galio_0.jpg',
@@ -207,7 +208,7 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Irelia_0.jpg',
         'https://i.redd.it/g7hd51gdpfv31.jpg', #Ivern
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Janna_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jarvan_0.jpg',
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/JarvanIV_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jayce_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jhin_0.jpg',
@@ -294,7 +295,7 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Twitch_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Udyr_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Urgot_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Varus_0.jpg,',
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Varus_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vayne_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Veigar_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg',
@@ -307,7 +308,7 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Xayah_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Xerath_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_0.jpg',
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_0.jpg', #145
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yone_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yorick_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yuumi_0.jpg',
@@ -316,14 +317,14 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ziggs_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zilean_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zoe_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zyra_0.jpg'
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zyra_0.jpg' #154
 
     ]
 
     images = len(urlList)
 
     count = 0
-    while count < 154:
+    while count < 155:
         new_post = Post(
             userId = (count + 1),
             photoURL = urlList[count],
