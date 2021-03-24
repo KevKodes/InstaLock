@@ -39,13 +39,7 @@ const NavBar = ({ setAuthenticated, userName }) => {
           </li>
           <li>
             {/* Added className navIcon */}
-            <NavLink id="ez3" to="/login" exact={true} className="navIcon" activeClassName="active">
-
-            </NavLink>
-          </li>
-          <li>
-            {/* Added className navIcon */}
-            <NavLink id="ez4" to="/signup" exact={true} className="navIcon" activeClassName="active">
+            <NavLink id="ez3" to="/upload" exact={true} className="navIcon" activeClassName="active">
 
             </NavLink>
           </li>

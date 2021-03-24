@@ -6,7 +6,6 @@ def seed_posts():
 
     users = len(User.query.all())
     captionList = [
-        'My team winning the LCS',
         'Looking Sexy Boy',
         'Foxxy as ever',
         'Dont waste the anger, channel it',
@@ -68,7 +67,6 @@ def seed_posts():
     capt = len(captionList)
 
     urlList = [
-        'https://static.invenglobal.com/upload/image/2017/02/22/i1487753623863997.jpeg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_7.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_27.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_15.jpg',
@@ -130,12 +128,12 @@ def seed_posts():
 
     images = len(urlList)
 
-    count = 0
+    count = 1
     while count < 49:
         new_post = Post(
-            userId = (count + 1),
-            photoURL = urlList[count],
-            caption = captionList[count],
+            userId = count,
+            photoURL = urlList[count - 1],
+            caption = captionList[count - 1],
             vaulted = False
         )
 
