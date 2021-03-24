@@ -3,17 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFollowingPosts } from "../../store/posts";
 import "./PersonalFeed.css";
 import { Link } from "react-router-dom";
+import { getComments } from '../../store/comments'
 
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
-
+  const comments = useSelector((state) => state?.comments?.allComments)
+  console.log('THESE ARE THE COMMENTS', comments)
   // set the state with the user's following posts
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
-  }, [dispatch, sessionUser]);
+    dispatch(getComments(comments))
+  }, [dispatch, sessionUser, comments]);
 
   // create a post component for each of the posts
   const followingPosts =
