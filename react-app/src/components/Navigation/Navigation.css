@@ -10,3 +10,10 @@
     border: 1px solid white;
     margin-left: 130px;
 }
+
+.ezpair {
+    color: transparent;
+}
+#ez:hover .ezpair {
+    color: white;
+}

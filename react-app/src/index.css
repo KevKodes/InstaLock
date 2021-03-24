@@ -9,7 +9,6 @@
     background-color: rgb(20, 20, 20);
     background-size: cover;
     margin: 0;
-
     background-repeat: no-repeat;
     align-items      : center;
 }
@@ -36,6 +35,7 @@
     background-color: rgb(20, 20, 20);
     cursor          : pointer;
     outline         : none;
+
 }
 .search {
     display: flex;
@@ -88,7 +88,46 @@
     background-size  : contain;
     background-repeat: no-repeat;
     margin-left: 16px;
+    position: relative;
 }
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 60px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -30px;
+}
+.tooltip .tooltiptext2 {
+    visibility: hidden;
+    width: 60px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -40px;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    }
+.tooltip:hover .tooltiptext2 {
+    visibility: visible;
+    }
 
 /* Added hover spin effect to navIcons */
 .navIcon {
@@ -102,20 +141,24 @@
     /* transform   : rotateY(360deg); */
     /* transform: rotateZ(360deg); */
     animation-name           : spinning;
-    animation-duration       : 0.5s;
-    animation-iteration-count: infinite;
+    animation-duration       : .5s;
+    /* animation-iteration-count: infinite; */
     animation-timing-function: linear;
+    opacity: 0.8;
+    cursor:pointer;
     /* linear | ease | ease-in | ease-out | ease-in-out */
 }
 
 /* Added keyframes for spin effect for navIcons */
 @keyframes spinning {
-    from {
+    0% {
         transform: rotateY(0deg)
     }
-
-    to {
-        transform: rotateY(360deg)
+    50% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg)
     }
 }
 

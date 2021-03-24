@@ -48,27 +48,27 @@
 
 
 /* Added hover spin effect to allImages */
-.allImages:hover {
+.allImages2:hover {
   /* transform: rotate(360deg); */
   /* transform   : rotateX(720deg); */
   /* transform   : rotateY(360deg); */
   /* transform: rotateZ(360deg); */
   animation-name              : spinning2;
-  animation-duration          : 5s;
+  animation-duration          : 0.3s;
   /* animation-iteration-count: infinite; */
-  animation-timing-function   : linear;
+  animation-timing-function   : ease-in-out alternate;
   /* linear | ease | ease-in | ease-out | ease-in-out */
   opacity: 1;
 }
 
 /* Added keyframes for spin effect for allImages */
-@keyframes spinning {
+@keyframes spinning2 {
   from {
     transform: rotateY(0deg)
   }
 
   to {
-    transform: rotateY(360deg)
+    transform: rotateY(180deg)
   }
 }
 
