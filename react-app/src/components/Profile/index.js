@@ -79,7 +79,10 @@ function Profile() {
           src={post.photoURL}
           className="allImages"
           alt="photoURL" />
+          <div className="left">Likes</div>
+          <div className="right">Comments</div>
         </div>
+
       );
     });
 
