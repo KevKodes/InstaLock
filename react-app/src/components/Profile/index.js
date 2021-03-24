@@ -83,15 +83,8 @@ function Profile() {
 
   return (
     <div className="OuterMost">
-      <div className="outerTop"></div>
-      <div className="outerBottom">
-          <div className="LeftQuad"></div>
-          <div className="MiddleQuad">
-            {postComponents}
-          </div>
-
-          <div className="RightQuad2">
-            <div className="nameandphoto">
+      <div className="outerTop2">
+      <div className="nameandphoto">
               <img src={user.profileImage} alt="" className="photohere" />
               {user.userName}
               <div>
@@ -113,6 +106,15 @@ function Profile() {
               )}
             </form>
             </div>
+      </div>
+      <div className="outerBottom">
+          <div className="LeftQuad"></div>
+          <div className="MiddleQuad">
+            {postComponents}
+          </div>
+
+          <div className="RightQuad2">
+
           </div>
 
       </div>

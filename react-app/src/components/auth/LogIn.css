@@ -29,8 +29,8 @@
 
 .flag1 {
   background-image: url("./bronzeflag.png");
-  animation       : wave 8s ease-in-out 0s infinite,
-    flutter 8s ease-in-out 0s infinite alternate;
+  animation       : wave 20s ease-in-out 0s infinite,
+    flutter 100s ease-in-out 0s infinite alternate;
   /* Bo's CSS */
   /* width            : 300px;
   height              : 500px;
@@ -41,8 +41,8 @@
 
 .flag2 {
   background-image: url("./blueflag.png");
-  animation       : wave 8.3s ease-in-out 0s infinite,
-    flutter 8.3s ease-in-out 0s infinite alternate;
+  animation       : wave 20s ease-in-out 0s infinite,
+    flutter 100s ease-in-out 0s infinite alternate;
   /* Bo's CSS */
   /* width            : 300px;
   height              : 500px;
@@ -52,8 +52,8 @@
 
 .flag3 {
   background-image: url("./purpleflag.png");
-  animation       : wave 8.1s ease-in-out 0s infinite,
-    flutter 8.1s ease-in-out 0s infinite alternate;
+  animation       : wave 20s ease-in-out 0s infinite,
+    flutter 100s ease-in-out 0s infinite alternate;
   /* Bo's CSS */
   /* width            : 300px;
   height              : 500px;
@@ -64,8 +64,8 @@
 
 .flag4 {
   background-image: url("./greenflag.png");
-  animation       : wave 8.2s ease-in-out 0s infinite,
-    flutter 8.2s ease-in-out 0s infinite alternate;
+  animation       : wave 20s ease-in-out 0s infinite,
+    flutter 100s ease-in-out 0s infinite alternate;
   /* Bo's CSS */
   /* width            : 300px;
   height              : 500px;
