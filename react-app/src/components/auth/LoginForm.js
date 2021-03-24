@@ -61,8 +61,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         </form>
         <div className="signup-link-box">
           <div className="signup-link-text">
-            Don't have an account?
-            <NavLink to="/signup">Sign up</NavLink>
+            {/* Added space after sentence */}
+            Don't have an account?&nbsp;
+            {/* Removed underline for Sign up */}
+            <NavLink to="/signup" style={{ textDecoration: 'none' }} className="signUp">Sign up</NavLink>
           </div>
         </div>
         <div className="banner1"></div>
