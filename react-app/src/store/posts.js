@@ -68,11 +68,10 @@ export const createNewPost = newPost => async (dispatch) => {
     body: JSON.stringify(newPost)
   })
   if (response.ok) {
-    const addedPost = await response.json()
-    console.log(addedPost)
-    return addedPost
+    const personalPosts = await response.json()
+    dispatch(load(personalPosts))
   }
-  return "error with creating post";
+  return response;
 }
 
 // REDUCER
@@ -80,14 +79,13 @@ const initialState = {};
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_POSTS:
-      const allPost = {};
-      Object.values(action.posts.posts).forEach((post) => {
-        allPost[post.id] = post;
+      const allPost = []; // need to keep it in an array so it says in newest first order
+      action.posts.posts.forEach((post) => {
+        allPost.push(post)
       });
 
       return {
-        // ...state, #we do not want to expand our state.
-        ...allPost,
+        personalPosts: allPost,
       };
 
     case LIKE_POST:

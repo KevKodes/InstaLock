@@ -13,7 +13,7 @@ function Profile() {
   const [isFollowing, setIsFollowing] = useState(false);
   const [numFollowers, setNumFollowers] = useState(0);
   const [numFollowing, setNumFollowing] = useState(0);
-  const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
