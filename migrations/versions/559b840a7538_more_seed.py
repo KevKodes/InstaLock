@@ -1,8 +1,8 @@
-"""new table
+"""more SeED
 
-Revision ID: 7c70171ae1e7
+Revision ID: 559b840a7538
 Revises: 
-Create Date: 2021-03-24 01:14:01.366102
+Create Date: 2021-03-24 17:14:43.592304
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7c70171ae1e7'
+revision = '559b840a7538'
 down_revision = None
 branch_labels = None
 depends_on = None
