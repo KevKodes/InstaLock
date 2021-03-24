@@ -152,6 +152,11 @@
   margin          : 10px auto;
 }
 
+/* Changed color of signUp link */
+.signUp {
+  color: rgb(11, 117, 184);
+}
+
 .login-form button:hover {
   background     : linear-gradient(45deg, rgb(0, 219, 235), rgb(0, 95, 219));
   background-size: 300% 300%;

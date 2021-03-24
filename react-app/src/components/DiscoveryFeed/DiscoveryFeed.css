@@ -1,76 +1,114 @@
 .allImages {
+  max-width       : 335px;
+  min-width       : 335px;
+  min-height      : auto;
+  height          : 200px;
+  /* Removed margin and padding, add space-around in .MiddleQuad */
+  /* margin       : 0;
+  padding         : 2px; */
+}
 
-  max-width: 335px;
-  min-width: 335px;
-  min-height: auto;
-  height: 200px;
-  margin: 0;
-  padding: 2px;
+/* Added hover spin effect to allImages */
+.allImages {
+  transition: transform .7s ease-in-out;
+}
 
+/* Added hover spin effect to allImages */
+.allImages:hover {
+  /* transform: rotate(360deg); */
+  /* transform   : rotateX(720deg); */
+  /* transform   : rotateY(360deg); */
+  /* transform: rotateZ(360deg); */
+  animation-name              : spinning;
+  animation-duration          : 0.3s;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function   : linear;
+  /* linear | ease | ease-in | ease-out | ease-in-out */
+}
+
+/* Added keyframes for spin effect for allImages */
+@keyframes spinning {
+  from {
+    transform: rotateY(0deg)
+  }
+
+  to {
+    transform: rotateY(360deg)
+  }
 }
 
 .OuterMost {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width         : 100%;
+  height        : 100%;
 }
 
 .outerTop {
   text-align: center;
-  width: 100%;
-  height: 91px;
+  width     : 100%;
+  height    : 91px;
 
 }
 
 
 .outerBottom {
-  display: flex;
+  display       : flex;
   flex-direction: row;
-  width: 100%;
+  width         : 100%;
 }
+
 .RightQuad {
   width: 22%;
 }
+
 .LeftQuad {
   width: 24%
 }
+
 .MiddleQuad {
-  width: 54%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* Changed width to 65% */
+  width           : 65%;
+  display         : flex;
+  flex-direction  : row;
+  flex-wrap       : wrap;
   background-color: rgb(20, 20, 20);
-}
-.RightQuad2 {
-  width: 22%;
-  display: flex;
-  flex-direction: column;
-}
-.nameandphoto {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 150px;
-  height: 150px;
-  align-items: center;
-  margin-left: 10px;
-}
-.photohere {
-  height: 75px;
-  width: 75px;
-  border: 1px solid black;
-  border-radius: 50%;
-}
-.followbuttons {
-  width: 150px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.fbutton {
-  margin-bottom: 80px;
-  margin-right: 50px;
+  /* Added space-around allImages */
+  justify-content : space-around;
 }
 
+.RightQuad2 {
+  width         : 22%;
+  display       : flex;
+  flex-direction: column;
+}
+
+.nameandphoto {
+  display        : flex;
+  flex-direction : row;
+  justify-content: space-between;
+  width          : 150px;
+  height         : 150px;
+  align-items    : center;
+  margin-left    : 10px;
+}
+
+.photohere {
+  height       : 75px;
+  width        : 75px;
+  border       : 1px solid black;
+  border-radius: 50%;
+}
+
+.followbuttons {
+  width          : 150px;
+  height         : 100px;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.fbutton {
+  margin-bottom: 80px;
+  margin-right : 50px;
+}
