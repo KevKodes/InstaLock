@@ -8,7 +8,7 @@ def seed_follows():
   # print(users)
   user= users[0]
 
-  for i in range(1, 35):
+  for i in range(30, 70):
     user.followers.append(users[i])
 
   db.session.commit()
@@ -16,7 +16,7 @@ def seed_follows():
   # methods for accessing follows
   # followers = user.follows
   # print('FOLLOWS USER', list(followers))
-  
+
 
 def undo_follows():
   db.session.execute('TRUNCATE follows;')

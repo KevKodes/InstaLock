@@ -1,21 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowingPosts } from "../../store/posts";
 import "./PersonalFeed.css";
 import { Link } from "react-router-dom";
-import { getComments } from '../../store/comments'
-
+import { getComments } from "../../store/comments";
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
-  const comments = useSelector((state) => state?.comments?.allComments)
-  console.log('THESE ARE THE COMMENTS', comments)
-  // set the state with the user's following posts
+  const comments = useSelector((state) => state?.comments?.allComments);
+
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
-    dispatch(getComments(comments))
+    dispatch(getComments(comments));
   }, [dispatch, sessionUser, comments]);
 
   // create a post component for each of the posts
@@ -24,6 +22,7 @@ const PersonalFeed = () => {
     Object.values(posts).map((post) => (
       <div key={post.id} className="following-card">
         <div className="card-username">
+          <img src={post.profileImage} alt="" className="photohere" />
           <Link to={`/${post.userName}`} className="Link">
             {post.userName}
           </Link>
@@ -53,7 +52,6 @@ const PersonalFeed = () => {
           <div className="username"></div>
           <div className="first-last">
             <div>{followingPosts}</div>
-            <div></div>
           </div>
         </div>
       </div>
