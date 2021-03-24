@@ -26,6 +26,8 @@ const DiscoveryFeed = () => {
                 alt="photoURL"
                 className="allImages"
               />
+              <div className="left">Likes</div>
+              <div className="right">Comments</div>
             </Link>
           </div>
         );

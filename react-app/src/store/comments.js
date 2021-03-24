@@ -1,5 +1,5 @@
 const SET_COMMENTS = 'SET_COMMENTS';
-// const CREATE_COMMENTS = 'CREATE_COMMENTS';
+const CREATE_COMMENTS = 'CREATE_COMMENTS';
 const DELETE_COMMENTS = 'DELETE_COMMENTS';
 
 const setComments = (comments) => ({
@@ -7,22 +7,22 @@ const setComments = (comments) => ({
     comments,
 });
 
-// const createComments = (comments) => ({
-//     type: CREATE_COMMENTS,
-//     comments,
-// });
+const createComments = (comments) => ({
+    type: CREATE_COMMENTS,
+    comments,
+});
 
 const deleteComments = (id) => ({
     type: DELETE_COMMENTS,
     id,
 });
 
-export const getComments = () => async (dispatch) => {
+export const getComments = (id) => async (dispatch) => {
     // get all comments of the posts
-    const response = await fetch('/api/comments');
+    const response = await fetch(`/api/comments/${id}/comments`);
     if (response.ok) {
         const res = await response.json()
-        dispatch(setComments(res.comments));
+        dispatch(setComments(res));
         return response;
     }
 };
@@ -39,7 +39,7 @@ export const createComment = (userId, postId, body) => async (dispatch) => {
     const response = await fetch('/api/comments/', build)
     if (!response.ok) alert('ERROR')
     const data = await response.json()
-    return dispatch(setComments([data]));
+    return dispatch(createComments([data]));
 };
 
 export const deleteComment = (id) => async (dispatch) => {
@@ -61,7 +61,7 @@ const commentsReducer = (state = initialState, action) => {
             }, {});
             return {
                 ...state,
-                ...comments,
+                allComments:[...comments],
             };
         case DELETE_COMMENTS:
             const newState = { ...state };
