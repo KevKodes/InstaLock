@@ -26,6 +26,7 @@ def seed_follows_table():
 def undo():
     undo_users()
     undo_posts()
+    undo_comments()
     # undo_follows()
     # Add other undo functions here
 
