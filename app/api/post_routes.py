@@ -1,16 +1,28 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Post, follows
+from app.models import db, Post, follows, User
 from app.forms import PostForm
 
 post_routes = Blueprint("posts", __name__)
 
 
-@post_routes.route('/')
-#feed all posts into this route?
+@post_routes.route('/discovery/<int:id>')
+# Grab all posts from users that the session user is not following
+def posts(id):
+    all_user_ids = set([x for (x,) in db.session.query(User.id).all()])
+    print('=======ALL USER IDS=======', all_user_ids)
 
-def posts():
-    posts = Post.query.all()
-#Return all posts for feeds
+    # find the list of users that are followed by the session user
+    following = db.session.query(follows).filter_by(follower_id=id).all()
+    following_ids = [y for x,y in following]
+    # add in the session user's id to the list so their posts show on the feed also
+    following_ids.append(id)
+    following_set = set(following_ids)
+    not_following_set = all_user_ids - following_set
+
+    # Query posts with a userId in the not_following_set (ordered with newest first)
+    posts = Post.query.filter(Post.userId.in_(not_following_set)).order_by(Post.updatedAt.desc()).all()
+
+    # posts = Post.query.all()
     return {"posts": [post.to_dict() for post in posts]}
 
 
@@ -44,8 +56,6 @@ def create_post():
         # return new_post.to_dict()
 
         # get the followers posts for return so it component can redirect there
-        print('============================ userID in create', id)
-        # get the list of user id's that follow the session user
         following = db.session.query(follows).filter_by(follower_id=id).all()
         following_ids = [y for x,y in following]
         # add in the session user's id to the list so their posts show on the feed also
