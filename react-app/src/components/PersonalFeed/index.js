@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowingPosts } from "../../store/posts";
 import "./PersonalFeed.css";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state?.posts);
+  const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
 
   // set the state with the user's following posts

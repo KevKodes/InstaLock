@@ -8,7 +8,7 @@ const LogoutButton = ({ setAuthenticated }) => {
     dispatch(logout());
     setAuthenticated(false);
   };
-  {/* Added className navIcon */ }
+  /* Added className navIcon */
   return <button className="navIcon" id="ez6" onClick={onLogout}></button>;
 };
 
