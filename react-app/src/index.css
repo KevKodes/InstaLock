@@ -52,7 +52,7 @@
     left: 0;
     display: flex;
     width: 100%;
-
+    z-index: 1;
     flex-direction: row;
 
     background-color: rgb(20, 20, 20);
