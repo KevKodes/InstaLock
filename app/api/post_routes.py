@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Post, follows, User
+from app.models import db, Post, follows, User, Comment
 from app.forms import PostForm
 
 post_routes = Blueprint("posts", __name__)

@@ -9,12 +9,13 @@ const PersonalFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
-  const comments = useSelector((state) => state?.comments?.allComments);
+  const comments = useSelector((state) => state?.comments);
+ 
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
-  }, [dispatch, sessionUser, comments]);
+  }, [dispatch, sessionUser]);
 
   // create a post component for each of the posts
   const followingPosts =

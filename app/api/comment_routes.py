@@ -12,15 +12,15 @@ def allComments():
         "comments": [comment.to_dict() for comment in comments]
     }
 
-@comment_routes.route('/<int:id>/comments')
-# get a specific post's comments
+# get a specific post's comments based on postId
+@comment_routes.route('/<int:id>/')
 def postComments(id):
     comments = Comment.query.filter_by(postId=id).all()
     return {
         "comments": [comment.to_dict() for comment in comments]
     }
 
-@comment_routes.route('/<int:id>/comments', methods=['POST'])
+@comment_routes.route('/<int:id>/', methods=['POST'])
 def new_comment():
     user_comment = request.get_json()
     userId=user_comment["userId"]
@@ -37,5 +37,11 @@ def new_comment():
 
     return freshComment.to_dict()
 
-# @comment_routes.route('/<int:id>/comments', methods=['DELETE'])
-# def delete_comment():
+
+@comment_routes.route('/<int:id>/', methods=['DELETE'])
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
+
+    return comment.to_dict()
