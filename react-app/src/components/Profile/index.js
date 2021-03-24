@@ -11,17 +11,36 @@ function Profile() {
   const { userName } = useParams();
   const [user, setUser] = useState({});
   const [isFollowing, setIsFollowing] = useState(false); // needs to query
+  const [numFollowers, setNumFollowers] = useState(0);
+  const [numFollowing, setNumFollowing] = useState(0);
   const posts = useSelector((state) => state.posts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
+  const dispatch = useDispatch();
 
   console.log('followers: ', followers)
 
-  // check if the session user follows the profile's user and 
-  //      setIsFollowing(true) if true
+  // check if the session user follows the visited profile
+  useEffect(() => {
+    const checkFollowing = (list) => {
+      if (!list) return false
+      let returnBool = false;
+      list.forEach(eachUser => {
+      if (eachUser.id === sessionUser.id) {
+        returnBool = true
+      }})
+      return returnBool
+    }
+    const followingBoolean = checkFollowing(followers)
+    setIsFollowing(followingBoolean)
+  },[followers, sessionUser])
 
-  const dispatch = useDispatch();
+  // update the numFollowers and numFollowing
+  useEffect(() => {
+    setNumFollowers(followers?.length)
+    setNumFollowing(following?.length)
+  },[followers, following, ])
 
   const follow = async (e) => {
     e.preventDefault();
@@ -35,6 +54,7 @@ function Profile() {
     setIsFollowing(false);
   };
 
+  // Get the profile user, posts, followers, and following
   useEffect(() => {
     const getUser = async () => {
       const response = await fetch(`/api/users/${userName}`);
@@ -45,12 +65,6 @@ function Profile() {
     dispatch(getAllFollowers(user.id));
     dispatch(getAllFollowedBy(user.id));
     dispatch(getAllPosts(user.id));
-
-    for (let eachUser in followers) {
-      if (eachUser.id === user.id) {
-        setIsFollowing(true)
-      }
-    }
 
   }, [dispatch, user.id, userName, sessionUser]);
 
@@ -81,10 +95,10 @@ function Profile() {
               <img src={user.profileImage} alt="" className="photohere" />
               {user.userName}
               <div>
-                {following?.length} Following
+                 Following {numFollowing} {/* needs to update */}
               </div>
               <div>
-                {followers?.length} Follows
+                {numFollowers} Follows {/* needs to update */}
               </div>
 
             </div>

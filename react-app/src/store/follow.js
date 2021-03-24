@@ -72,26 +72,22 @@ export const newUnfollowUser = (followerId, followedId) => async (dispatch) => {
 const initialState = {};
 
 const followSession = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case IS_FOLLOWING:
       return { ...state, following: action.followers.follows };
     case IS_FOLLOWED_BY:
       return { ...state, followers: action.followed_by.followed };
     case FOLLOW_USER:
-      // newState = Object.assign({}, state);
+
+      newState = Object.assign(action.follows, state);
       // newState[action.userId] = action.follows;
-      const newFollowers = action.follows
-      console.log('newFollowers: ', newFollowers)
-      return {
-        ...state,
-        // followers: [...newFollowers]
-      };
+      // const newFollowers = action.follows
+      // console.log('newFollowers: ', newFollowers)
+      return newState
     case UNFOLLOW_USER:
-      const updatedFollowers = action.follows
-      return {
-        ...state,
-        followers: [...updatedFollowers]
-      };
+      newState = Object.assign(action.followers, state);
+      return newState
     default:
       return state;
   }
