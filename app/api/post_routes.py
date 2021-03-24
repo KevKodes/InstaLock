@@ -28,8 +28,8 @@ def create_post():
     data = form.data
     print('HERES THE FORM USER', data)
     form['csrf_token'].data = request.cookies['csrf_token']
-    # if form.validate_on_submit():
-    if True:
+    if form.validate_on_submit():
+    # if True:
         new_post = Post(
             userId=form.data['userId'],
             photoURL=form.data['photoURL'],
@@ -48,9 +48,11 @@ def create_post():
 
 @post_routes.route('/following/<int:id>')
 def following_posts(id):
-    print(f"input userId: {id}")
+    # get the list of user id's that follow the session user
     following = db.session.query(follows).filter_by(follower_id=id).all()
     followingIds = [y for x,y in following]
-    # following = follows.select().where(follows.c.follower_id == id)
+    # add in the session user's id to the list so their posts show on the feed also
+
+    # Query posts with a userId in the ids list (ordered with newest first)
     posts = Post.query.filter(Post.userId.in_(followingIds)).all()
     return {"posts": [post.to_dict() for post in posts]}
