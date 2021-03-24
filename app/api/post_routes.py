@@ -6,10 +6,9 @@ post_routes = Blueprint("posts", __name__)
 
 
 @post_routes.route('/discovery/<int:id>')
-# Grab all posts from users that the session user is not following
+# Query all posts from users that the session user is not following
 def posts(id):
     all_user_ids = set([x for (x,) in db.session.query(User.id).all()])
-    print('=======ALL USER IDS=======', all_user_ids)
 
     # find the list of users that are followed by the session user
     following = db.session.query(follows).filter_by(follower_id=id).all()
@@ -27,7 +26,7 @@ def posts(id):
 
 
 @post_routes.route('/<int:id>')
-#feed all user posts into user's feed based on userId
+#Add all user posts into user's feed based on userId
 def post(id):
     posts = Post.query.filter_by(userId=id).order_by(Post.updatedAt.desc()).all()
     return {"posts": [post.to_dict() for post in posts]}
@@ -80,3 +79,17 @@ def following_posts(id):
     # Query posts with a userId in the ids set (ordered with newest first)
     posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.updatedAt.desc()).all()
     return {"posts": [post.to_dict() for post in posts]}
+
+
+@post_routes.route('/delete/<int:postId>')
+def delete_post(postId):
+    pass
+
+
+@post_routes.route('/update/<int:postId>')
+# update the vaulted value of a post
+def update_post(postId):
+    post = Post.query.get(postId)
+    post.vaulted = not post.vaulted
+    db.session.commit()
+    return post.to_dict()

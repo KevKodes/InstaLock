@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllPosts } from "../../store/posts";
+import { getAllPosts, updatePostVault } from "../../store/posts";
 import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -9,15 +9,23 @@ import { newFollowUser, newUnfollowUser } from "../../store/follow";
 
 function Profile() {
   const { userName } = useParams();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const [isFollowing, setIsFollowing] = useState(false);
   const [numFollowers, setNumFollowers] = useState(0);
   const [numFollowing, setNumFollowing] = useState(0);
+  const [isOwnProfile, setIsOwnProfile] = useState(false);
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
-  const dispatch = useDispatch();
+
+  // check if the profile is the sessionUser's profile
+  useEffect(() => {
+    if (sessionUser?.userName === userName) {
+      setIsOwnProfile(true)
+    }
+  },[sessionUser, userName])
 
   // check if the session user follows the visited profile
   useEffect(() => {
@@ -70,11 +78,35 @@ function Profile() {
 
   }, [dispatch, user.id, userName, sessionUser]);
 
+  // Handle vaulting and unvaulting
+    const handleVaultClick = (e) => {
+    const postId = e.target.value
+    // update the post with the new value for vaulted
+    dispatch(updatePostVault(postId))
+
+  }
+
   const postComponents =
     posts &&
     Object.values(posts).map((post) => {
       return (
         <div className="boxxy" key={post.id}>
+          { isOwnProfile && (
+            <div className="vault-option">
+              vault div
+              { post.vaulted ? (
+                <button 
+                  value={post.id}
+                  onClick={handleVaultClick}>Unvault Photo</button>
+              ) : (
+                  <button
+                    value={post.id}
+                    onClick={handleVaultClick}
+                    >Vault Photo
+                  </button>
+              )}
+            </div>
+          ) }
           <img
           src={post.photoURL}
           className="allImages"
@@ -86,6 +118,17 @@ function Profile() {
       );
     });
 
+    // const vaultComponent = isOwnProfile && (
+    //   <div className="vault-option">
+    //     vault div
+    //     { post.vaulted ? (
+    //       <p>vaulted true</p>
+    //     ):(
+    //       <p>vaulted false</p>
+    //     )}
+    //   </div>
+    // )
+
   return (
     <div className="OuterMost">
       <div className="outerTop2">
@@ -93,18 +136,21 @@ function Profile() {
               <img src={user.profileImage} alt="" className="photohere" />
               {user.userName}
               <div>
-                 Following {numFollowing ? numFollowing : 0}
+                {numFollowing ? numFollowing : 0} Following
               </div>
               <div>
                 {numFollowers ? numFollowers : 0} Follows
+              </div>
+              <div>
+                {posts ? posts.length : 0} Posts
               </div>
 
             </div>
             <div className="followbuttons">
             <form onSubmit={isFollowing ? unfollow : follow}>
-              <input name="follow" type="hidden" value={user.id} />
+              <input name="follow" type="hidden" value={user?.id} />
 
-              {sessionUser?.userName !== userName && (
+              { !isOwnProfile && (
                 <button type="submit" className="fbutton">
                   {isFollowing ? "Unfollow" : "Follow"}
                 </button>
