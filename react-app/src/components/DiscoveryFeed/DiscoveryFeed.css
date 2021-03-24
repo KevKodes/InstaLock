@@ -20,10 +20,14 @@
   text-align: center;
   width: 100%;
   height: 91px;
-
 }
-
-
+.outerTop2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 200px;
+}
 .outerBottom {
   display: flex;
   flex-direction: row;
@@ -51,10 +55,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 150px;
-  height: 150px;
+  width: 700px;
+  height: 100px;
   align-items: center;
   margin-left: 10px;
+  margin-top: 100px;
 }
 .photohere {
   height: 75px;
@@ -68,9 +73,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.fbutton {
-  margin-bottom: 80px;
-  margin-right: 50px;
+  margin-left: 10px;
+  margin-top: 100px;
 }
 
