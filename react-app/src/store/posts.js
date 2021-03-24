@@ -1,7 +1,7 @@
 // ACTION TYPES
 const LOAD_POSTS = "LOAD_POSTS";
 // const REMOVE_POST = "REMOVE_POST";
-// const CREATE_POST = "CREATE_POST";
+const UPDATE_POST = "UPDATE_POST";
 const LIKE_POST = "LIKE_POST";
 
 
@@ -11,10 +11,10 @@ const load = (posts) => ({
   posts,
 });
 
-// const createPost = (post) => ({
-//   type: CREATE_POST,
-//   post,
-// });
+const updatePost = (post) => ({
+  type: UPDATE_POST,
+  post,
+});
 
 // const removePost = (postId) => ({
 //   type: REMOVE_POST,
@@ -59,7 +59,6 @@ export const getFollowingPosts = (userId) => async (dispatch) => {
 };
 
 export const createNewPost = newPost => async (dispatch) => {
-  console.log('THIS IS THE POST IN THE THUNK: ', newPost)
   const response = await fetch(`/api/posts/create_post`, {
     method: "POST",
     headers: {
@@ -74,6 +73,15 @@ export const createNewPost = newPost => async (dispatch) => {
   return response;
 }
 
+export const updatePostVault = postId => async (dispatch) => {
+  const response = await fetch(`/api/posts/update/${postId}`)
+  if (response.ok) {
+    const post = await response.json();
+    dispatch(updatePost(post))
+  }
+  return response
+}
+
 // REDUCER
 const initialState = {};
 const postReducer = (state = initialState, action) => {
@@ -83,16 +91,23 @@ const postReducer = (state = initialState, action) => {
       action.posts.posts.forEach((post) => {
         allPost.push(post)
       });
-
       return {
         personalPosts: allPost,
       };
-
+    case UPDATE_POST:
+      // updating happens on the profile page (state.posts.personalPosts)
+      const updatedPosts = [...state.personalPosts]
+      const newPostId = action.post.id
+      const changedIndex = updatedPosts.findIndex(post => post.id === newPostId)
+      updatedPosts[changedIndex] = action.post
+      return {
+        ...state,
+        personalPosts: [...updatedPosts],
+      }
     case LIKE_POST:
       const newPosts = { ...state };
       const index = action.post.id;
       newPosts[index] = action.post;
-
       return newPosts;
     default:
       return state;
