@@ -13,7 +13,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const user = await signUp(username, email, password);
+    const user = await signUp(username, firstName, lastName, email, password);
     if (!user.errors) {
       setAuthenticated(true);
     }

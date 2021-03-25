@@ -75,7 +75,7 @@ This is the backend for the Flask React project.
    This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
 7. Push your docker container to heroku from the root directory of your project.
    This will build the dockerfile and push the image to your heroku container registry
-
+git pull
    ```bash
    heroku container:push web -a {NAME_OF_HEROKU_APP}
    ```
