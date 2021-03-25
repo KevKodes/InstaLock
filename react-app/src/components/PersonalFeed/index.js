@@ -21,6 +21,7 @@ const PersonalFeed = () => {
   }, [dispatch, sessionUser]);
 
   const likePost = (id) => {
+
     dispatch(createLike({ userId: sessionUser.id, postId: id }))
   }
 
@@ -31,6 +32,7 @@ const PersonalFeed = () => {
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }))
   }
+
 
   // create a post component for each of the posts
   const followingPosts =
@@ -49,11 +51,13 @@ const PersonalFeed = () => {
         <div className="card-bottom-content">
           <div className="btn-div">
             {/* Add click handler */}
+
             {(Object.values(likes).find((like) => like.userId === sessionUser.id && like.postId === post.id)) ?
               <button id="unlike-post" className="like-btn" onClick={() => unlikePost(post.id)}>Unlike Post</button> :
               <button id="like-post" className="like-btn" onClick={() => likePost(post.id)}>Like Post</button>}
 
             {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
+
           </div>
           <div className="card-likes">add likes</div>
           <div className="card-caption">
@@ -63,12 +67,14 @@ const PersonalFeed = () => {
           <div className="card-comments">
             {comments &&
               Object.values(comments).map((comment) => {
-                return Object.values(comment).map((singleComment) => {
-                  if (singleComment.postId === post.id) {
-                    console.log("This is the single", singleComment.body);
-                    return <p>{singleComment.body}</p>;
-                  }
-                });
+                if (comment.postId === post.id) {
+                  // console.log("This is the single", singleComment.body);
+                  return (
+                    <p>
+                      {post.userName} {comment.body}
+                    </p>
+                  );
+                }
               })}
           </div>
           <form></form>
