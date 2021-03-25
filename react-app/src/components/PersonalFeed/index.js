@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFollowingPosts } from "../../store/posts";
 import "../../index.css";
-
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
 import { createLike } from "../../store/likes";
-import "./PersonalFeed.css";
+import "../../index.css";
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
