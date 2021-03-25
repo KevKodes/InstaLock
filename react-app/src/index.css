@@ -1,4 +1,27 @@
+/*Univeral Button */
+.ultra {
+    min-width: 100px;
+    max-width: 140px;
+    padding: 9px 25px;
+    background-color: black;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    /* transition: all 0.3s ease 0s; */
+    margin: 5px;
+    outline: none;
+    color:white;
+}
+
+.ultra:hover {
+    background: linear-gradient(-45deg, rgb(0, 70, 15), rgb(0, 70, 15));
+    background-size: 300% 300%;
+    color: white;
+}
+
 /* Discovery & Navigation*/
+
+
 .allImages {
     max-width       : 335px;
     min-width       : 335px;
@@ -115,6 +138,8 @@
     flex-direction : row;
     justify-content: space-between;
     color: black;
+    font-weight: bolder;
+    font-size: 20px;
     width: 700px;
     height: 100px;
     align-items: center;
@@ -124,7 +149,7 @@
 .photohere {
     height       : 75px;
     width        : 75px;
-    border       : 1px solid black;
+    border       : 2px solid rgb(0, 174, 255);
     border-radius: 50%;
 }
 .followbuttons {
@@ -192,20 +217,23 @@
 }
 .gif {
     width: 250px;
-    margin-left: 440px;
+    margin-left: 400px;
     background-color: rgb(20, 20, 20);
     background-image: url("./images/doppppe.gif");
     background-size: contain;
     background-repeat: no-repeat;
 }
 .title {
-    width: 315px;
+    width: 205px;
     font-size: 35px;
     font-weight: bolder;
     font-family: cursive;
     color: white;
     margin-top: 40px;
   }
+.link {
+    text-decoration: none;
+}
 .search {
     width: 1000px;
     background-color: rgb(20, 20, 20);
@@ -216,7 +244,7 @@
     background-image : url("./images/Jungle_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
-    margin-left: 16px;
+    margin-left: 118px;
     position: relative;
 }
 .tooltip {
@@ -235,7 +263,7 @@
     z-index: 1;
     bottom: 100%;
     left: 50%;
-    margin-left: -30px;
+    margin-left: 20px;
 }
 .tooltip .tooltiptext2 {
     visibility: hidden;
@@ -251,10 +279,27 @@
     left: 50%;
     margin-left: -40px;
 }
+.tooltip .tooltiptext3 {
+    visibility: hidden;
+    width: 60px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -30px;
+}
 .tooltip:hover .tooltiptext {
     visibility: visible;
     }
 .tooltip:hover .tooltiptext2 {
+    visibility: visible;
+    }
+.tooltip:hover .tooltiptext3 {
     visibility: visible;
     }
 /* Added hover spin effect to navIcons */
@@ -267,11 +312,10 @@
     /* transform   : rotateX(720deg); */
     /* transform   : rotateY(360deg); */
     /* transform: rotateZ(360deg); */
-    animation-name           : spinning;
+    animation-name           : spinning3;
     animation-duration       : .5s;
     /* animation-iteration-count: infinite; */
     animation-timing-function: linear;
-    opacity: 0.8;
     cursor:pointer;
     /* linear | ease | ease-in | ease-out | ease-in-out */
 }
@@ -335,40 +379,66 @@
 }
 /* Personal Feed */
 .feed-container {
-    width: 620px;
-    margin: 0 auto;
+    width: 1100px;
+    margin-left: 410px;
+    background-color: rgb(20,20,20);
 }
 .following-card {
+    color: white;
     width: 100%;
     margin-bottom: 60px;
-    border: 1px solid rgb(219, 219, 219);
+    border-bottom: 20px solid rgb(86, 251, 122);
     border-radius: 3px;
+    background-color: rgb(20,20,20);
 }
 .card-username {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 16px;
     font-size: 20px;
     font-weight: 800;
 }
 .card-photo img {
     width: 100%;
-}
 
+}
+.card-comments {
+    height: 100px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
 .card-bottom-content {
     padding: 16px;
 }
 
 .card-caption {
     display: flex;
+    height: 50px;
     flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .caption-user {
-    padding-right: 8px;
+    visibility: hidden;
+    font-size: 20px;
     font-weight: 800;
+    color: white;
+}
+.caption-string {
+    margin-right: 50px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+
 }
 
 .Link {
-    color: black;
+    margin-left: 20px;
+    color: white;
     text-decoration: none;
 }
 .title {

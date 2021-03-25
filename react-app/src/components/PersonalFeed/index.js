@@ -56,7 +56,7 @@ const PersonalFeed = () => {
   return (
     <div className="personal-feed">
       <div className="feed-container">
-        <h1 className="title">Personal Feed!</h1>
+        <h1 className="title">keep</h1>
         <div className="user-info">
           <div className="username"></div>
           <div className="first-last">
