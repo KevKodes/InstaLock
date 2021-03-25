@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
-import { getComments } from "../../store/comments";
+import { getComments, createComment } from "../../store/comments";
 import { createLike } from "../../store/likes";
 import "../../index.css";
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
-  const comments = useSelector((state) => state?.comments);
-
+  const comments = useSelector((state) => state?.comments?.commentsArray);
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
@@ -24,6 +24,14 @@ const PersonalFeed = () => {
 
   const likeComment = (id) => {
     dispatch(createLike({ commentId: id }));
+  };
+
+  const commentSubmitHandler = async (e) => {
+    e.preventDefault();
+    if (!comment) return alert("There is an error");
+    const postId = e.target.value;
+    const userId = sessionUser.id;
+    dispatch(createComment(userId, postId, comment));
   };
 
   // create a post component for each of the posts
@@ -67,16 +75,24 @@ const PersonalFeed = () => {
             {comments &&
               Object.values(comments).map((comment) => {
                 if (comment.postId === post.id) {
-                  // console.log("This is the single", singleComment.body);
                   return (
-                    <p>
-                      {post.userName} {comment.body}
+                    <p key={comment.id}>
+                      {comment.userName} {comment.body}
                     </p>
                   );
                 }
               })}
           </div>
-          <form></form>
+          <form className="comment_form">
+            <input
+              placeholder="Add a comment.."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+          </form>
+          <button type="submit" value={post.id} onClick={commentSubmitHandler}>
+            Post Comment
+          </button>
         </div>
       </div>
     ));
