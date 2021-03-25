@@ -1,6 +1,145 @@
+/* Discovery & Navigation*/
+.allImages {
+    max-width       : 335px;
+    min-width       : 335px;
+    min-height      : auto;
+    height          : 200px;
+}
+
+/* Added hover spin effect to allImages */
+.allImages {
+    transition: transform .7s ease-in-out;
+    position:relative;
+}
+.boxxy:hover .allImages {
+    opacity: 0.1
+}
+.boxxy:hover .left {
+    display: block;
+}
+.boxxy:hover .right {
+    display: block;
+}
+.boxxy {
+    position: relative;
+    text-align: center;
+}
+.left {
+    display: none;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+.right {
+    display: none;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+  /* Added hover spin effect to allImages */
+.allImages2:hover {
+    /* transform: rotate(360deg); */
+    /* transform   : rotateX(720deg); */
+    /* transform   : rotateY(360deg); */
+    /* transform: rotateZ(360deg); */
+    animation-name              : spinning2;
+    animation-duration          : 0.3s;
+    /* animation-iteration-count: infinite; */
+    animation-timing-function   : ease-in-out alternate;
+    /* linear | ease | ease-in | ease-out | ease-in-out */
+    opacity: 1;
+}
+  /* Added keyframes for spin effect for allImages */
+@keyframes spinning2 {
+    from {
+      transform: rotateY(0deg)
+    }
+
+    to {
+      transform: rotateY(180deg)
+    }
+}
+.OuterMost {
+    display       : flex;
+    flex-direction: column;
+    width         : 100%;
+    height        : 100%;
+    color: transparent;
+}
+.outerTop {
+    text-align: center;
+    width     : 100%;
+    height    : 91px;
+}
+.outerTop2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+}
+.outerBottom {
+    display       : flex;
+    flex-direction: row;
+    width         : 100%;
+}
+.RightQuad {
+    width: 22%;
+}
+.LeftQuad {
+    width: 24%
+}
+.MiddleQuad {
+    /* Changed width to 65% */
+    width           : 65%;
+    display         : flex;
+    flex-direction  : row;
+    flex-wrap       : wrap;
+    background-color: rgb(20, 20, 20);
+    /* Added space-around allImages */
+    justify-content : space-around;
+}
+.RightQuad2 {
+    width         : 22%;
+    display       : flex;
+    flex-direction: column;
+}
+.nameandphoto {
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    color: black;
+    width: 700px;
+    height: 100px;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 100px;
+}
+.photohere {
+    height       : 75px;
+    width        : 75px;
+    border       : 1px solid black;
+    border-radius: 50%;
+}
+.followbuttons {
+    width          : 150px;
+    height         : 100px;
+    display        : flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 100px;
+}
+/* Navigation */
+
 /* TODO Add site wide styles */
 #nav {
-
     width: 100%;
     list-style-type: none;
     display: flex;
@@ -12,7 +151,6 @@
     background-repeat: no-repeat;
     align-items      : center;
 }
-
 #nav A {
     display        : block;
     text-decoration: none;
@@ -21,7 +159,6 @@
     font-weight    : bolder;
     font-size      : 17px;
 }
-
 /* #nav A:hover, #nav button:hover {
     border-bottom: 3px solid rgb(0, 87, 7);
 } */
@@ -35,7 +172,6 @@
     background-color: rgb(20, 20, 20);
     cursor          : pointer;
     outline         : none;
-
 }
 .search {
     display: flex;
@@ -44,9 +180,7 @@
     text-align: center;
     margin-top: 10px;
 }
-
 .liner {
-
     position: fixed;
     top: 0;
     left: 0;
@@ -54,19 +188,15 @@
     width: 100%;
     z-index: 1;
     flex-direction: row;
-
     background-color: rgb(20, 20, 20);
 }
-
 .gif {
-
     width: 250px;
     margin-left: 440px;
     background-color: rgb(20, 20, 20);
-    background-image: url("./doppppe.gif");
+    background-image: url("./images/doppppe.gif");
     background-size: contain;
     background-repeat: no-repeat;
-
 }
 .title {
     width: 315px;
@@ -80,11 +210,10 @@
     width: 1000px;
     background-color: rgb(20, 20, 20);
 }
-
 #ez {
     width            : 40px;
     height           : 40px;
-    background-image : url("./Jungle_icon.png");
+    background-image : url("./images/Jungle_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
     margin-left: 16px;
@@ -128,12 +257,10 @@
 .tooltip:hover .tooltiptext2 {
     visibility: visible;
     }
-
 /* Added hover spin effect to navIcons */
 .navIcon {
     transition: transform .7s ease-in-out;
 }
-
 /* Added hover spin effect to navIcons */
 .navIcon:hover {
     /* transform: rotate(360deg); */
@@ -148,7 +275,6 @@
     cursor:pointer;
     /* linear | ease | ease-in | ease-out | ease-in-out */
 }
-
 /* Added keyframes for spin effect for navIcons */
 @keyframes spinning {
     0% {
@@ -161,43 +287,146 @@
         transform: rotateY(0deg)
     }
 }
-
 #ez2 {
     width            : 40px;
     height           : 40px;
-    background-image : url("./Fighter_icon.png");
+    background-image : url("./images/Fighter_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
 }
-
 #ez3 {
     width            : 40px;
     height           : 40px;
-    background-image : url("./Marksman_icon.png");
+    background-image : url("./images/Marksman_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
 }
-
 #ez4 {
     width            : 40px;
     height           : 40px;
-    background-image : url("./Tank_icon.png");
+    background-image : url("./images/Tank_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
 }
-
 #ez5 {
     width            : 40px;
     height           : 40px;
-    background-image : url("./Slayer_icon.png");
+    background-image : url("./images/Slayer_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
 }
-
 #ez6 {
     width            : 40px;
     height           : 40px;
-    background-image : url("./Controller_icon.png");
+    background-image : url("./images/Controller_icon.png");
     background-size  : contain;
     background-repeat: no-repeat;
+}
+.hidden {
+    background-color: rgb(20, 20, 20);
+    border: none;
+    outline: none;
+}
+.hidden2 {
+    background-color: rgb(20, 20, 20);
+    color: white;
+    border: 1px solid white;
+    margin-left: 130px;
+}
+/* Personal Feed */
+.feed-container {
+    width: 620px;
+    margin: 0 auto;
+}
+.following-card {
+    width: 100%;
+    margin-bottom: 60px;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 3px;
+}
+.card-username {
+    padding: 16px;
+    font-size: 20px;
+    font-weight: 800;
+}
+.card-photo img {
+    width: 100%;
+}
+
+.card-bottom-content {
+    padding: 16px;
+}
+
+.card-caption {
+    display: flex;
+    flex-direction: row;
+}
+
+.caption-user {
+    padding-right: 8px;
+    font-weight: 800;
+}
+
+.Link {
+    color: black;
+    text-decoration: none;
+}
+.title {
+    text-align: center;
+}
+.first-last {
+    text-align: center;
+}
+/* Profile but not used much */
+.MainPage {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.TopLess {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.BottomMost {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.QuadsPage {
+    width: 80%;
+    height: 75%;
+    display: flex;
+    flex-direction: row;
+}
+.Quad1 {
+    width: 20%;
+    height: 75%;
+}
+.Quad2 {
+    width: 40%;
+    height: 75%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.Quad3 {
+    width: 20%;
+    height: 75%;
+}
+.image {
+    max-width: 33%;
+    height: auto;
+}
+.vault-option {
+    color: white;
+}
+/* upload page */
+.upload {
+    margin-top: 150px;
 }

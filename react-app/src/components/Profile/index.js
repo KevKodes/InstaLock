@@ -4,7 +4,7 @@ import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./Profile.css";
+import "../../index.css";
 import { newFollowUser, newUnfollowUser } from "../../store/follow";
 
 function Profile() {
@@ -95,7 +95,7 @@ function Profile() {
             <div className="vault-option">
               vault div
               { post.vaulted ? (
-                <button 
+                <button
                   value={post.id}
                   onClick={handleVaultClick}>Unvault Photo</button>
               ) : (

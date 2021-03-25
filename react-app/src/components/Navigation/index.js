@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
-import "./Navigation.css"
+import "../../index.css"
 
 const NavBar = ({ setAuthenticated, userName }) => {
     return (
