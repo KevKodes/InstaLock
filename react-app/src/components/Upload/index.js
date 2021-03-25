@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom'
-import ImageUploading from 'react-images-uploading';
-import { createNewPost } from '../../store/posts';
-
-import './Upload.css'
+import { useHistory } from "react-router-dom";
+import ImageUploading from "react-images-uploading";
+import { createNewPost } from "../../store/posts";
+import "./Upload.css";
+import "../../index.css";
 
 const Upload = () => {
-  const history = useHistory()
+  const history = useHistory();
   const dispatch = useDispatch();
   const [image, setImage] = useState([]);
-  const [caption, setCaption] = useState('');
+  const [caption, setCaption] = useState("");
   const [vaulted, setVaulted] = useState(false);
   const [errors, setErrors] = useState([]);
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector((state) => state.session.user);
   const maxNumber = 1;
   // console.log('image url: ', image[0]?.data_url)
-  console.log('vaulted: ', vaulted)
+  console.log("vaulted: ", vaulted);
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -25,11 +25,11 @@ const Upload = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const photoURL = image[0]?.data_url
+    e.preventDefault();
+    const photoURL = image[0]?.data_url;
     // validate the post
     if (!photoURL) {
-      setErrors(['Please upload a photo to create your post'])
+      setErrors(["Please upload a photo to create your post"]);
     }
 
     // add the post to the database
@@ -38,34 +38,32 @@ const Upload = () => {
       photoURL,
       caption,
       vaulted,
-    }
+    };
     const res = dispatch(createNewPost(newPost));
 
     if (res) {
-      return history.push('/')
-
+      return history.push("/");
     }
-  }
+  };
 
   const imageDiv = image[0]?.data_url && (
     <div className="image-test">
-      <img src={`${image[0].data_url}`} alt="upload" />
+      {/* <img src={`${image[0].data_url}`} alt="upload" /> */}
       <form onSubmit={handleSubmit}>
-        <h3>Add a caption for your post</h3>
-        <input 
-          type="text"
-          placeholder="Caption"
+        <textarea
+          className="captionTextArea"
+          placeholder="Add your caption here!"
           value={caption}
-          onChange={e => setCaption(e.target.value)}
-        ></input>
+          onChange={(e) => setCaption(e.target.value)}
+        />
         <label htmlFor="vaulted">Vault my photo</label>
         <input
           type="checkbox"
           name="vaulted"
           checked={vaulted}
-          onChange={e => setVaulted(e.target.checked)}
+          onChange={(e) => setVaulted(e.target.checked)}
         ></input>
-        <ul className='res-form-errors'>
+        <ul className="res-form-errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -73,11 +71,11 @@ const Upload = () => {
         <button type="submit">Upload Photo</button>
       </form>
     </div>
-  )
+  );
 
   return (
     <div className="upload">
-      <h1>Upload a picture to share with friends</h1>
+      <div className="uploadTitle">Upload a photo</div>
       <ImageUploading
         multiple
         value={image}
@@ -96,17 +94,20 @@ const Upload = () => {
         }) => (
           // write your building UI
           <div className="upload__image-wrapper">
-            <button
-              style={isDragging ? { color: 'red' } : undefined}
-              onClick={onImageUpload}
-              {...dragProps}
-            >
-              Click or Drop here
-            </button>
+            {!image.length && (
+              <button
+                style={isDragging ? { color: "red" } : undefined}
+                onClick={onImageUpload}
+                {...dragProps}
+                className="clickOrDropButton"
+              >
+                Click or Drop here
+              </button>
+            )}
             {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
             {imageList.map((image, index) => (
               <div key={index} className="image-item">
-                <img src={image['data_url']} alt="" width="200" />
+                <img src={image["data_url"]} alt="" width="500" />
                 <div className="image-item__btn-wrapper">
                   <button onClick={() => onImageUpdate(index)}>Update</button>
                   <button onClick={() => onImageRemove(index)}>Remove</button>
@@ -118,7 +119,7 @@ const Upload = () => {
       </ImageUploading>
       {imageDiv}
     </div>
-  )
-}
+  );
+};
 
 export default Upload;

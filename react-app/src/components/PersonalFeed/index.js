@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getFollowingPosts } from "../../store/posts";
+import "../../index.css";
+
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
@@ -10,12 +13,13 @@ const PersonalFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
-  const comments = useSelector((state) => state?.comments?.allComments);
+  const comments = useSelector((state) => state?.comments);
+  console.log("THESE ARE THE COMMENTS", comments);
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
-  }, [dispatch, sessionUser, comments]);
+  }, [dispatch, sessionUser]);
 
   const likePost = (id) => {
     dispatch(createLike({ postId: id }))
@@ -51,9 +55,17 @@ const PersonalFeed = () => {
             <div className="caption-string">{post.caption}</div>
           </div>
           <div className="card-comments">
-            <p>View all # comments</p>
-            add comments
+            {comments &&
+              Object.values(comments).map((comment) => {
+                return Object.values(comment).map((singleComment) => {
+                  if (singleComment.postId === post.id) {
+                    console.log("This is the single", singleComment.body);
+                    return <p>{singleComment.body}</p>;
+                  }
+                });
+              })}
           </div>
+          <form></form>
         </div>
       </div>
     ));
@@ -61,7 +73,7 @@ const PersonalFeed = () => {
   return (
     <div className="personal-feed">
       <div className="feed-container">
-        <h1 className="title">Personal Feed!</h1>
+        <h1 className="title">keep</h1>
         <div className="user-info">
           <div className="username"></div>
           <div className="first-last">

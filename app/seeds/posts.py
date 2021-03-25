@@ -335,7 +335,34 @@ def seed_posts():
         count = count + 1
         db.session.add(new_post)
 
+    demoList = [
+        "https://www.ginx.tv/wp-content/uploads/2018/09/SKT-Interview.jpg",
+        "https://esportbet.com/wp-content/uploads/2019/09/skt-t1.jpg",
+        "https://i.ytimg.com/vi/ju4Q0h_aiq4/maxresdefault.jpg",
+        "https://cdn.vox-cdn.com/thumbor/9DAYqrJJLaXc13iaAoBGUF6wRJo=/0x134:3300x1990/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/53118143/30473688665_ca96e1ae2b_o.0.jpg",
+        "https://lolfinity.b-cdn.net/wp-content/uploads/2020/08/SKT-T1-during-MSI-2019.jpg",
+        "https://notagamer.net/wp-content/uploads/2020/09/T1-Takes-Legal-Action-To-Prosecute-Online-Harassment-Against-Faker-and-Ensures-This-Will-Not-Be-Taken-Tightly.jpeg",
+    ]
+    demoLength = len(demoList)
+    demoCaptionList = [
+        "Just the boys and I getting interviewed",
+        "Just holding a giant trophy, no biggie",
+        "Just another tuber making videos of me",
+        "I'll be lookin fresh",
+        "All eyes on me, I can do this!",
+        "This is my favorite place to be",
+    ]
 
+    extra = 0
+    while extra < demoLength:
+        new_demo_post = Post(
+            userId = 1,
+            photoURL = demoList[extra],
+            caption = demoCaptionList[extra],
+            vaulted = False
+        )
+        extra = extra + 1
+        db.session.add(new_demo_post)
 
     db.session.commit()
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "./DiscoveryFeed.css";
+import "../../index.css";
 
 const DiscoveryFeed = () => {
   const [allPosts, setAllPosts] = useState({});

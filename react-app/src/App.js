@@ -39,8 +39,13 @@ function App() {
 
   return (
     <>
-    {authenticated && <NavBar setAuthenticated={setAuthenticated} userName={sessionUser.userName} />}
-     
+      {authenticated && (
+        <NavBar
+          setAuthenticated={setAuthenticated}
+          userName={sessionUser.userName}
+        />
+      )}
+
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -56,7 +61,7 @@ function App() {
         </Route>
 
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <PersonalFeed  />
+          <PersonalFeed />
         </ProtectedRoute>
         <ProtectedRoute
           path="/discoveryfeed"
