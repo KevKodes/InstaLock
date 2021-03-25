@@ -45,13 +45,13 @@ export const logout = () => async (dispatch) => {
   return res;
 };
 
-export const signUp = (
+export const signUp = async (
   userName,
   firstName,
   lastName,
   email,
   password
-) => async (dispatch) => {
+) => {
   const build = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -65,8 +65,7 @@ export const signUp = (
   };
   const response = await fetch("/api/auth/signup/", build);
   const data = await response.json();
-  dispatch(setUser(data.user));
-  return response;
+  return data;
 };
 
 export const restoreUser = () => async (dispatch) => {
