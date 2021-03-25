@@ -27,10 +27,6 @@ export const getComments = () => async (dispatch) => {
   }
 };
 
-// export const getCommentsForSinglePost = (id) => async (dispatch) => {
-//     const response = await fetch(`/api/comments/${id}`)
-// }
-
 // create comment, not sure if we use setComments again or createComments, createComments might only
 // be needed if we are going to make comments editable.
 export const createComment = (postId, body) => async (dispatch) => {

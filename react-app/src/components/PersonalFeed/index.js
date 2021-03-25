@@ -10,7 +10,7 @@ const PersonalFeed = () => {
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => state?.comments);
- 
+  console.log("THESE ARE THE COMMENTS", comments);
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
@@ -38,9 +38,17 @@ const PersonalFeed = () => {
             <div className="caption-string">{post.caption}</div>
           </div>
           <div className="card-comments">
-            <p>View all # comments</p>
-            add comments
+            {comments &&
+              Object.values(comments).map((comment) => {
+                return Object.values(comment).map((singleComment) => {
+                  if (singleComment.postId === post.id) {
+                    console.log("This is the single", singleComment.body);
+                    return <p>{singleComment.body}</p>;
+                  }
+                });
+              })}
           </div>
+          <input></input>
         </div>
       </div>
     ));
