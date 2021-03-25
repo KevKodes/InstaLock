@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../../index.css";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
