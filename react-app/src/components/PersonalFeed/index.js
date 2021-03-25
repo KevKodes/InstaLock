@@ -15,6 +15,8 @@ const PersonalFeed = () => {
 
   const likes = useSelector((state) => state?.likes);
 
+  console.log("THESE ARE THE COMMENTS", comments);
+
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
@@ -33,12 +35,13 @@ const PersonalFeed = () => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
 
-  const commentSubmitHandler = async (e) => {
+  const commentSubmitHandler = (e) => {
     e.preventDefault();
     if (!comment) return alert("There is an error");
     const postId = e.target.value;
     const userId = sessionUser.id;
     dispatch(createComment(userId, postId, comment));
+    setComment("");
   };
 
   // create a post component for each of the posts
@@ -115,6 +118,7 @@ const PersonalFeed = () => {
 
   return (
     <div className="personal-feed">
+      {console.log("Rerender")}
       <div className="feed-container">
         <h1 className="title">keep</h1>
         <div className="user-info">

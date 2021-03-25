@@ -7,7 +7,7 @@ comment_routes = Blueprint('comments', __name__)
 @comment_routes.route('/')
 def allComments():
     # get the comments
-    comments = Comment.query.all()
+    comments = Comment.query.order_by(Comment.createdAt.desc()).all()
     return {
         "comments": [comment.to_dict() for comment in comments]
     }
