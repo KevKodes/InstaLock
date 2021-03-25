@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowingPosts } from "../../store/posts";
-import "./PersonalFeed.css";
+import "../../index.css";
 import { Link } from "react-router-dom";
 import { getComments } from "../../store/comments";
 

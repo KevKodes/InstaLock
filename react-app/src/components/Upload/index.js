@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading';
 import { createNewPost } from '../../store/posts';
 
-import './Upload.css'
+import '../../index.css'
 
 const Upload = () => {
   const history = useHistory()
@@ -52,7 +52,7 @@ const Upload = () => {
       <img src={`${image[0].data_url}`} alt="upload" />
       <form onSubmit={handleSubmit}>
         <h3>Add a caption for your post</h3>
-        <input 
+        <input
           type="text"
           placeholder="Caption"
           value={caption}

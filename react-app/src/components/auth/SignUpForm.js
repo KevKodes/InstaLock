@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/auth';
-import './SignUp.css'
+import './index.css'
 
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
