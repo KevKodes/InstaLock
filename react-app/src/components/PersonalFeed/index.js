@@ -48,7 +48,7 @@ const PersonalFeed = () => {
                 });
               })}
           </div>
-          <input></input>
+          <form></form>
         </div>
       </div>
     ));
