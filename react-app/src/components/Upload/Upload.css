@@ -1,0 +1,47 @@
+.upload {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+
+.uploadTitle {
+  font-size: 38px;
+  text-align: center;
+  /* font-family: leagueFont; */
+}
+
+.upload__image-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clickOrDropButton {
+  width: 646px;
+  height: 300px;
+  font-size: 18px;
+}
+
+.image-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-item__btn-wrapper {
+  display: border-box;
+}
+
+.captionTextArea {
+  height: 255px;
+  width: 646px;
+}
+
+/* @font-face {
+  font-family: leagueFont;
+  src: url("/public/friz-quadrata-std-bold-italic.otf") format("opentype");
+} */
