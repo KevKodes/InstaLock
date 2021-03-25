@@ -1,8 +1,8 @@
-"""update
+"""empty message
 
-Revision ID: 6a7512958083
+Revision ID: a1a77e0396d8
 Revises: 
-Create Date: 2021-03-24 18:00:55.511190
+Create Date: 2021-03-25 01:28:09.574602
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6a7512958083'
+revision = 'a1a77e0396d8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -63,14 +63,15 @@ def upgrade():
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
-    sa.Column('postId', sa.Integer(), nullable=False),
-    sa.Column('commentId', sa.Integer(), nullable=False),
+    sa.Column('postId', sa.Integer(), nullable=True),
+    sa.Column('commentId', sa.Integer(), nullable=True),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['commentId'], ['comments.id'], ),
     sa.ForeignKeyConstraint(['postId'], ['posts.id'], ),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('userId', 'commentId', 'postId', name='unique_like')
     )
     # ### end Alembic commands ###
 

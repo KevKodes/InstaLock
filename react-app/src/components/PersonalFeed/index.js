@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFollowingPosts } from "../../store/posts";
-import "./PersonalFeed.css";
 import { Link } from "react-router-dom";
+import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
+import { createLike } from "../../store/likes";
+import "./PersonalFeed.css";
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,14 @@ const PersonalFeed = () => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
   }, [dispatch, sessionUser, comments]);
+
+  const likePost = (id) => {
+    dispatch(createLike({ postId: id }))
+  }
+
+  const likeComment = (id) => {
+    dispatch(createLike({ commentId: id }))
+  }
 
   // create a post component for each of the posts
   const followingPosts =
@@ -31,6 +40,11 @@ const PersonalFeed = () => {
           <img src={post.photoURL} alt={post.caption} />
         </div>
         <div className="card-bottom-content">
+          <div className="btn-div">
+            {/* Add click handler */}
+            <button id="like-post" className="like-btn" onClick={() => likePost(post.id)}>Like Post</button>
+            <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button>
+          </div>
           <div className="card-likes">add likes</div>
           <div className="card-caption">
             <div className="caption-user">{post.userName}</div>
