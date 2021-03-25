@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
-import { createLike } from "../../store/likes";
+import { createLike, getLikes } from "../../store/likes";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -12,19 +12,29 @@ const PersonalFeed = () => {
   const sessionUser = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => state?.comments);
 
+  const likes = useSelector((state) => state?.likes);
+  console.log("THESE ARE THE LIKES", likes);
+
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
+    dispatch(getLikes());
   }, [dispatch, sessionUser]);
 
   const likePost = (id) => {
-    dispatch(createLike({ postId: id }));
-  };
+
+    dispatch(createLike({ userId: sessionUser.id, postId: id }))
+  }
+
+  const unlikePost = (id) => {
+    console.log('----> This is unlikePost <----')
+  }
 
   const likeComment = (id) => {
-    dispatch(createLike({ commentId: id }));
-  };
+    dispatch(createLike({ userId: sessionUser.id, commentId: id }))
+  }
+
 
   // create a post component for each of the posts
   const followingPosts =
@@ -43,20 +53,13 @@ const PersonalFeed = () => {
         <div className="card-bottom-content">
           <div className="btn-div">
             {/* Add click handler */}
-            <button
-              id="like-post"
-              className="like-btn"
-              onClick={() => likePost(post.id)}
-            >
-              Like Post
-            </button>
-            <button
-              id="like-comment"
-              className="like-btn"
-              onClick={() => likeComment(post.id)}
-            >
-              Like Comment
-            </button>
+
+            {(Object.values(likes).find((like) => like.userId === sessionUser.id && like.postId === post.id)) ?
+              <button id="unlike-post" className="like-btn" onClick={() => unlikePost(post.id)}>Unlike Post</button> :
+              <button id="like-post" className="like-btn" onClick={() => likePost(post.id)}>Like Post</button>}
+
+            {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
+
           </div>
           <div className="card-likes">add likes</div>
           <div className="card-caption">
