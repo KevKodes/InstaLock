@@ -8,7 +8,7 @@ const DiscoveryFeed = () => {
   const dispatch = useDispatch();
   const [allPosts, setAllPosts] = useState({});
   const sessionUser = useSelector((state) => state?.session?.user);
-  const comments = useSelector((state) => state?.comments);
+  const comments = useSelector((state) => state?.comments.commentsArray);
   // const post = useSelector((state) => state?.post?.personalPosts);
 
   // need user
