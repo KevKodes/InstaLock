@@ -10,24 +10,25 @@ const addLike = (like) => ({
 
 
 // Thunks
-export const createLike = (id) => async (dispatch) => {
+export const createLike = (likeObj) => async (dispatch) => {
     // If id has postId property then body equals postId
     // else body equals commentId
-    let body = {}
+    let likeBody = { userId: likeObj.userId }
 
-    if (id.hasOwnProperty('postId')) {
-        body = { postId: id.postId }
-    } else if (id.hasOwnProperty('commentId')) {
-        body = { commentId: id.commentId }
+    if (likeObj.hasOwnProperty('postId')) {
+        likeBody.postId = likeObj.postId
+    } else if (likeObj.hasOwnProperty('commentId')) {
+        likeBody.commentId = likeObj.commentId
     }
 
-    console.log(body)
+    // console.log('This is the likeBody', likeBody)
+
     const response = await fetch('/api/likes/', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(likeBody),
     });
 
     if (response.ok) {
@@ -45,7 +46,13 @@ const initialState = {}
 const likesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_LIKE:
-            return state
+            const newState = {}
+            const likeId = action.like.id
+            newState[likeId] = action.like
+            return {
+                ...state,
+                ...newState,
+            }
         default:
             return state
     }
