@@ -26,5 +26,7 @@ class Comment(db.Model):
             "userId": self.userId,
             "postId": self.postId,
             "body": self.body,
-            "userName": userName
+            "userName": userName,
+            "createdAt": self.createdAt,
+            'updatedAt': self.updatedAt
         }

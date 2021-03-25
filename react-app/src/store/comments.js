@@ -55,14 +55,24 @@ export const deleteComment = (postId) => async (dispatch) => {
 const initialState = {};
 const commentsReducer = (state = initialState, action) => {
   let newState;
+  let allComments;
   switch (action.type) {
     case SET_COMMENTS:
-      const allComments = [];
+      allComments = [];
       action.comments.forEach((comment) => {
-        allComments.unshift(comment);
+        allComments.push(comment);
       });
       return {
         commentsArray: allComments,
+      };
+    case CREATE_COMMENTS:
+      allComments = [];
+      action.comments.forEach((comment) => {
+        allComments.unshift(comment);
+      });
+      const newCommentsArray = [...allComments, ...state.commentsArray];
+      return {
+        commentsArray: newCommentsArray,
       };
 
     case DELETE_COMMENTS:
