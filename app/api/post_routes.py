@@ -19,7 +19,7 @@ def posts(id):
     not_following_set = all_user_ids - following_set
 
     # Query posts with a userId in the not_following_set (ordered with newest first)
-    posts = Post.query.filter(Post.userId.in_(not_following_set)).order_by(Post.updatedAt.desc()).all()
+    posts = Post.query.filter(Post.userId.in_(not_following_set)).order_by(Post.createdAt.desc()).all()
 
     # posts = Post.query.all()
     return {"posts": [post.to_dict() for post in posts]}
@@ -28,7 +28,7 @@ def posts(id):
 @post_routes.route('/<int:id>')
 #Add all user posts into user's feed based on userId
 def post(id):
-    posts = Post.query.filter_by(userId=id).order_by(Post.updatedAt.desc()).all()
+    posts = Post.query.filter_by(userId=id).order_by(Post.createdAt.desc()).all()
     return {"posts": [post.to_dict() for post in posts]}
 
 
@@ -61,7 +61,7 @@ def create_post():
         following_ids.append(id)
         following_set = set(following_ids)
         # Query posts with a userId in the ids set (ordered with newest first)
-        posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.updatedAt.desc()).all()
+        posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.createdAt.desc()).all()
         return {"posts": [post.to_dict() for post in posts]}
 
     print('ERRORS: ', form.errors)
@@ -77,7 +77,7 @@ def following_posts(id):
     following_ids.append(id)
     following_set = set(following_ids)
     # Query posts with a userId in the ids set (ordered with newest first)
-    posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.updatedAt.desc()).all()
+    posts = Post.query.filter(Post.userId.in_(following_set)).order_by(Post.createdAt.desc()).all()
     return {"posts": [post.to_dict() for post in posts]}
 
 

@@ -20,11 +20,6 @@ const updatePost = (post) => ({
 //   postId,
 // });
 
-const likePost = (post) => ({
-  type: LIKE_POST,
-  post,
-});
-
 // THUNKS
 export const getAllPosts = (userId) => async (dispatch) => {
   // get all posts of the user's feed
