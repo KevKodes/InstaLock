@@ -1,15 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 
 import "../../index.css"
+
 
 
 const NavBar = ({ setAuthenticated, userName }) => {
   return (
     <nav className="liner">
       <div className="gif"></div>
+      <Link to='/' className="link">
       <div className="title">InstaLock</div>
+      </Link>
       <div className="search">
         <form action="/" method="get">
           <label htmlFor="header-search">
