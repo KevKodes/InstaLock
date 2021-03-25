@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/auth";
-import "./LogIn.css";
+import "./index.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/auth";
 
