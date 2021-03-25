@@ -1,14 +1,54 @@
-import { updateLikes } from  "./posts";
+// Action Types
+const ADD_LIKE = "ADD_LIKE";
 
-export const likePost = (like) => async (dispatch) => {
-    const build = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(like),
+
+// Action Creators
+const addLike = (like) => ({
+    type: ADD_LIKE,
+    like: like,
+});
+
+
+// Thunks
+export const createLike = (id) => async (dispatch) => {
+    // If id has postId property then body equals postId
+    // else body equals commentId
+    let body = {}
+
+    if (id.hasOwnProperty('postId')) {
+        body = { postId: id.postId }
+    } else if (id.hasOwnProperty('commentId')) {
+        body = { commentId: id.commentId }
     }
-    const response = await fetch("/api/postLikes/", build);
+
+    console.log(body)
+    const response = await fetch('/api/likes/', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body),
+    });
+
     if (response.ok) {
-        dispatch(updateLikes(like));
-        return response;
-    };
+        const res = await response.json();
+        dispatch(addLike(res));
+    }
+
+    return response;
 };
+
+
+// Reducer
+const initialState = {}
+
+const likesReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_LIKE:
+            return state
+        default:
+            return state
+    }
+}
+
+export default likesReducer
