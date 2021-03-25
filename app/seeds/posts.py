@@ -194,9 +194,8 @@ def seed_posts():
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Evelynn_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiddlesticks_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiora_0.jpg'
+        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fiora_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Fizz_0.jpg',
-        'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Galio_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gangplank_0.jpg',
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg',

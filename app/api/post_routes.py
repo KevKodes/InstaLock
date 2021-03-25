@@ -81,9 +81,9 @@ def following_posts(id):
     return {"posts": [post.to_dict() for post in posts]}
 
 
-@post_routes.route('/delete/<int:postId>')
-def delete_post(postId):
-    pass
+# @post_routes.route('/delete/<int:postId>')
+# def delete_post(postId):
+#     pass
 
 
 @post_routes.route('/update/<int:postId>')
