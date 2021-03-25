@@ -81,7 +81,7 @@ const NavBar = ({ setAuthenticated, userName }) => {
         <li>
           <div className="tooltip">
             <LogoutButton setAuthenticated={setAuthenticated} />
-            <span className="tooltiptext">Logout</span>
+            <span className="tooltiptext3">Logout</span>
           </div>
         </li>
       </ul>
