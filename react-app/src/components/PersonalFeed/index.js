@@ -11,7 +11,7 @@ const PersonalFeed = () => {
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => state?.comments);
-  console.log("THESE ARE THE COMMENTS", comments);
+
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));

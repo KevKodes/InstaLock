@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getComments } from "../../store/comments";
 import "../../index.css";
 
 const DiscoveryFeed = () => {
+  const dispatch = useDispatch();
   const [allPosts, setAllPosts] = useState({});
   const sessionUser = useSelector((state) => state?.session?.user);
+  const comments = useSelector((state) => state?.comments);
+  // const post = useSelector((state) => state?.post?.personalPosts);
+
+  // need user
+  // getAllPosts
 
   useEffect(() => {
     const getPosts = async () => {
@@ -16,17 +23,22 @@ const DiscoveryFeed = () => {
     if (sessionUser?.id) {
       getPosts();
     }
-  }, [sessionUser]);
+    dispatch(getComments(comments));
+  }, [dispatch, sessionUser]);
 
   const allPostsComponents =
     allPosts &&
     Object.values(allPosts).map((post) => {
+      let commentCount = 0;
+      Object.values(comments).map((comment) => {
+        if (comment.postId === post.id) commentCount += 1;
+      });
       return (
         <div key={post.id} className="boxxy">
           <Link to={`/${post.userName}`}>
             <img src={post.photoURL} alt="photoURL" className="allImages" />
             <div className="left">Likes</div>
-            <div className="right">Comments</div>
+            <div className="right">{commentCount}: Comments</div>;
           </Link>
         </div>
       );
@@ -43,5 +55,4 @@ const DiscoveryFeed = () => {
     </div>
   );
 };
-
 export default DiscoveryFeed;
