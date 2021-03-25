@@ -1,5 +1,6 @@
 // Action Types
 const ADD_LIKE = "ADD_LIKE";
+const GET_LIKES = "GET_LIKES";
 
 
 // Action Creators
@@ -7,6 +8,12 @@ const addLike = (like) => ({
     type: ADD_LIKE,
     like: like,
 });
+
+
+const getLike = (likes) => ({
+    type: GET_LIKES,
+    likes
+})
 
 
 // Thunks
@@ -40,15 +47,36 @@ export const createLike = (likeObj) => async (dispatch) => {
 };
 
 
+export const getLikes = () => async (dispatch) => {
+
+    const response = await fetch(`/api/likes/`)
+
+    if (response.ok) {
+        const res = await response.json();
+        dispatch(getLike(res.likes));
+    }
+
+    return response;
+};
+
+
 // Reducer
 const initialState = {}
 
 const likesReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
         case ADD_LIKE:
-            const newState = {}
+            newState = {}
             const likeId = action.like.id
             newState[likeId] = action.like
+            return {
+                ...state,
+                ...newState,
+            }
+        case GET_LIKES:
+            newState = {}
+            action.likes.forEach(like => newState[like.id] = like)
             return {
                 ...state,
                 ...newState,

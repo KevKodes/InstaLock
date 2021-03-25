@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
-import { createLike } from "../../store/likes";
+import { createLike, getLikes } from "../../store/likes";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -17,6 +17,7 @@ const PersonalFeed = () => {
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
+    dispatch(getLikes());
   }, [dispatch, sessionUser]);
 
   const likePost = (id) => {
@@ -50,7 +51,6 @@ const PersonalFeed = () => {
             {/* Add click handler */}
             {(Object.values(likes).find((like) => like.userId === sessionUser.id && like.postId === post.id)) ?
               <button id="unlike-post" className="like-btn" onClick={() => unlikePost(post.id)}>Unlike Post</button> :
-
               <button id="like-post" className="like-btn" onClick={() => likePost(post.id)}>Like Post</button>}
 
             {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
