@@ -15,8 +15,6 @@ const PersonalFeed = () => {
 
   const likes = useSelector((state) => state?.likes);
 
-  // console.log("THESE ARE THE COMMENTS", comments);
-
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));
     dispatch(getComments(comments));
@@ -71,21 +69,21 @@ const PersonalFeed = () => {
                 className="like-btn"
                 onClick={() => unlikePost(post.id)}
               >
-                Unlike Post
+
               </button>
             ) : (
               <button
                 id="like-post"
-                className="like-btn"
+                className="like-btn2"
                 onClick={() => likePost(post.id)}
               >
-                Like Post
+
               </button>
             )}
 
             {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
           </div>
-          <div className="card-likes">add likes</div>
+          <div className="card-likes"></div>
           <div className="card-caption">
             <div className="caption-user">{post.userName}</div>
             <div className="caption-string">{post.caption}</div>
@@ -118,13 +116,72 @@ const PersonalFeed = () => {
 
   return (
     <div className="personal-feed">
-      {console.log("Rerender")}
+      <div className="LeftQuad3"></div>
       <div className="feed-container">
         <h1 className="title">keep</h1>
         <div className="user-info">
           <div className="username"></div>
           <div className="first-last">
             <div>{followingPosts}</div>
+          </div>
+        </div>
+      </div>
+      <div className="RightQuad3">
+        <div className="suggestions">
+          <div className="userspot">
+          <div className="topside">
+        <div className="leftside">
+          <img src={sessionUser?.profileImage} alt="" className="leftPhoto" />
+        </div>
+        <div className="usertitle">{sessionUser?.userName}
+        <div className="undertitle">{sessionUser?.firstName} {sessionUser?.lastName}</div>
+        </div>
+      </div>
+          </div>
+          <div className="headertext">Suggestions For You</div>
+          <div className="person">Daniel Park
+            <div className="github">
+              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div className="linkedin">
+              <a href="https://www.linkedin.com/in/danielpark0503/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div className="angel">
+              <a href="https://angel.co/u/daniel-park-70" target="_blank" rel="noopener noreferrer">AngelList</a>
+            </div>
+          </div>
+          <div className="person">Keith Taylor
+            <div className="github">
+              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div className="linkedin">
+              <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div className="angel">
+              <a href="" target="_blank" rel="noopener noreferrer">AngelList</a>
+            </div>
+          </div>
+          <div className="person">Kevin Pitzer
+            <div className="github">
+              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div className="linkedin">
+              <a href="https://www.linkedin.com/in/kevin-pitzer/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div className="angel">
+              <a href="https://angel.co/u/kevin-pitzer" target="_blank" rel="noopener noreferrer">AngelList</a>
+            </div>
+          </div>
+          <div className="person">Robert Vogtritter
+            <div className="github">
+              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div className="linkedin">
+              <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div className="angel">
+              <a href="" target="_blank" rel="noopener noreferrer">AngelList</a>
+            </div>
           </div>
         </div>
       </div>
