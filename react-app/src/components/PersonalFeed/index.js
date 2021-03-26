@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
+import { createLike, getLikes, unLike } from "../../store/likes";
 import { getComments, createComment } from "../../store/comments";
-import { createLike, getLikes } from "../../store/likes";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -11,14 +11,13 @@ const PersonalFeed = () => {
   const [comment, setComment] = useState("");
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
+  const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
-  const likes = useSelector((state) => state?.likes);
-
-  // console.log("THESE ARE THE COMMENTS", comments);
-
   useEffect(() => {
-    dispatch(getFollowingPosts(sessionUser?.id));
+    if (sessionUser) {
+      dispatch(getFollowingPosts(sessionUser.id));
+    }
     dispatch(getComments(comments));
     dispatch(getLikes());
   }, [dispatch, sessionUser]);
@@ -28,8 +27,11 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
-    console.log("----> This is unlikePost <----");
-  };
+
+    dispatch(unLike({ userId: sessionUser.id, postId: id }))
+
+  }
+
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
