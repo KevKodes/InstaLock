@@ -101,9 +101,13 @@ const PersonalFeed = () => {
               Object.values(comments).map((comment) => {
                 if (comment.postId === post.id) {
                   return (
-                    <p key={comment.id}>
-                      {comment.userName} {comment.body}
-                    </p>
+                    <div className ="comments69">
+                      <p className= "420" key={comment.id}>
+                        {comment.userName}:
+                      </p>
+                      <p className= "8008135" key={comment.id}>
+                        {comment.body}</p>
+                    </div>
                   );
                 }
               })}
@@ -116,7 +120,7 @@ const PersonalFeed = () => {
               placeholder="Add a comment.."
               onChange={(e) => setComment(e.target.value)}
             />
-            <button type="submit">Post Comment</button>
+            <button type="submit">Post</button>
           </form>
         </div>
       </div>
