@@ -41,7 +41,7 @@ const DiscoveryFeed = () => {
           <Link to={`/${post.userName}`}>
             <img src={post.photoURL} alt="photoURL" className="allImages" />
             <div className="left">{likeCount} Likes</div>
-            <div className="right">{commentCount} Comments</div>;
+            <div className="right">{commentCount} Comments</div>
           </Link>
         </div>
       );

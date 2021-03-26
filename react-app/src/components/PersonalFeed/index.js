@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { createLike, getLikes, unLike } from "../../store/likes";
 import { getComments, createComment } from "../../store/comments";
@@ -57,9 +57,8 @@ const PersonalFeed = () => {
 
   // create a post component for each of the posts
   const followingPosts =
-    posts &&
-
-    Object.values(posts).map((post) => {
+    (posts && posts?.length) ?
+    (Object.values(posts).map((post) => {
       let commentCount = 0;
       let likeCount = 0;
       comments &&
@@ -145,7 +144,10 @@ const PersonalFeed = () => {
           </div>
         </div>
       );
-    });
+    })) :
+    <h2>
+      <NavLink to="/discoveryfeed">
+        Follow</NavLink> a user to see their posts!</h2>
 
   return (
     <div className="personal-feed">
