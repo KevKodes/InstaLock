@@ -14,6 +14,7 @@ const PersonalFeed = () => {
   const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
+
   useEffect(() => {
     if (sessionUser) {
       dispatch(getFollowingPosts(sessionUser.id));
@@ -27,12 +28,20 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
+
     dispatch(unLike({ userId: sessionUser.id, postId: id }));
   };
+
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
+
+  const unlikeComment = (id) => {
+
+    dispatch(unLike({ userId: sessionUser.id, commentId: id }))
+
+  }
 
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
@@ -49,6 +58,7 @@ const PersonalFeed = () => {
   // create a post component for each of the posts
   const followingPosts =
     posts &&
+
     Object.values(posts).map((post) => {
       let commentCount = 0;
       let likeCount = 0;
@@ -67,6 +77,7 @@ const PersonalFeed = () => {
             <Link to={`/${post.userName}`} className="Link">
               {post.userName}
             </Link>
+
           </div>
           <div className="card-photo">
             <img src={post.photoURL} alt={post.caption} />
@@ -104,13 +115,19 @@ const PersonalFeed = () => {
               Object.values(comments).map((comment) => {
                 if (comment.postId === post.id) {
                   return (
+
                     <div className ="comments69">
                       <p className= "420" key={comment.id}>
-                        {comment.userName}:
+                        {comment.userName}
                       </p>
                       <p className= "8008135" key={comment.id}>
-                        {comment.body}</p>
+                        {comment.body}
+                        {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
+                        <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
+                        <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'white' }}></i>}
+                      </p>
                     </div>
+
                   );
                 }
               })}
