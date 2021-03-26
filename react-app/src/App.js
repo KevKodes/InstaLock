@@ -18,9 +18,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [sessionUser, setSessionUser] = useState({});
 
-  // const activeSessionUser = useSelector((state) => state.session.user);
-  // console.log("THIS IS THE ACTIVE SESSION:", activeSessionUser);
-
   useEffect(() => {
     (async () => {
       const user = await authenticate();
@@ -42,7 +39,6 @@ function App() {
       {authenticated && (
         <NavBar
           setAuthenticated={setAuthenticated}
-          userName={sessionUser.userName}
         />
       )}
 
