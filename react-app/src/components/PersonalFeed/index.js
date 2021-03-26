@@ -35,13 +35,16 @@ const PersonalFeed = () => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
 
-  const commentSubmitHandler = (e) => {
+  const commentSubmitHandler = (e, id) => {
     e.preventDefault();
+    e.target.reset();
     if (!comment) return alert("There is an error");
-    const postId = e.target.value;
+    const postId = id;
     const userId = sessionUser.id;
-    dispatch(createComment(userId, postId, comment));
-    setComment("");
+    const newComment = dispatch(createComment(userId, postId, comment));
+    if (newComment) {
+      // setComment("");
+    }
   };
 
   // create a post component for each of the posts
@@ -102,23 +105,22 @@ const PersonalFeed = () => {
                 }
               })}
           </div>
-          <form className="comment_form">
+          <form
+            className="comment_form"
+            onSubmit={(e) => commentSubmitHandler(e, post.id)}
+          >
             <input
               placeholder="Add a comment.."
-              value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
+            <button type="submit">Post Comment</button>
           </form>
-          <button type="submit" value={post.id} onClick={commentSubmitHandler}>
-            Post Comment
-          </button>
         </div>
       </div>
     ));
 
   return (
     <div className="personal-feed">
-      {console.log("Rerender")}
       <div className="feed-container">
         <h1 className="title">keep</h1>
         <div className="user-info">
