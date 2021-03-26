@@ -14,6 +14,7 @@ const PersonalFeed = () => {
   const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
+
   useEffect(() => {
     if (sessionUser) {
       dispatch(getFollowingPosts(sessionUser.id));
@@ -32,10 +33,15 @@ const PersonalFeed = () => {
 
   }
 
-
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
+
+  const unlikeComment = (id) => {
+
+    dispatch(unLike({ userId: sessionUser.id, commentId: id }))
+
+  }
 
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
@@ -67,28 +73,10 @@ const PersonalFeed = () => {
           <div className="btn-div">
             {/* Add click handler */}
 
-            {Object.values(likes).find(
-              (like) =>
-                like.userId === sessionUser.id && like.postId === post.id
-            ) ? (
-              <button
-                id="unlike-post"
-                className="like-btn"
-                onClick={() => unlikePost(post.id)}
-              >
-                Unlike Post
-              </button>
-            ) : (
-              <button
-                id="like-post"
-                className="like-btn"
-                onClick={() => likePost(post.id)}
-              >
-                Like Post
-              </button>
-            )}
+            {Object.values(likes).find((like) => like.userId === sessionUser.id && like.postId === post.id) ?
+              (<button id="unlike-post" className="like-btn" onClick={() => unlikePost(post.id)}>Unlike Post</button>) :
+              (<button id="like-post" className="like-btn" onClick={() => likePost(post.id)}>Like Post</button>)}
 
-            {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
           </div>
           <div className="card-likes">add likes</div>
           <div className="card-caption">
@@ -102,6 +90,9 @@ const PersonalFeed = () => {
                   return (
                     <p key={comment.id}>
                       {comment.userName} {comment.body}
+                      {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
+                        <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
+                        <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'white' }}></i>}
                     </p>
                   );
                 }
