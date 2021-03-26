@@ -14,7 +14,6 @@ const PersonalFeed = () => {
   const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
-
   useEffect(() => {
     if (sessionUser) {
       dispatch(getFollowingPosts(sessionUser.id));
@@ -28,11 +27,8 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
-
-    dispatch(unLike({ userId: sessionUser.id, postId: id }))
-
-  }
-
+    dispatch(unLike({ userId: sessionUser.id, postId: id }));
+  };
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
@@ -53,78 +49,85 @@ const PersonalFeed = () => {
   // create a post component for each of the posts
   const followingPosts =
     posts &&
-    Object.values(posts).map((post) => (
-      <div key={post.id} className="following-card">
-        <div className="card-username">
-          <img src={post.profileImage} alt="" className="photohere" />
-          <Link to={`/${post.userName}`} className="Link">
-            {post.userName}
-          </Link>
-        </div>
-        <div className="card-photo">
-          <img src={post.photoURL} alt={post.caption} />
-        </div>
-        <div className="card-bottom-content">
-          <div className="btn-div">
-            {/* Add click handler */}
-
-            {Object.values(likes).find(
-              (like) =>
-                like.userId === sessionUser.id && like.postId === post.id
-            ) ? (
-              <button
-                id="unlike-post"
-                className="like-btn"
-                onClick={() => unlikePost(post.id)}
-              >
-
-              </button>
-            ) : (
-              <button
-                id="like-post"
-                className="like-btn2"
-                onClick={() => likePost(post.id)}
-              >
-
-              </button>
-            )}
-
-            {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
+    Object.values(posts).map((post) => {
+      let commentCount = 0;
+      let likeCount = 0;
+      comments &&
+        Object.values(comments).map((comment) => {
+          if (comment.postId === post.id) commentCount += 1;
+        });
+      likes &&
+        Object.values(likes).map((like) => {
+          if (like.postId === post.id) likeCount += 1;
+        });
+      return (
+        <div key={post.id} className="following-card">
+          <div className="card-username">
+            <img src={post.profileImage} alt="" className="photohere" />
+            <Link to={`/${post.userName}`} className="Link">
+              {post.userName}
+            </Link>
           </div>
-          <div className="card-likes"></div>
-          <div className="card-caption">
-            <div className="caption-user">{post.userName}</div>
-            <div className="caption-string">{post.caption}</div>
+          <div className="card-photo">
+            <img src={post.photoURL} alt={post.caption} />
           </div>
-          <div className="card-comments">
-            {comments &&
-              Object.values(comments).map((comment) => {
-                if (comment.postId === post.id) {
-                  return (
-                    <p key={comment.id}>
-                      {comment.userName} {comment.body}
-                    </p>
-                  );
-                }
-              })}
+          <div className="card-bottom-content">
+            <div className="btn-div">
+              {/* Add click handler */}
+              {Object.values(likes).find(
+                (like) =>
+                  like.userId === sessionUser.id && like.postId === post.id
+              ) ? (
+                <button
+                  id="unlike-post"
+                  className="like-btn"
+                  onClick={() => unlikePost(post.id)}
+                ></button>
+              ) : (
+                <button
+                  id="like-post"
+                  className="like-btn2"
+                  onClick={() => likePost(post.id)}
+                ></button>
+              )}
+              {likeCount} Likes &nbsp;&nbsp;
+              {commentCount} Comments
+              {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
+            </div>
+            <div className="card-likes"></div>
+            <div className="card-caption">
+              <div className="caption-user">{post.userName}</div>
+              <div className="caption-string">{post.caption}</div>
+            </div>
+            <div className="card-comments">
+              {comments &&
+                Object.values(comments).map((comment) => {
+                  if (comment.postId === post.id) {
+                    return (
+                      <p key={comment.id}>
+                        {comment.userName} {comment.body}
+                      </p>
+                    );
+                  }
+                })}
+            </div>
+            <form
+              className="comment_form"
+              onSubmit={(e) => commentSubmitHandler(e, post.id)}
+            >
+              <input
+                placeholder="Add a comment.."
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <button type="submit">Post Comment</button>
+            </form>
           </div>
-          <form
-            className="comment_form"
-            onSubmit={(e) => commentSubmitHandler(e, post.id)}
-          >
-            <input
-              placeholder="Add a comment.."
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <button type="submit">Post Comment</button>
-          </form>
         </div>
-      </div>
-    ));
+      );
+    });
 
   return (
     <div className="personal-feed">
-
       <div className="LeftQuad3"></div>
 
       <div className="feed-container">
@@ -139,58 +142,109 @@ const PersonalFeed = () => {
       <div className="RightQuad3">
         <div className="suggestions">
           <div className="userspot">
-          <div className="topside">
-        <div className="leftside">
-          <img src={sessionUser?.profileImage} alt="" className="leftPhoto" />
-        </div>
-        <div className="usertitle">{sessionUser?.userName}
-        <div className="undertitle">{sessionUser?.firstName} {sessionUser?.lastName}</div>
-        </div>
-      </div>
+            <div className="topside">
+              <div className="leftside">
+                <img
+                  src={sessionUser?.profileImage}
+                  alt=""
+                  className="leftPhoto"
+                />
+              </div>
+              <div className="usertitle">
+                {sessionUser?.userName}
+                <div className="undertitle">
+                  {sessionUser?.firstName} {sessionUser?.lastName}
+                </div>
+              </div>
+            </div>
           </div>
           <div className="headertext">Suggestions For You</div>
-          <div className="person">Daniel Park
+          <div className="person">
+            Daniel Park
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             </div>
             <div className="linkedin">
-              <a href="https://www.linkedin.com/in/danielpark0503/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/danielpark0503/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
             </div>
             <div className="angel">
-              <a href="https://angel.co/u/daniel-park-70" target="_blank" rel="noopener noreferrer">AngelList</a>
+              <a
+                href="https://angel.co/u/daniel-park-70"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                AngelList
+              </a>
             </div>
           </div>
-          <div className="person">Keith Taylor
+          <div className="person">
+            Keith Taylor
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
             </div>
             <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">AngelList</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                AngelList
+              </a>
             </div>
           </div>
-          <div className="person">Kevin Pitzer
+          <div className="person">
+            Kevin Pitzer
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             </div>
             <div className="linkedin">
-              <a href="https://www.linkedin.com/in/kevin-pitzer/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/kevin-pitzer/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
             </div>
             <div className="angel">
-              <a href="https://angel.co/u/kevin-pitzer" target="_blank" rel="noopener noreferrer">AngelList</a>
+              <a
+                href="https://angel.co/u/kevin-pitzer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                AngelList
+              </a>
             </div>
           </div>
-          <div className="person">Robert Vogtritter
+          <div className="person">
+            Robert Vogtritter
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
             </div>
             <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">AngelList</a>
+              <a href="" target="_blank" rel="noopener noreferrer">
+                AngelList
+              </a>
             </div>
           </div>
         </div>
