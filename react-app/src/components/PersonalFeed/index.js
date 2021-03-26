@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { getComments } from "../../store/comments";
-import { createLike, getLikes } from "../../store/likes";
+import { createLike, getLikes, unLike } from "../../store/likes";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -11,13 +11,15 @@ const PersonalFeed = () => {
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => state?.comments);
-
   const likes = useSelector((state) => state?.likes);
+
   console.log("THESE ARE THE LIKES", likes);
 
 
   useEffect(() => {
-    dispatch(getFollowingPosts(sessionUser?.id));
+    if (sessionUser) {
+      dispatch(getFollowingPosts(sessionUser.id));
+    }
     dispatch(getComments(comments));
     dispatch(getLikes());
   }, [dispatch, sessionUser]);
@@ -28,7 +30,8 @@ const PersonalFeed = () => {
   }
 
   const unlikePost = (id) => {
-    console.log('----> This is unlikePost <----')
+    dispatch(unLike({ userId: sessionUser.id, postId: id }))
+
   }
 
   const likeComment = (id) => {
@@ -72,7 +75,7 @@ const PersonalFeed = () => {
                 if (comment.postId === post.id) {
                   // console.log("This is the single", singleComment.body);
                   return (
-                    <p>
+                    <p key={comment.id}>
                       {post.userName} {comment.body}
                     </p>
                   );
