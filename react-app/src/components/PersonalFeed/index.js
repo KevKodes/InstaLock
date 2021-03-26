@@ -100,27 +100,31 @@ const PersonalFeed = () => {
               <div className="caption-string">{post.caption}</div>
             </div>
             <div className="card-comments">
-              {comments &&
-                Object.values(comments).map((comment) => {
-                  if (comment.postId === post.id) {
-                    return (
-                      <p key={comment.id}>
-                        {comment.userName} {comment.body}
+            {comments &&
+              Object.values(comments).map((comment) => {
+                if (comment.postId === post.id) {
+                  return (
+                    <div className ="comments69">
+                      <p className= "420" key={comment.id}>
+                        {comment.userName}:
                       </p>
-                    );
-                  }
-                })}
-            </div>
-            <form
-              className="comment_form"
-              onSubmit={(e) => commentSubmitHandler(e, post.id)}
-            >
-              <input
-                placeholder="Add a comment.."
-                onChange={(e) => setComment(e.target.value)}
-              />
-              <button type="submit">Post Comment</button>
-            </form>
+                      <p className= "8008135" key={comment.id}>
+                        {comment.body}</p>
+                    </div>
+                  );
+                }
+              })}
+          </div>
+          <form
+            className="comment_form"
+            onSubmit={(e) => commentSubmitHandler(e, post.id)}
+          >
+            <input
+              placeholder="Add a comment.."
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button type="submit">Post</button>
+          </form>
           </div>
         </div>
       );
