@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
+import { createLike, getLikes, unLike } from "../../store/likes";
 import { getComments, createComment } from "../../store/comments";
-import { createLike, getLikes } from "../../store/likes";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -11,12 +11,14 @@ const PersonalFeed = () => {
   const [comment, setComment] = useState("");
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
+  const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
-  const likes = useSelector((state) => state?.likes);
 
   useEffect(() => {
-    dispatch(getFollowingPosts(sessionUser?.id));
+    if (sessionUser) {
+      dispatch(getFollowingPosts(sessionUser.id));
+    }
     dispatch(getComments(comments));
     dispatch(getLikes());
   }, [dispatch, sessionUser]);
@@ -26,20 +28,26 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
-    console.log("----> This is unlikePost <----");
-  };
+
+    dispatch(unLike({ userId: sessionUser.id, postId: id }))
+
+  }
+
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
 
-  const commentSubmitHandler = (e) => {
+  const commentSubmitHandler = (e, id) => {
     e.preventDefault();
+    e.target.reset();
     if (!comment) return alert("There is an error");
-    const postId = e.target.value;
+    const postId = id;
     const userId = sessionUser.id;
-    dispatch(createComment(userId, postId, comment));
-    setComment("");
+    const newComment = dispatch(createComment(userId, postId, comment));
+    if (newComment) {
+      // setComment("");
+    }
   };
 
   // create a post component for each of the posts
@@ -100,23 +108,25 @@ const PersonalFeed = () => {
                 }
               })}
           </div>
-          <form className="comment_form">
+          <form
+            className="comment_form"
+            onSubmit={(e) => commentSubmitHandler(e, post.id)}
+          >
             <input
               placeholder="Add a comment.."
-              value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
+            <button type="submit">Post Comment</button>
           </form>
-          <button type="submit" value={post.id} onClick={commentSubmitHandler}>
-            Post Comment
-          </button>
         </div>
       </div>
     ));
 
   return (
     <div className="personal-feed">
+
       <div className="LeftQuad3"></div>
+
       <div className="feed-container">
         <h1 className="title">keep</h1>
         <div className="user-info">

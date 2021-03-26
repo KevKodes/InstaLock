@@ -1,6 +1,7 @@
 // Action Types
 const ADD_LIKE = "ADD_LIKE";
 const GET_LIKES = "GET_LIKES";
+const DELETE_LIKE = "DELETE_LIKE"
 
 
 // Action Creators
@@ -13,6 +14,12 @@ const addLike = (like) => ({
 const getLike = (likes) => ({
     type: GET_LIKES,
     likes
+})
+
+
+const deleteLike = (id) => ({
+    type: DELETE_LIKE,
+    id: id,
 })
 
 
@@ -60,6 +67,36 @@ export const getLikes = () => async (dispatch) => {
 };
 
 
+export const unLike = (likeObj) => async (dispatch) => {
+
+    let likeBody = { userId: likeObj.userId }
+
+    if (likeObj.hasOwnProperty('postId')) {
+        likeBody.postId = likeObj.postId
+    } else if (likeObj.hasOwnProperty('commentId')) {
+        likeBody.commentId = likeObj.commentId
+    }
+
+    const response = await fetch('/api/likes/', {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(likeBody),
+    })
+
+    if (response.ok) {
+        const res = await response.json();
+        if (res.success) {
+            dispatch(deleteLike(res.id))
+        }
+    }
+
+    return response
+
+}
+
+
 // Reducer
 const initialState = {}
 
@@ -81,6 +118,10 @@ const likesReducer = (state = initialState, action) => {
                 ...state,
                 ...newState,
             }
+        case DELETE_LIKE:
+            newState = { ...state }
+            delete newState[action.id]
+            return newState
         default:
             return state
     }
