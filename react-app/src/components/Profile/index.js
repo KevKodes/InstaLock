@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../../index.css";
 import { newFollowUser, newUnfollowUser } from "../../store/follow";
+import { getComments } from "../../store/comments";
+import { getLikes } from "../../store/likes";
 
 function Profile() {
   const { userName } = useParams();
@@ -19,6 +21,11 @@ function Profile() {
   const sessionUser = useSelector((state) => state?.session?.user);
   const followers = useSelector((state) => state?.follow?.followers);
   const following = useSelector((state) => state?.follow?.following);
+  const comments = useSelector((state) => state?.comments?.commentsArray);
+  const likes = useSelector((state) => state?.likes);
+
+  // console.log("THESE ARE THE COMMENTS", comments);
+  // console.log("THESE ARE THE LIKES", likes);
 
   // check if the profile is the sessionUser's profile
   useEffect(() => {
@@ -63,7 +70,7 @@ function Profile() {
     setIsFollowing(false);
   };
 
-  // Get the profile user, posts, followers, and following
+  // Get the profile user, posts, followers, followings, comments, likes
   useEffect(() => {
     const getUser = async () => {
       const response = await fetch(`/api/users/${userName}`);
@@ -75,6 +82,8 @@ function Profile() {
       dispatch(getAllFollowers(user.id));
       dispatch(getAllFollowedBy(user.id));
       dispatch(getAllPosts(user.id));
+      dispatch(getComments());
+      dispatch(getLikes());
     }
   }, [dispatch, user.id, userName, sessionUser]);
 
@@ -88,27 +97,42 @@ function Profile() {
   const postComponents =
     posts &&
     Object.values(posts).map((post) => {
+      let commentCount = 0;
+      let likeCount = 0;
+      comments &&
+        comments.map((comment) => {
+          if (comment.postId === post.id) commentCount += 1;
+        });
+      likes &&
+        Object.values(likes).map((like) => {
+          if (like.postId === post.id) likeCount += 1;
+        });
       return (
         <div className="boxxy" key={post.id}>
           {isOwnProfile && (
             <div className="vault-option">
-
-
               {post.vaulted ? (
-                <button className='ultra' value={post.id} onClick={handleVaultClick}>
+                <button
+                  className="ultra"
+                  value={post.id}
+                  onClick={handleVaultClick}
+                >
                   Unvault Photo
                 </button>
-
               ) : (
-                <button className='ultra' value={post.id} onClick={handleVaultClick}>
+                <button
+                  className="ultra"
+                  value={post.id}
+                  onClick={handleVaultClick}
+                >
                   Vault Photo
                 </button>
               )}
             </div>
           )}
           <img src={post.photoURL} className="allImages" alt="photoURL" />
-          <div className="left">Likes</div>
-          <div className="right">Comments</div>
+          <div className="left">{likeCount}: Likes</div>
+          <div className="right">{commentCount}: Comments</div>
         </div>
       );
     });
