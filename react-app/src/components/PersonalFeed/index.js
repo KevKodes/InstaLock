@@ -15,7 +15,7 @@ const PersonalFeed = () => {
 
   const likes = useSelector((state) => state?.likes);
 
-  console.log("THESE ARE THE COMMENTS", comments);
+  // console.log("THESE ARE THE COMMENTS", comments);
 
   useEffect(() => {
     dispatch(getFollowingPosts(sessionUser?.id));

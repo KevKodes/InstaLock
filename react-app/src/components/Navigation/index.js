@@ -1,11 +1,14 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import "../../index.css"
 
 
 
-const NavBar = ({ setAuthenticated, userName }) => {
+const NavBar = ({ setAuthenticated }) => {
+  const sessionUser = useSelector((state) => state?.session?.user);
+
   return (
     <nav className="liner">
       <div className="gif"></div>
@@ -72,7 +75,7 @@ const NavBar = ({ setAuthenticated, userName }) => {
           <div className="tooltip">
             <NavLink
               id="ez5"
-              to={`/${userName}`}
+              to={`/${sessionUser?.userName}`}
               exact={true}
               className="navIcon"
               activeClassName="active"
