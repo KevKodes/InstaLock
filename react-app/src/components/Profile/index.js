@@ -39,10 +39,10 @@ function Profile() {
       });
       return returnBool;
     };
-    if (followers?.length) {
+    // if (followers?.length) { // this is not running if there are not followers
       const followingBoolean = checkFollowing(followers);
       setIsFollowing(followingBoolean);
-    }
+    // }
   }, [followers, sessionUser]);
 
   // update the numFollowers and numFollowing
