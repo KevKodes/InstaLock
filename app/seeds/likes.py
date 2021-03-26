@@ -3,16 +3,25 @@ import random
 
 
 def seed_likes():
-
-
   count = 1
-  while count < 10000:
-    new_like = Like(
-      userId = (random.randrange(1,150)),
-      postId = (random.randrange(1, 150)),
+
+
+  while count < 3000:
+    new_like_post = Like(
+      userId = (random.randrange(1,153)),
+      postId = (random.randrange(1,153)),
     )
     count += 1
-    db.session.add(new_like)
+    db.session.add(new_like_post)
+
+
+  while count < 3000:
+    new_like_comment = Like(
+      userId = (random.randrange(1,153)),
+      commentId = (random.randrange(1,153))
+    )
+    db.session.add(new_like_comment)
+
 
   db.session.commit()
 
