@@ -70,9 +70,9 @@ const initialState = {};
 const followSession = (state = initialState, action) => {
   switch (action.type) {
     case IS_FOLLOWING:
-      return { ...state, following: action.followers.follows };
+      return { ...state, following: [...action.followers.follows] };
     case IS_FOLLOWED_BY:
-      return { ...state, followers: action.followed_by.followed };
+      return { ...state, followers: [...action.followed_by.followed] };
     case UPDATE_FOLLOWERS:
       let updatedFollowers = {}
       if (action.followers?.follows) {
