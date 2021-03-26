@@ -117,10 +117,10 @@ const PersonalFeed = () => {
                   return (
 
                     <div className ="comments69">
-                      <p className= "420" key={comment.id}>
+                      <p className= "This420" key={comment.id}>
                         {comment.userName}
                       </p>
-                      <p className= "8008135" key={comment.id}>
+                      <p className= "This8008135" key={comment.id}>
                         {comment.body}
                         {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
                         <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
