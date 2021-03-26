@@ -24,9 +24,6 @@ function Profile() {
   const comments = useSelector((state) => state?.comments?.commentsArray);
   const likes = useSelector((state) => state?.likes);
 
-  // console.log("THESE ARE THE COMMENTS", comments);
-  // console.log("THESE ARE THE LIKES", likes);
-
   // check if the profile is the sessionUser's profile
   useEffect(() => {
     if (sessionUser?.userName === userName) {
@@ -46,10 +43,8 @@ function Profile() {
       });
       return returnBool;
     };
-    // if (followers?.length) { // this is not running if there are not followers
       const followingBoolean = checkFollowing(followers);
       setIsFollowing(followingBoolean);
-    // }
   }, [followers, sessionUser]);
 
   // update the numFollowers and numFollowing

@@ -14,9 +14,9 @@
 }
 
 .ultra:hover {
-    background: linear-gradient(-45deg, rgb(0, 70, 15), rgb(0, 70, 15));
+    background-color:#90C2E7;
     background-size: 300% 300%;
-    color: white;
+    color: black;
 }
 
 /* Discovery & Navigation*/
@@ -35,7 +35,7 @@
     position:relative;
 }
 .boxxy:hover .allImages {
-    opacity: 0.1
+    opacity: 0.3
 }
 .boxxy:hover .left {
     display: block;
@@ -49,7 +49,8 @@
 }
 .left {
     display: none;
-    color: white;
+    color: black;
+    font-weight: bolder;
     text-decoration: none;
     position: absolute;
     top: 50%;
@@ -58,7 +59,8 @@
 }
 .right {
     display: none;
-    color: white;
+    color: black;
+    font-weight: bolder;
     text-decoration: none;
     position: absolute;
     top: 50%;
@@ -118,13 +120,14 @@
 .LeftQuad {
     width: 24%
 }
+
 .MiddleQuad {
     /* Changed width to 65% */
     width           : 65%;
     display         : flex;
     flex-direction  : row;
     flex-wrap       : wrap;
-    background-color: rgb(20, 20, 20);
+    background-color: #CED3DC;
     /* Added space-around allImages */
     justify-content : space-around;
 }
@@ -149,7 +152,7 @@
 .photohere {
     height       : 75px;
     width        : 75px;
-    border       : 2px solid rgb(0, 174, 255);
+    border       : 2px solid #A31621;
     border-radius: 50%;
 }
 .followbuttons {
@@ -170,7 +173,7 @@
     display: flex;
     padding: 0;
     height: 100px;
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
     background-size: cover;
     margin: 0;
     background-repeat: no-repeat;
@@ -194,7 +197,7 @@
     margin          : 0;
     padding         : 0;
     text-decoration : none;
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
     cursor          : pointer;
     outline         : none;
 }
@@ -204,6 +207,7 @@
     justify-content: center;
     text-align: center;
     margin-top: 10px;
+    background-color: #A31621;
 }
 .liner {
     position: fixed;
@@ -213,12 +217,12 @@
     width: 100%;
     z-index: 1;
     flex-direction: row;
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
 }
 .gif {
     width: 250px;
     margin-left: 400px;
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
     background-image: url("./images/doppppe.gif");
     background-size: contain;
     background-repeat: no-repeat;
@@ -236,7 +240,7 @@
 }
 .search {
     width: 1000px;
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
 }
 #ez {
     width            : 40px;
@@ -367,29 +371,184 @@
     background-repeat: no-repeat;
 }
 .hidden {
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
     border: none;
     outline: none;
+    color: white;
+
 }
 .hidden2 {
-    background-color: rgb(20, 20, 20);
+    background-color: #A31621;
     color: white;
     border: 1px solid white;
     margin-left: 130px;
+    text-align: center;
+}
+.hidden2::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    font-weight: bolder;
+}
+.captionTextArea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    font-weight: bolder;
+}
+
+#header_search {
+    color:white;
+    text-align: center;
 }
 /* Personal Feed */
+.personal-feed {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
 .feed-container {
-    width: 1100px;
-    margin-left: 410px;
-    background-color: rgb(20,20,20);
+    width: 50%;
+    background-color: #CED3DC;
+
+
+}
+
+.RightQuad3 {
+    width: 50%;
+
+}
+.suggestions {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    height: 600px;
+    width: 360px;
+    margin-top: 92px;
+    background-color: white;
+    color: black;
+
+
+}
+.userspot {
+    height: 80px;
+    width: 300px;
+}
+.topside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    width: 300px;
+}
+.leftSide {
+    height: 80px;
+    width: 80px;
+}
+.usertitle {
+    height: 80px;
+    width: 250px;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    color: black
+}
+.undertitle {
+    font-size: 16px;
+    color: black
+}
+.rightSide {
+    height: 80px;
+    width: 150px;
+}
+.leftPhoto {
+    height: 80px;
+    width: 80px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 2px solid #A31621;
+    border-radius: 50%;
+}
+
+.headertext {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    height: 55px;
+    margin-top: 40px;
+    margin-right: 170px;
+    color: black;
+}
+.person {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 150px;
+    text-align: start;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+    color: black;
+}
+.github {
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Github-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    color: white;
+}
+.linkedin {
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Linkedin-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    color: white;
+}
+.angel {
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Angellist-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    color: white;
+
+}
+.github a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 25px;
+    color: black;
+}
+.linkedin a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 25px;
+    color: black;
+}
+.angel a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 25px;
+    color: black;
+}
+.LeftQuad3 {
+    width: 28%
 }
 .following-card {
-    color: white;
+    color: black;
     width: 100%;
     margin-bottom: 60px;
-    border-bottom: 20px solid rgb(86, 251, 122);
+    border-bottom: 20px solid white;
     border-radius: 3px;
-    background-color: rgb(20,20,20);
+    background-color: #CED3DC;
 }
 .card-username {
     display: flex;
@@ -401,6 +560,7 @@
 }
 .card-photo img {
     width: 100%;
+    max-height: 500px;
 
 }
 .card-comments {
@@ -410,35 +570,68 @@
 }
 .card-bottom-content {
     padding: 16px;
+    padding-bottom: 30px;
 }
-
-.card-caption {
+.comments69 {
     display: flex;
+    width: 500px;
+    text-align: left;
+    margin-left: 150px;
+}
+.card-caption {
     height: 50px;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: start;
+    margin-left: 150px;
+
 
 }
-
+.btn-div {
+    display: flex;
+    text-align: start;
+}
+.like-btn {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background-image: url('./images/like.gif');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.like-btn2 {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background-image: url('./images/nolike.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
 .caption-user {
     visibility: hidden;
     font-size: 20px;
     font-weight: 800;
-    color: white;
+    color: black;
 }
 .caption-string {
-    margin-right: 50px;
-    text-align: center;
     font-size: 25px;
     font-weight: bolder;
+    text-align: start;
+    width: 400px;
 
 }
 
 .Link {
     margin-left: 20px;
-    color: white;
+    color: black;
     text-decoration: none;
 }
 .title {
@@ -494,7 +687,7 @@
     height: auto;
 }
 .vault-option {
-    color: white;
+    color: black;
 }
 /* upload page */
 .upload {
