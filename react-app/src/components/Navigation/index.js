@@ -32,7 +32,6 @@ const NavBar = ({ setAuthenticated }) => {
       </div>
       <ul id="nav">
         <li>
-          {/* Added className navIcon */}
           <div className="tooltip">
             <NavLink
               id="ez"
@@ -45,7 +44,6 @@ const NavBar = ({ setAuthenticated }) => {
           </div>
         </li>
         <li>
-          {/* Added className navIcon */}
           <div className="tooltip">
             <NavLink
               id="ez2"
@@ -58,7 +56,6 @@ const NavBar = ({ setAuthenticated }) => {
           </div>
         </li>
         <li>
-          {/* Added className navIcon */}
           <div className="tooltip">
             <NavLink
               id="ez3"
@@ -71,7 +68,6 @@ const NavBar = ({ setAuthenticated }) => {
           </div>
         </li>
         <li>
-          {/* Added className navIcon*/}
           <div className="tooltip">
             <NavLink
               id="ez5"

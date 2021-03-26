@@ -72,9 +72,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         </button>
         <div className="signup-link-box">
           <div className="signup-link-text">
-            {/* Added space after sentence */}
             Don't have an account?&nbsp;
-            {/* Removed underline for Sign up */}
             <NavLink
               to="/signup"
               style={{ textDecoration: "none" }}

@@ -10,13 +10,8 @@ const DiscoveryFeed = () => {
   const [allPosts, setAllPosts] = useState({});
   const sessionUser = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => state?.comments?.commentsArray);
-  // const post = useSelector((state) => state?.post?.personalPosts);
   const likes = useSelector((state) => state?.likes);
-  console.log("THESE ARE THE LIKES", likes);
-
-  // need user
-  // getAllPosts
-
+  
   useEffect(() => {
     const getPosts = async () => {
       const response = await fetch(`/api/posts/discovery/${sessionUser?.id}`);
@@ -45,8 +40,8 @@ const DiscoveryFeed = () => {
         <div key={post.id} className="boxxy">
           <Link to={`/${post.userName}`}>
             <img src={post.photoURL} alt="photoURL" className="allImages" />
-            <div className="left">{likeCount}: Likes</div>
-            <div className="right">{commentCount}: Comments</div>;
+            <div className="left">{likeCount} Likes</div>
+            <div className="right">{commentCount} Comments</div>;
           </Link>
         </div>
       );
