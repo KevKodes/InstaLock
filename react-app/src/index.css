@@ -118,6 +118,7 @@
 .LeftQuad {
     width: 24%
 }
+
 .MiddleQuad {
     /* Changed width to 65% */
     width           : 65%;
@@ -378,16 +379,158 @@
     margin-left: 130px;
 }
 /* Personal Feed */
+.personal-feed {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
 .feed-container {
-    width: 1100px;
-    margin-left: 410px;
+    width: 50%;
     background-color: rgb(20,20,20);
+    border-right: 2px solid rgb(255, 132, 31);
+
+}
+.LeftQuad3 {
+    border-right: 3px solid rgb(255, 132, 31);
+
+}
+.RightQuad3 {
+    width: 50%;
+
+}
+.suggestions {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    height: 600px;
+    width: 360px;
+    margin-top: 92px;
+    background-color: rgb(20,20,20);
+    color: white;
+    border-top: 2px solid rgb(255, 132, 31);
+
+}
+.userspot {
+    height: 80px;
+    width: 300px;
+}
+.topside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80px;
+    width: 300px;
+}
+.leftSide {
+    height: 80px;
+    width: 80px;
+}
+.usertitle {
+    height: 80px;
+    width: 250px;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 24px;
+}
+.undertitle {
+    font-size: 16px;
+}
+.rightSide {
+    height: 80px;
+    width: 150px;
+}
+.leftPhoto {
+    height: 80px;
+    width: 80px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 2px solid rgb(0, 174, 255);
+    border-radius: 50%;
+}
+
+.headertext {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    height: 55px;
+    margin-top: 40px;
+    margin-right: 170px;
+}
+.person {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 150px;
+    text-align: start;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+    color: white;
+}
+.github {
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Github-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    color: white;
+}
+.linkedin {
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Linkedin-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    color: white;
+}
+.angel {
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Angellist-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    color: white;
+
+}
+.github a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    color: black;
+    cursor: pointer;
+    margin-left: 25px;
+    color: white;
+}
+.linkedin a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    color: black;
+    cursor: pointer;
+    margin-left: 25px;
+    color: white;
+}
+.angel a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    color: black;
+    cursor: pointer;
+    margin-left: 25px;
+    color: white;
+}
+.LeftQuad3 {
+    width: 28%
 }
 .following-card {
     color: white;
     width: 100%;
     margin-bottom: 60px;
-    border-bottom: 20px solid rgb(86, 251, 122);
+    border-bottom: 10px solid rgb(86, 251, 122);
     border-radius: 3px;
     background-color: rgb(20,20,20);
 }
@@ -401,6 +544,7 @@
 }
 .card-photo img {
     width: 100%;
+    max-height: 500px;
 
 }
 .card-comments {
@@ -421,7 +565,34 @@
     justify-content: center;
 
 }
-
+.btn-div {
+    display: flex;
+    text-align: start;
+}
+.like-btn {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background-image: url('./images/like.gif');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.like-btn2 {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background-image: url('./images/nolike.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
 .caption-user {
     visibility: hidden;
     font-size: 20px;
