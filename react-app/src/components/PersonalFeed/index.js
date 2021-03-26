@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
-import { getComments } from "../../store/comments";
 import { createLike, getLikes, unLike } from "../../store/likes";
+import { getComments, createComment } from "../../store/comments";
 import "../../index.css";
 
 const PersonalFeed = () => {
   const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
   const posts = useSelector((state) => state?.posts?.personalPosts);
   const sessionUser = useSelector((state) => state?.session?.user);
-  const comments = useSelector((state) => state?.comments);
   const likes = useSelector((state) => state?.likes);
-
-  console.log("THESE ARE THE LIKES", likes);
-
+  const comments = useSelector((state) => state?.comments?.commentsArray);
 
   useEffect(() => {
     if (sessionUser) {
@@ -25,19 +23,31 @@ const PersonalFeed = () => {
   }, [dispatch, sessionUser]);
 
   const likePost = (id) => {
-
-    dispatch(createLike({ userId: sessionUser.id, postId: id }))
-  }
+    dispatch(createLike({ userId: sessionUser.id, postId: id }));
+  };
 
   const unlikePost = (id) => {
+
     dispatch(unLike({ userId: sessionUser.id, postId: id }))
 
   }
 
-  const likeComment = (id) => {
-    dispatch(createLike({ userId: sessionUser.id, commentId: id }))
-  }
 
+  const likeComment = (id) => {
+    dispatch(createLike({ userId: sessionUser.id, commentId: id }));
+  };
+
+  const commentSubmitHandler = (e, id) => {
+    e.preventDefault();
+    e.target.reset();
+    if (!comment) return alert("There is an error");
+    const postId = id;
+    const userId = sessionUser.id;
+    const newComment = dispatch(createComment(userId, postId, comment));
+    if (newComment) {
+      // setComment("");
+    }
+  };
 
   // create a post component for each of the posts
   const followingPosts =
@@ -57,12 +67,28 @@ const PersonalFeed = () => {
           <div className="btn-div">
             {/* Add click handler */}
 
-            {(Object.values(likes).find((like) => like.userId === sessionUser.id && like.postId === post.id)) ?
-              <button id="unlike-post" className="like-btn" onClick={() => unlikePost(post.id)}>Unlike Post</button> :
-              <button id="like-post" className="like-btn" onClick={() => likePost(post.id)}>Like Post</button>}
+            {Object.values(likes).find(
+              (like) =>
+                like.userId === sessionUser.id && like.postId === post.id
+            ) ? (
+              <button
+                id="unlike-post"
+                className="like-btn"
+                onClick={() => unlikePost(post.id)}
+              >
+                Unlike Post
+              </button>
+            ) : (
+              <button
+                id="like-post"
+                className="like-btn"
+                onClick={() => likePost(post.id)}
+              >
+                Like Post
+              </button>
+            )}
 
             {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
-
           </div>
           <div className="card-likes">add likes</div>
           <div className="card-caption">
@@ -73,16 +99,24 @@ const PersonalFeed = () => {
             {comments &&
               Object.values(comments).map((comment) => {
                 if (comment.postId === post.id) {
-                  // console.log("This is the single", singleComment.body);
                   return (
                     <p key={comment.id}>
-                      {post.userName} {comment.body}
+                      {comment.userName} {comment.body}
                     </p>
                   );
                 }
               })}
           </div>
-          <form></form>
+          <form
+            className="comment_form"
+            onSubmit={(e) => commentSubmitHandler(e, post.id)}
+          >
+            <input
+              placeholder="Add a comment.."
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button type="submit">Post Comment</button>
+          </form>
         </div>
       </div>
     ));

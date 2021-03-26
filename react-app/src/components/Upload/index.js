@@ -104,6 +104,10 @@ const Upload = () => {
                 Click or Drop here
               </button>
             )}
+            <img
+              src="https://lolstatic-a.akamaihd.net/frontpage/apps/prod/signup/en_US/03a5e95dd434e72e5746eae1ee22f0b440c81c79/assets/en_US/assets/divider-download.png"
+              alt="divide"
+            />
             {/* <button onClick={onImageRemoveAll}>Remove all images</button> */}
             {imageList.map((image, index) => (
               <div key={index} className="image-item">

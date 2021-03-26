@@ -29,17 +29,16 @@ export const getComments = () => async (dispatch) => {
 
 // create comment, not sure if we use setComments again or createComments, createComments might only
 // be needed if we are going to make comments editable.
-export const createComment = (postId, body) => async (dispatch) => {
+export const createComment = (userId, postId, body) => async (dispatch) => {
   const build = {
     method: "POST",
     headers: { "Content-Type": "Application/json" },
-    body: JSON.stringify({ body }),
+    body: JSON.stringify({ userId, postId, body }),
   };
   const response = await fetch(`/api/comments/${postId}/`, build);
   if (!response.ok) alert("ERROR");
   const data = await response.json();
-  dispatch(createComments(data));
-  return data;
+  return dispatch(createComments([data]));
 };
 
 // Deleting a comment
@@ -56,19 +55,26 @@ export const deleteComment = (postId) => async (dispatch) => {
 const initialState = {};
 const commentsReducer = (state = initialState, action) => {
   let newState;
+  let allComments;
   switch (action.type) {
     case SET_COMMENTS:
-      //   const comments = action.comments.reduce((acc, ele) => {
-      //     acc[ele.id] = ele;
-      //     return acc;
-      //   }, {});
-      //   return {
-      //     ...state,
-      //     ...comments,
-      //   };
-      newState = Object.assign({}, state);
-      newState = action.comments;
-      return newState;
+      allComments = [];
+      action.comments.forEach((comment) => {
+        allComments.push(comment);
+      });
+      return {
+        commentsArray: allComments,
+      };
+    case CREATE_COMMENTS:
+      allComments = [];
+      action.comments.forEach((comment) => {
+        allComments.unshift(comment);
+      });
+      const newCommentsArray = [...allComments, ...state.commentsArray];
+      return {
+        commentsArray: newCommentsArray,
+      };
+
     case DELETE_COMMENTS:
       newState = { ...state };
       delete newState[action.id];

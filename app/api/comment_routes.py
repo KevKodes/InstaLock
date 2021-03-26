@@ -7,7 +7,7 @@ comment_routes = Blueprint('comments', __name__)
 @comment_routes.route('/')
 def allComments():
     # get the comments
-    comments = Comment.query.all()
+    comments = Comment.query.order_by(Comment.createdAt.desc()).all()
     return {
         "comments": [comment.to_dict() for comment in comments]
     }
@@ -15,13 +15,13 @@ def allComments():
 # get a specific post's comments based on postId
 @comment_routes.route('/<int:id>/')
 def postComments(id):
-    comments = Comment.query.filter_by(postId=id).all()
+    comments = Comment.query.filter_by(postId=id).order_by(Comment.createdAt.desc()).all()
     return {
         "comments": [comment.to_dict() for comment in comments]
     }
 
 @comment_routes.route('/<int:id>/', methods=['POST'])
-def new_comment():
+def new_comment(id):
     user_comment = request.get_json()
     userId=user_comment["userId"]
     postId=user_comment['postId']

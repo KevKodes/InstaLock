@@ -22,6 +22,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     }
   };
 
+  const handleDemoClick = async (e) => {
+    const demoUser = await login("demo@aa.io", "password");
+    dispatch(setUser(demoUser));
+    setAuthenticated(true);
+  };
+
   if (authenticated) {
     return <Redirect to="/" />;
   }
@@ -51,7 +57,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit">Login</button>
+            <button type="submit" onSubmit={onLogin}>
+              Login
+            </button>
             <div className="err">
               {errors.map((error) => (
                 <div>{error}</div>
@@ -59,12 +67,21 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             </div>
           </div>
         </form>
+        <button type="click" onClick={handleDemoClick} className="demoButton">
+          Demo User
+        </button>
         <div className="signup-link-box">
           <div className="signup-link-text">
             {/* Added space after sentence */}
             Don't have an account?&nbsp;
             {/* Removed underline for Sign up */}
-            <NavLink to="/signup" style={{ textDecoration: 'none' }} className="signUp">Sign up</NavLink>
+            <NavLink
+              to="/signup"
+              style={{ textDecoration: "none" }}
+              className="signUp"
+            >
+              Sign up
+            </NavLink>
           </div>
         </div>
         <div className="banner1"></div>
