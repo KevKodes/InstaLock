@@ -569,7 +569,7 @@
     overflow-x: hidden;
 }
 .card-bottom-content {
-    padding: 16px;
+    padding: 8px;
     padding-bottom: 30px;
 }
 .comments69 {
@@ -585,25 +585,33 @@
     font-weight: bolder;
     padding-right: 20px;
 }
+.This8008135 {
+    padding-right: 20px;
+}
 
 .card-caption {
-    height: 50px;
+    height: 90px;
     align-items: flex-start;
     justify-content: flex-start;
     text-align: start;
     margin-left: 150px;
+    overflow: hidden;
 
 
+}
+.lastdiv {
+margin-left: 10px;
 }
 .btn-div {
     display: flex;
     text-align: start;
 }
 .like-btn {
+    padding-top: 5px;
     display: block;
-    width: 70px;
-    height: 70px;
-    background-image: url('./images/like.gif');
+    min-width: 50px;
+    min-height: 50px;
+    background-image: url('./images/Rainbow_star.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
@@ -613,9 +621,9 @@
 }
 .like-btn2 {
     display: block;
-    width: 70px;
-    height: 70px;
-    background-image: url('./images/nolike.png');
+    min-width: 50px;
+    min-height: 50px;
+    background-image: url('./images/mariostar.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
