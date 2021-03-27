@@ -100,8 +100,10 @@ const PersonalFeed = () => {
                   onClick={() => likePost(post.id)}
                 ></button>
               )}
+              <div className="lastdiv">
               {likeCount} Likes &nbsp;&nbsp;
               {commentCount} Comments
+              </div>
               {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
             </div>
             <div className="card-likes"></div>
@@ -121,6 +123,8 @@ const PersonalFeed = () => {
                       </p>
                       <p className= "This8008135" key={comment.id}>
                         {comment.body}
+                      </p>
+                      <p>
                         {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
                         <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
                         <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'black' }}></i>}
@@ -185,7 +189,7 @@ const PersonalFeed = () => {
           <div className="person">
             Daniel Park
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/dpxrk" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
@@ -211,25 +215,20 @@ const PersonalFeed = () => {
           <div className="person">
             Keith Taylor
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/keitay72" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/keith-taylor-16825311/" target="_blank" rel="noopener noreferrer">
                 LinkedIn
-              </a>
-            </div>
-            <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">
-                AngelList
               </a>
             </div>
           </div>
           <div className="person">
             Kevin Pitzer
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/KevKodes" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
@@ -255,17 +254,17 @@ const PersonalFeed = () => {
           <div className="person">
             Robert Vogtritter
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/RobertVogue" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="www.linkedin.com/in/robertvogtritter" target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
             </div>
             <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://angel.co/u/robert-c-vogtritter" target="_blank" rel="noopener noreferrer">
                 AngelList
               </a>
             </div>
