@@ -19,7 +19,8 @@ def posts(id):
     not_following_set = all_user_ids - following_set
 
     # Query posts with a userId in the not_following_set (ordered with newest first)
-    posts = Post.query.filter(Post.userId.in_(not_following_set)).order_by(Post.createdAt.desc()).all()
+    posts = Post.query.filter(Post.userId.in_(not_following_set),
+    Post.vaulted=='false').order_by(Post.createdAt.desc()).all()
 
     # posts = Post.query.all()
     return {"posts": [post.to_dict() for post in posts]}
