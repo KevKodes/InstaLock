@@ -9,7 +9,7 @@ See our site hosted on heroku\
 
 * * * * *
 
-OpenEats is a spin-off to Instagram. By signing up, it allows users to view other users' profiles and see what posts have been uploaded to our database.
+Instalock is a spin-off to Instagram. By signing up, it allows users to view other users' profiles and see what posts have been uploaded to our database.
 
 [![Home Page] //
 
@@ -30,7 +30,7 @@ OpenEats is a spin-off to Instagram. By signing up, it allows users to view othe
 [](https://github.com/KevKodes/InstaLock#how-to-use) How To Use
 ----------------------------------------------------------------------------
 ```
-# Close this repository
+# Clone this repository
 $ git clone https://github.com/KevKodes/InstaLock.git
 
 # Install flask dependencies in root directory
