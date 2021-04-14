@@ -22,7 +22,6 @@ def posts(id):
     posts = Post.query.filter(Post.userId.in_(not_following_set),
     Post.vaulted=='false').order_by(Post.createdAt.desc()).all()
 
-    # posts = Post.query.all()
     return {"posts": [post.to_dict() for post in posts]}
 
 
