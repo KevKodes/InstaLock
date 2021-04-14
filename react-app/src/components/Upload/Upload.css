@@ -1,9 +1,11 @@
 .upload {
   display: flex;
   flex-direction: column;
-  width: 640px;
-  margin: 0 auto;
-  margin-top: 150px;
+  width: 1100px;
+  height: 860px;
+  margin-left: 413px;
+  margin-top: 100px;
+  background-color: #CED3DC;
 }
 
 .uploadTitle {
@@ -20,8 +22,8 @@
 }
 
 .clickOrDropButton {
-  width: 646px;
-  height: 300px;
+  width: 732px;
+  height: 100px;
   font-size: 18px;
 }
 
@@ -37,11 +39,17 @@
 }
 
 .captionTextArea {
-  height: 255px;
-  width: 646px;
+  height: 89px;
+  width: 1092px;
 }
 
 /* @font-face {
   font-family: leagueFont;
   src: url("/public/friz-quadrata-std-bold-italic.otf") format("opentype");
 } */
+.wide {
+  margin-left: 490px;
+}
+.wide2 {
+  margin-left: 10px;
+}

@@ -17,9 +17,15 @@
 }
 
 .ultra:hover {
+<<<<<<< HEAD
   background: linear-gradient(-45deg, rgb(0, 70, 15), rgb(0, 70, 15));
   background-size: 300% 300%;
   color: white;
+=======
+    background-color:#90C2E7;
+    background-size: 300% 300%;
+    color: black;
+>>>>>>> main
 }
 
 /* Discovery & Navigation*/
@@ -37,7 +43,11 @@
   position: relative;
 }
 .boxxy:hover .allImages {
+<<<<<<< HEAD
   opacity: 0.1;
+=======
+    opacity: 0.3
+>>>>>>> main
 }
 .boxxy:hover .left {
   display: block;
@@ -50,6 +60,7 @@
   text-align: center;
 }
 .left {
+<<<<<<< HEAD
   display: none;
   color: white;
   text-decoration: none;
@@ -68,6 +79,28 @@
   transform: translate(-50%, -50%);
 }
 /* Added hover spin effect to allImages */
+=======
+    display: none;
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+.right {
+    display: none;
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+  /* Added hover spin effect to allImages */
+>>>>>>> main
 .allImages2:hover {
   /* transform: rotate(360deg); */
   /* transform   : rotateX(720deg); */
@@ -122,6 +155,7 @@
 }
 
 .MiddleQuad {
+<<<<<<< HEAD
   /* Changed width to 65% */
   width: 65%;
   display: flex;
@@ -130,6 +164,16 @@
   background-color: rgb(20, 20, 20);
   /* Added space-around allImages */
   justify-content: space-around;
+=======
+    /* Changed width to 65% */
+    width           : 65%;
+    display         : flex;
+    flex-direction  : row;
+    flex-wrap       : wrap;
+    background-color: #CED3DC;
+    /* Added space-around allImages */
+    justify-content : space-around;
+>>>>>>> main
 }
 .RightQuad2 {
   width: 22%;
@@ -150,10 +194,17 @@
   margin-top: 100px;
 }
 .photohere {
+<<<<<<< HEAD
   height: 75px;
   width: 75px;
   border: 2px solid rgb(0, 174, 255);
   border-radius: 50%;
+=======
+    height       : 75px;
+    width        : 75px;
+    border       : 2px solid #A31621;
+    border-radius: 50%;
+>>>>>>> main
 }
 .followbuttons {
   width: 150px;
@@ -168,6 +219,7 @@
 
 /* TODO Add site wide styles */
 #nav {
+<<<<<<< HEAD
   width: 100%;
   list-style-type: none;
   display: flex;
@@ -178,6 +230,18 @@
   margin: 0;
   background-repeat: no-repeat;
   align-items: center;
+=======
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    height: 100px;
+    background-color: #A31621;
+    background-size: cover;
+    margin: 0;
+    background-repeat: no-repeat;
+    align-items      : center;
+>>>>>>> main
 }
 #nav A {
   display: block;
@@ -191,6 +255,7 @@
     border-bottom: 3px solid rgb(0, 87, 7);
 } */
 #nav button {
+<<<<<<< HEAD
   display: block;
   color: white;
   border: none;
@@ -225,6 +290,43 @@
   background-image: url("./images/doppppe.gif");
   background-size: contain;
   background-repeat: no-repeat;
+=======
+    display         : block;
+    color           : white;
+    border          : none;
+    margin          : 0;
+    padding         : 0;
+    text-decoration : none;
+    background-color: #A31621;
+    cursor          : pointer;
+    outline         : none;
+}
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #A31621;
+}
+.liner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+    flex-direction: row;
+    background-color: #A31621;
+}
+.gif {
+    width: 250px;
+    margin-left: 400px;
+    background-color: #A31621;
+    background-image: url("./images/doppppe.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+>>>>>>> main
 }
 .title {
   width: 205px;
@@ -239,8 +341,8 @@
   text-decoration: none;
 }
 .search {
-  width: 1000px;
-  background-color: rgb(20, 20, 20);
+    width: 1000px;
+    background-color: #A31621;
 }
 #ez {
   width: 40px;
@@ -371,6 +473,7 @@
   background-repeat: no-repeat;
 }
 .hidden {
+<<<<<<< HEAD
   background-color: rgb(20, 20, 20);
   border: none;
   outline: none;
@@ -380,6 +483,33 @@
   color: white;
   border: 1px solid white;
   margin-left: 130px;
+=======
+    background-color: #A31621;
+    border: none;
+    outline: none;
+    color: white;
+
+}
+.hidden2 {
+    background-color: #A31621;
+    color: white;
+    border: 1px solid white;
+    margin-left: 130px;
+    text-align: center;
+}
+.hidden2::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    font-weight: bolder;
+}
+.captionTextArea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    font-weight: bolder;
+}
+
+#header_search {
+    color:white;
+    text-align: center;
+>>>>>>> main
 }
 /* Personal Feed */
 .personal-feed {
@@ -388,17 +518,26 @@
   flex-direction: row;
 }
 .feed-container {
+<<<<<<< HEAD
   width: 50%;
   background-color: rgb(20, 20, 20);
   border-right: 2px solid rgb(255, 132, 31);
 }
 .LeftQuad3 {
   border-right: 3px solid rgb(255, 132, 31);
+=======
+    width: 50%;
+    background-color: #CED3DC;
+
+
+>>>>>>> main
 }
+
 .RightQuad3 {
   width: 50%;
 }
 .suggestions {
+<<<<<<< HEAD
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -408,6 +547,18 @@
   background-color: rgb(20, 20, 20);
   color: white;
   border-top: 2px solid rgb(255, 132, 31);
+=======
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    height: 600px;
+    width: 360px;
+    margin-top: 92px;
+    background-color: white;
+    color: black;
+
+
+>>>>>>> main
 }
 .userspot {
   height: 80px;
@@ -425,6 +576,7 @@
   width: 80px;
 }
 .usertitle {
+<<<<<<< HEAD
   height: 80px;
   width: 250px;
   margin-left: 30px;
@@ -434,12 +586,26 @@
 }
 .undertitle {
   font-size: 16px;
+=======
+    height: 80px;
+    width: 250px;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    color: black
+}
+.undertitle {
+    font-size: 16px;
+    color: black
+>>>>>>> main
 }
 .rightSide {
   height: 80px;
   width: 150px;
 }
 .leftPhoto {
+<<<<<<< HEAD
   height: 80px;
   width: 80px;
   margin-top: 10px;
@@ -466,6 +632,35 @@
   font-weight: bold;
   margin-left: 30px;
   color: white;
+=======
+    height: 80px;
+    width: 80px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 2px solid #A31621;
+    border-radius: 50%;
+}
+
+.headertext {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    height: 55px;
+    margin-top: 40px;
+    margin-right: 170px;
+    color: black;
+}
+.person {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 150px;
+    text-align: start;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 30px;
+    color: black;
+>>>>>>> main
 }
 .github {
   width: 20px;
@@ -495,6 +690,7 @@
   color: white;
 }
 .github a {
+<<<<<<< HEAD
   text-decoration: none;
   font-size: 14px;
   width: 200px;
@@ -520,17 +716,50 @@
   cursor: pointer;
   margin-left: 25px;
   color: white;
+=======
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 25px;
+    color: black;
+}
+.linkedin a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 25px;
+    color: black;
+}
+.angel a {
+    text-decoration: none;
+    font-size: 14px;
+    width: 200px;
+    cursor: pointer;
+    margin-left: 25px;
+    color: black;
+>>>>>>> main
 }
 .LeftQuad3 {
   width: 28%;
 }
 .following-card {
+<<<<<<< HEAD
   color: white;
   width: 100%;
   margin-bottom: 60px;
   border-bottom: 10px solid rgb(86, 251, 122);
   border-radius: 3px;
   background-color: rgb(20, 20, 20);
+=======
+    color: black;
+    width: 100%;
+    margin-bottom: 60px;
+    border-bottom: 20px solid white;
+    border-radius: 3px;
+    background-color: #CED3DC;
+>>>>>>> main
 }
 .card-username {
   display: flex;
@@ -550,6 +779,7 @@
   overflow-x: hidden;
 }
 .card-bottom-content {
+<<<<<<< HEAD
   padding: 16px;
 }
 
@@ -560,12 +790,47 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+=======
+    padding: 8px;
+    padding-bottom: 30px;
+}
+.comments69 {
+    display: flex;
+    width: 500px;
+    text-align: left;
+    margin-left: 150px;
+    align-items: center;
+
+>>>>>>> main
+}
+.This420 {
+    font-size: 18px;
+    font-weight: bolder;
+    padding-right: 20px;
+}
+.This8008135 {
+    padding-right: 20px;
+}
+
+.card-caption {
+    height: 90px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: start;
+    margin-left: 150px;
+    overflow: hidden;
+
+
+}
+.lastdiv {
+margin-left: 10px;
 }
 .btn-div {
   display: flex;
   text-align: start;
 }
 .like-btn {
+<<<<<<< HEAD
   display: block;
   width: 70px;
   height: 70px;
@@ -606,6 +871,50 @@
   margin-left: 20px;
   color: white;
   text-decoration: none;
+=======
+    padding-top: 5px;
+    display: block;
+    min-width: 50px;
+    min-height: 50px;
+    background-image: url('./images/Rainbow_star.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.like-btn2 {
+    display: block;
+    min-width: 50px;
+    min-height: 50px;
+    background-image: url('./images/mariostar.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.caption-user {
+    visibility: hidden;
+    font-size: 20px;
+    font-weight: 800;
+    color: black;
+}
+.caption-string {
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: start;
+    width: 400px;
+
+}
+
+.Link {
+    margin-left: 20px;
+    color: black;
+    text-decoration: none;
+>>>>>>> main
 }
 .title {
   text-align: center;
@@ -660,7 +969,11 @@
   height: auto;
 }
 .vault-option {
+<<<<<<< HEAD
   color: white;
+=======
+    color: black;
+>>>>>>> main
 }
 /* upload page */
 .upload {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { createLike, getLikes, unLike } from "../../store/likes";
 import { getComments, createComment } from "../../store/comments";
@@ -13,6 +13,7 @@ const PersonalFeed = () => {
   const sessionUser = useSelector((state) => state?.session?.user);
   const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
+
 
   useEffect(() => {
     if (sessionUser) {
@@ -27,12 +28,26 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
+
     dispatch(unLike({ userId: sessionUser.id, postId: id }));
   };
 
+<<<<<<< HEAD
   // const likeComment = (id) => {
   //   dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   // };
+=======
+
+  const likeComment = (id) => {
+    dispatch(createLike({ userId: sessionUser.id, commentId: id }));
+  };
+>>>>>>> main
+
+  const unlikeComment = (id) => {
+
+    dispatch(unLike({ userId: sessionUser.id, commentId: id }))
+
+  }
 
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
@@ -48,8 +63,8 @@ const PersonalFeed = () => {
 
   // create a post component for each of the posts
   const followingPosts =
-    posts &&
-    Object.values(posts).map((post) => {
+    (posts && posts?.length) ?
+    (Object.values(posts).map((post) => {
       let commentCount = 0;
       let likeCount = 0;
       comments &&
@@ -67,6 +82,7 @@ const PersonalFeed = () => {
             <Link to={`/${post.userName}`} className="Link">
               {post.userName}
             </Link>
+
           </div>
           <div className="card-photo">
             <img src={post.photoURL} alt={post.caption} />
@@ -90,8 +106,10 @@ const PersonalFeed = () => {
                   onClick={() => likePost(post.id)}
                 ></button>
               )}
+              <div className="lastdiv">
               {likeCount} Likes &nbsp;&nbsp;
               {commentCount} Comments
+              </div>
               {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
             </div>
             <div className="card-likes"></div>
@@ -100,31 +118,46 @@ const PersonalFeed = () => {
               <div className="caption-string">{post.caption}</div>
             </div>
             <div className="card-comments">
-              {comments &&
-                Object.values(comments).map((comment) => {
-                  if (comment.postId === post.id) {
-                    return (
-                      <p key={comment.id}>
-                        {comment.userName} {comment.body}
+            {comments &&
+              Object.values(comments).map((comment) => {
+                if (comment.postId === post.id) {
+                  return (
+
+                    <div className ="comments69">
+                      <p className= "This420" key={comment.id}>
+                        {comment.userName}
                       </p>
-                    );
-                  }
-                })}
-            </div>
-            <form
-              className="comment_form"
-              onSubmit={(e) => commentSubmitHandler(e, post.id)}
-            >
-              <input
-                placeholder="Add a comment.."
-                onChange={(e) => setComment(e.target.value)}
-              />
-              <button type="submit">Post Comment</button>
-            </form>
+                      <p className= "This8008135" key={comment.id}>
+                        {comment.body}
+                      </p>
+                      <p>
+                        {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
+                        <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
+                        <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'black' }}></i>}
+                      </p>
+                    </div>
+
+                  );
+                }
+              })}
+          </div>
+          <form
+            className="comment_form"
+            onSubmit={(e) => commentSubmitHandler(e, post.id)}
+          >
+            <input
+              placeholder="Add a comment.."
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button type="submit">Post</button>
+          </form>
           </div>
         </div>
       );
-    });
+    })) :
+    <h2>
+      <NavLink to="/discoveryfeed">
+        Follow</NavLink> a user to see their posts!</h2>
 
   return (
     <div className="personal-feed">
@@ -162,7 +195,7 @@ const PersonalFeed = () => {
           <div className="person">
             Daniel Park
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/dpxrk" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
@@ -188,25 +221,20 @@ const PersonalFeed = () => {
           <div className="person">
             Keith Taylor
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/keitay72" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/keith-taylor-16825311/" target="_blank" rel="noopener noreferrer">
                 LinkedIn
-              </a>
-            </div>
-            <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">
-                AngelList
               </a>
             </div>
           </div>
           <div className="person">
             Kevin Pitzer
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/KevKodes" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
@@ -232,17 +260,17 @@ const PersonalFeed = () => {
           <div className="person">
             Robert Vogtritter
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/RobertVogue" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="www.linkedin.com/in/robertvogtritter" target="_blank" rel="noopener noreferrer">
                 LinkedIn
               </a>
             </div>
             <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a href="https://angel.co/u/robert-c-vogtritter" target="_blank" rel="noopener noreferrer">
                 AngelList
               </a>
             </div>

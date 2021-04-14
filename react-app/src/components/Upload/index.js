@@ -52,12 +52,13 @@ const Upload = () => {
       <form onSubmit={handleSubmit}>
         <textarea
           className="captionTextArea"
-          placeholder="Add your caption here!"
+          placeholder="Your best caption yet!"
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
         />
-        <label htmlFor="vaulted">Vault my photo</label>
+        <label className="wide" htmlFor="vaulted">Vault my photo</label>
         <input
+          className="wide2"
           type="checkbox"
           name="vaulted"
           checked={vaulted}
@@ -68,14 +69,14 @@ const Upload = () => {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <button type="submit">Upload Photo</button>
+        <button className="ultra wide" type="submit">Upload Photo</button>
       </form>
     </div>
   );
 
   return (
     <div className="upload">
-      <div className="uploadTitle">Upload a photo</div>
+      <div className="uploadTitle"></div>
       <ImageUploading
         multiple
         value={image}
@@ -96,7 +97,7 @@ const Upload = () => {
           <div className="upload__image-wrapper">
             {!image.length && (
               <button
-                style={isDragging ? { color: "red" } : undefined}
+                style={isDragging ? { color: "green" } : undefined}
                 onClick={onImageUpload}
                 {...dragProps}
                 className="clickOrDropButton"
@@ -113,8 +114,8 @@ const Upload = () => {
               <div key={index} className="image-item">
                 <img src={image["data_url"]} alt="" width="500" />
                 <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
+                  <button className="ultra" onClick={() => onImageUpdate(index)}>Update</button>
+                  <button className="ultra" onClick={() => onImageRemove(index)}>Remove</button>
                 </div>
               </div>
             ))}
