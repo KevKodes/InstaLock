@@ -11,11 +11,7 @@ const DiscoveryFeed = () => {
   const sessionUser = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => state?.comments?.commentsArray);
   const likes = useSelector((state) => state?.likes);
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> main
   useEffect(() => {
     const getPosts = async () => {
       const response = await fetch(`/api/posts/discovery/${sessionUser?.id}`);

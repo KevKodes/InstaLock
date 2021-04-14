@@ -14,7 +14,6 @@ const PersonalFeed = () => {
   const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
-
   useEffect(() => {
     if (sessionUser) {
       dispatch(getFollowingPosts(sessionUser.id));
@@ -28,26 +27,16 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
-
     dispatch(unLike({ userId: sessionUser.id, postId: id }));
   };
-
-<<<<<<< HEAD
-  // const likeComment = (id) => {
-  //   dispatch(createLike({ userId: sessionUser.id, commentId: id }));
-  // };
-=======
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
->>>>>>> main
 
   const unlikeComment = (id) => {
-
-    dispatch(unLike({ userId: sessionUser.id, commentId: id }))
-
-  }
+    dispatch(unLike({ userId: sessionUser.id, commentId: id }));
+  };
 
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
@@ -63,101 +52,114 @@ const PersonalFeed = () => {
 
   // create a post component for each of the posts
   const followingPosts =
-    (posts && posts?.length) ?
-    (Object.values(posts).map((post) => {
-      let commentCount = 0;
-      let likeCount = 0;
-      comments &&
-        Object.values(comments).map((comment) => {
-          if (comment.postId === post.id) commentCount += 1;
-        });
-      likes &&
-        Object.values(likes).map((like) => {
-          if (like.postId === post.id) likeCount += 1;
-        });
-      return (
-        <div key={post.id} className="following-card">
-          <div className="card-username">
-            <img src={post.profileImage} alt="" className="photohere" />
-            <Link to={`/${post.userName}`} className="Link">
-              {post.userName}
-            </Link>
-
-          </div>
-          <div className="card-photo">
-            <img src={post.photoURL} alt={post.caption} />
-          </div>
-          <div className="card-bottom-content">
-            <div className="btn-div">
-              {/* Add click handler */}
-              {Object.values(likes).find(
-                (like) =>
-                  like.userId === sessionUser.id && like.postId === post.id
-              ) ? (
-                <button
-                  id="unlike-post"
-                  className="like-btn"
-                  onClick={() => unlikePost(post.id)}
-                ></button>
-              ) : (
-                <button
-                  id="like-post"
-                  className="like-btn2"
-                  onClick={() => likePost(post.id)}
-                ></button>
-              )}
-              <div className="lastdiv">
-              {likeCount} Likes &nbsp;&nbsp;
-              {commentCount} Comments
+    posts && posts?.length ? (
+      Object.values(posts).map((post) => {
+        let commentCount = 0;
+        let likeCount = 0;
+        comments &&
+          Object.values(comments).map((comment) => {
+            if (comment.postId === post.id) commentCount += 1;
+          });
+        likes &&
+          Object.values(likes).map((like) => {
+            if (like.postId === post.id) likeCount += 1;
+          });
+        return (
+          <div key={post.id} className="following-card">
+            <div className="card-username">
+              <img src={post.profileImage} alt="" className="photohere" />
+              <Link to={`/${post.userName}`} className="Link">
+                {post.userName}
+              </Link>
+            </div>
+            <div className="card-photo">
+              <img src={post.photoURL} alt={post.caption} />
+            </div>
+            <div className="card-bottom-content">
+              <div className="btn-div">
+                {/* Add click handler */}
+                {Object.values(likes).find(
+                  (like) =>
+                    like.userId === sessionUser.id && like.postId === post.id
+                ) ? (
+                  <button
+                    id="unlike-post"
+                    className="like-btn"
+                    onClick={() => unlikePost(post.id)}
+                  ></button>
+                ) : (
+                  <button
+                    id="like-post"
+                    className="like-btn2"
+                    onClick={() => likePost(post.id)}
+                  ></button>
+                )}
+                <div className="lastdiv">
+                  {likeCount} Likes &nbsp;&nbsp;
+                  {commentCount} Comments
+                </div>
+                {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
               </div>
-              {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
+              <div className="card-likes"></div>
+              <div className="card-caption">
+                <div className="caption-user">{post.userName}</div>
+                <div className="caption-string">{post.caption}</div>
+              </div>
+              <div className="card-comments">
+                {comments &&
+                  Object.values(comments).map((comment) => {
+                    if (comment.postId === post.id) {
+                      return (
+                        <div className="comments69">
+                          <p className="This420" key={comment.id}>
+                            {comment.userName}
+                          </p>
+                          <p className="This8008135" key={comment.id}>
+                            {comment.body}
+                          </p>
+                          <p>
+                            {Object.values(likes).find(
+                              (like) =>
+                                like.userId === sessionUser.id &&
+                                like.commentId === comment.id
+                            ) ? (
+                              <i
+                                onClick={() => unlikeComment(comment.id)}
+                                className="fas fa-heart"
+                                style={{ color: "red" }}
+                              ></i>
+                            ) : (
+                              <i
+                                onClick={() => likeComment(comment.id)}
+                                className="far fa-heart"
+                                style={{ color: "black" }}
+                              ></i>
+                            )}
+                          </p>
+                        </div>
+                      );
+                    }
+                  })}
+              </div>
+              <form
+                className="comment_form"
+                onSubmit={(e) => commentSubmitHandler(e, post.id)}
+              >
+                <input
+                  placeholder="Add a comment.."
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button type="submit">Post</button>
+              </form>
             </div>
-            <div className="card-likes"></div>
-            <div className="card-caption">
-              <div className="caption-user">{post.userName}</div>
-              <div className="caption-string">{post.caption}</div>
-            </div>
-            <div className="card-comments">
-            {comments &&
-              Object.values(comments).map((comment) => {
-                if (comment.postId === post.id) {
-                  return (
-
-                    <div className ="comments69">
-                      <p className= "This420" key={comment.id}>
-                        {comment.userName}
-                      </p>
-                      <p className= "This8008135" key={comment.id}>
-                        {comment.body}
-                      </p>
-                      <p>
-                        {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
-                        <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
-                        <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'black' }}></i>}
-                      </p>
-                    </div>
-
-                  );
-                }
-              })}
           </div>
-          <form
-            className="comment_form"
-            onSubmit={(e) => commentSubmitHandler(e, post.id)}
-          >
-            <input
-              placeholder="Add a comment.."
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <button type="submit">Post</button>
-          </form>
-          </div>
-        </div>
-      );
-    })) :
-    <h2>
-      <NavLink to="/discoveryfeed">
-        Follow</NavLink> a user to see their posts!</h2>
+        );
+      })
+    ) : (
+      <h2>
+        <NavLink to="/discoveryfeed">Follow</NavLink> a user to see their posts!
+      </h2>
+    );
 
   return (
     <div className="personal-feed">
@@ -195,7 +197,11 @@ const PersonalFeed = () => {
           <div className="person">
             Daniel Park
             <div className="github">
-              <a href="https://github.com/dpxrk" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/dpxrk"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
@@ -221,12 +227,20 @@ const PersonalFeed = () => {
           <div className="person">
             Keith Taylor
             <div className="github">
-              <a href="https://github.com/keitay72" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/keitay72"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="https://www.linkedin.com/in/keith-taylor-16825311/" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.linkedin.com/in/keith-taylor-16825311/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
               </a>
             </div>
@@ -234,7 +248,11 @@ const PersonalFeed = () => {
           <div className="person">
             Kevin Pitzer
             <div className="github">
-              <a href="https://github.com/KevKodes" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/KevKodes"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
@@ -260,17 +278,29 @@ const PersonalFeed = () => {
           <div className="person">
             Robert Vogtritter
             <div className="github">
-              <a href="https://github.com/RobertVogue" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/RobertVogue"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="www.linkedin.com/in/robertvogtritter" target="_blank" rel="noopener noreferrer">
+              <a
+                href="www.linkedin.com/in/robertvogtritter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
               </a>
             </div>
             <div className="angel">
-              <a href="https://angel.co/u/robert-c-vogtritter" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://angel.co/u/robert-c-vogtritter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 AngelList
               </a>
             </div>

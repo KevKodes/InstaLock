@@ -5,7 +5,7 @@
   height: 860px;
   margin-left: 413px;
   margin-top: 100px;
-  background-color: #CED3DC;
+  background-color: #ced3dc;
 }
 
 .uploadTitle {
@@ -48,8 +48,11 @@
   src: url("/public/friz-quadrata-std-bold-italic.otf") format("opentype");
 } */
 .wide {
+  font-family: "Raleway", sans-serif;
   margin-left: 490px;
+  font-weight: bold;
 }
 .wide2 {
+  font-family: "Raleway", sans-serif;
   margin-left: 10px;
 }
