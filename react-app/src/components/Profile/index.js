@@ -44,8 +44,8 @@ function Profile() {
       });
       return returnBool;
     };
-      const followingBoolean = checkFollowing(followers);
-      setIsFollowing(followingBoolean);
+    const followingBoolean = checkFollowing(followers);
+    setIsFollowing(followingBoolean);
   }, [followers, sessionUser]);
 
   // update the numFollowers and numFollowing
@@ -91,68 +91,70 @@ function Profile() {
   };
 
   const postComponents =
-    (posts && posts?.length) ? 
-    Object.values(posts).map((post) => {
-      let commentCount = 0;
-      let likeCount = 0;
-      comments &&
-        comments.map((comment) => {
-          if (comment.postId === post.id) commentCount += 1;
-        });
-      likes &&
-        Object.values(likes).map((like) => {
-          if (like.postId === post.id) likeCount += 1;
-        });
-      return (
-        <div className="boxxy" key={post.id}>
-
-          { isOwnProfile ? (
-            <>
-              <div className="vault-option">
-
+    posts && posts?.length ? (
+      Object.values(posts).map((post) => {
+        let commentCount = 0;
+        let likeCount = 0;
+        comments &&
+          comments.map((comment) => {
+            if (comment.postId === post.id) commentCount += 1;
+          });
+        likes &&
+          Object.values(likes).map((like) => {
+            if (like.postId === post.id) likeCount += 1;
+          });
+        return (
+          <div className="boxxy" key={post.id}>
+            {isOwnProfile ? (
+              <>
+                <div className="vault-option">
+                  {post.vaulted ? (
+                    <button
+                      className="ultra"
+                      value={post.id}
+                      onClick={handleVaultClick}
+                    >
+                      Unvault Photo
+                    </button>
+                  ) : (
+                    <button
+                      className="ultra"
+                      value={post.id}
+                      onClick={handleVaultClick}
+                    >
+                      Vault Photo
+                    </button>
+                  )}
+                </div>
+                <img src={post.photoURL} className="allImages" alt="photoURL" />
+                <div className="left">{likeCount}: Likes</div>
+                <div className="right">{commentCount}: Comments</div>
+              </>
+            ) : (
+              <div className="visitor">
                 {post.vaulted ? (
-                  <button
-                    className="ultra"
-                    value={post.id}
-                    onClick={handleVaultClick}
-                  >
-                    Unvault Photo
-                  </button>
+                  <></>
                 ) : (
-                  <button
-                    className="ultra"
-                    value={post.id}
-                    onClick={handleVaultClick}
-                  >
-                    Vault Photo
-                  </button>
+                  <>
+                    <img
+                      src={post.photoURL}
+                      className="allImages"
+                      alt="photoURL"
+                    />
+                    <div className="left">{likeCount}: Likes</div>
+                    <div className="right">{commentCount}: Comments</div>
+                  </>
                 )}
-
               </div>
-              <img src={post.photoURL} className="allImages" alt="photoURL" />
-              <div className="left">{likeCount}: Likes</div>
-              <div className="right">{commentCount}: Comments</div>
-            </>
-          ) : (
-            <div className='visitor'>
-              { post.vaulted ? (
-                <></>
-              ) : (
-                <>
-                  <img src={post.photoURL} className="allImages" alt="photoURL" />
-                  <div className="left">{likeCount}: Likes</div>
-                  <div className="right">{commentCount}: Comments</div>
-                </>
-              )}
-            </div>
-          )}
-          
-        </div>
-      );
-    }) :
+            )}
+          </div>
+        );
+      })
+    ) : (
       <h2>
-        <NavLink to="/upload">
-          Add</NavLink> a post to your profile!</h2>
+        <NavLink to="/upload">Add</NavLink> a post to your profile!
+      </h2>
+    );
 
   return (
     <div className="OuterMost">
