@@ -4,13 +4,15 @@ import { getAllPosts, updatePostVault } from "../../store/posts";
 import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "../../index.css";
 import { newFollowUser, newUnfollowUser } from "../../store/follow";
 import { getComments } from "../../store/comments";
 import { getLikes } from "../../store/likes";
+import { deleteSinglePost } from "../../store/posts";
 
 function Profile() {
+  const history = useHistory();
   const { userName } = useParams();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
@@ -90,6 +92,12 @@ function Profile() {
     dispatch(updatePostVault(postId));
   };
 
+  const handleDeletePostButton = (e) => {
+    const postId = e.target.value;
+    dispatch(deleteSinglePost(postId));
+    history.go(0);
+  };
+
   const postComponents =
     posts && posts?.length ? (
       Object.values(posts).map((post) => {
@@ -114,7 +122,7 @@ function Profile() {
                       value={post.id}
                       onClick={handleVaultClick}
                     >
-                      Unvault Photo
+                      Unvault Post
                     </button>
                   ) : (
                     <button
@@ -122,9 +130,18 @@ function Profile() {
                       value={post.id}
                       onClick={handleVaultClick}
                     >
-                      Vault Photo
+                      Vault Post
                     </button>
                   )}
+                </div>
+                <div>
+                  <button
+                    className="ultra"
+                    value={post.id}
+                    onClick={handleDeletePostButton}
+                  >
+                    Delete Post
+                  </button>
                 </div>
                 <img src={post.photoURL} className="allImages" alt="photoURL" />
                 <div className="left">{likeCount}: Likes</div>
