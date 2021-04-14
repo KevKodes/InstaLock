@@ -3,6 +3,7 @@ const LOAD_POSTS = "LOAD_POSTS";
 // const REMOVE_POST = "REMOVE_POST";
 const UPDATE_POST = "UPDATE_POST";
 const LIKE_POST = "LIKE_POST";
+const DELETE_POST = "DELETE_POST";
 
 // ACTION CREATORS
 const load = (posts) => ({
@@ -15,10 +16,10 @@ const updatePost = (post) => ({
   post,
 });
 
-// const removePost = (postId) => ({
-//   type: REMOVE_POST,
-//   postId,
-// });
+const deletePost = (postId) => ({
+  type: DELETE_POST,
+  postId,
+});
 
 // THUNKS
 export const getAllPosts = (userId) => async (dispatch) => {
@@ -66,6 +67,14 @@ export const updatePostVault = (postId) => async (dispatch) => {
   return response;
 };
 
+export const deleteSinglePost = (postId) => async (dispatch) => {
+  const build = { method: "DELETE" };
+  const response = await fetch(`/api/posts/delete/${postId}`, build);
+  const result = response.json();
+  dispatch(deletePost(result));
+  return response;
+};
+
 // REDUCER
 const initialState = {};
 const postReducer = (state = initialState, action) => {
@@ -95,6 +104,10 @@ const postReducer = (state = initialState, action) => {
       const index = action.post.id;
       newPosts[index] = action.post;
       return newPosts;
+    case DELETE_POST:
+      const thePosts = { ...state };
+      delete thePosts[action.postId];
+      return thePosts;
     default:
       return state;
   }
