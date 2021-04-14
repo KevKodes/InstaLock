@@ -22,6 +22,17 @@ const deletePost = (postId) => ({
 });
 
 // THUNKS
+
+export const getEverySinglePosts = () => async (dispatch) => {
+  const response = await fetch(`/api/posts`);
+  if (response.ok) {
+    const results = await response.json();
+    dispatch(load(results));
+  }
+
+  return response;
+};
+
 export const getAllPosts = (userId) => async (dispatch) => {
   // get all posts of the user's feed
   const response = await fetch(`/api/posts/${userId}`);
@@ -69,8 +80,8 @@ export const updatePostVault = (postId) => async (dispatch) => {
 
 export const deleteSinglePost = (postId) => async (dispatch) => {
   const build = { method: "DELETE" };
-  const response = await fetch(`/api/posts/delete/${postId}`, build);
-  const result = response.json();
+  const response = await fetch(`/api/posts/${postId}`, build);
+  const result = await response.json();
   dispatch(deletePost(result));
   return response;
 };

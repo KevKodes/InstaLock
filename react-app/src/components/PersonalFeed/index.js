@@ -38,9 +38,6 @@ const PersonalFeed = () => {
     dispatch(unLike({ userId: sessionUser.id, commentId: id }));
   };
 
-  const deletePost = (postId) => {
-    dispatch(deleteSinglePost(postId))
-  }
 
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
