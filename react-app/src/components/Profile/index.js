@@ -31,6 +31,8 @@ function Profile() {
   useEffect(() => {
     if (sessionUser?.userName === userName) {
       setIsOwnProfile(true);
+    } else {
+      setIsOwnProfile(false);
     }
   }, [sessionUser, userName]);
 
