@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { NavLink, Redirect } from 'react-router-dom';
-import { signUp } from '../../store/auth';
-import './index.css'
-
+import { NavLink, Redirect } from "react-router-dom";
+import { signUp, setUser } from "../../store/auth";
+import { useDispatch } from "react-redux";
+import "./index.css";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -16,8 +17,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     const user = await signUp(username, firstName, lastName, email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      dispatch(setUser(user));
     }
-
   };
 
   if (authenticated) {
@@ -37,7 +38,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               type="text"
               name="email"
               placeholder="Email"
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
             ></input>
           </div>
@@ -47,7 +48,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               type="text"
               placeholder="First Name"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div>
@@ -56,7 +57,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               type="text"
               placeholder="Last Name"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div>
@@ -64,7 +65,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               type="text"
               name="username"
               placeholder="Username"
-              onChange={e => setUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               value={username}
             ></input>
           </div>
@@ -73,7 +74,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
           </div>
@@ -82,9 +83,9 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
         <div className="login-link-box">
           <div className="login-link-text">
             Have an account?&nbsp;
-          <NavLink to="/login" style={{ textDecoration: 'none' }}>
+            <NavLink to="/login" style={{ textDecoration: "none" }}>
               Log in
-          </NavLink>
+            </NavLink>
           </div>
         </div>
         <div className="banner1"></div>
