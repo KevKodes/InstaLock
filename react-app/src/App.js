@@ -16,13 +16,11 @@ function App() {
   const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [sessionUser, setSessionUser] = useState({});
 
   useEffect(() => {
     (async () => {
       const user = await authenticate();
       if (!user.errors) {
-        setSessionUser(user);
         setAuthenticated(true);
         dispatch(sessionActions.restoreUser());
       }
@@ -36,11 +34,7 @@ function App() {
 
   return (
     <>
-      {authenticated && (
-        <NavBar
-          setAuthenticated={setAuthenticated}
-        />
-      )}
+      {authenticated && <NavBar setAuthenticated={setAuthenticated} />}
 
       <Switch>
         <Route path="/login" exact={true}>

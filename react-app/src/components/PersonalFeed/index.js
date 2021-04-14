@@ -32,10 +32,16 @@ const PersonalFeed = () => {
     dispatch(unLike({ userId: sessionUser.id, postId: id }));
   };
 
+<<<<<<< HEAD
+  // const likeComment = (id) => {
+  //   dispatch(createLike({ userId: sessionUser.id, commentId: id }));
+  // };
+=======
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
+>>>>>>> main
 
   const unlikeComment = (id) => {
 

@@ -1,53 +1,85 @@
 /*Univeral Button */
+* {
+  font-family: "Raleway", sans-serif;
+}
 .ultra {
-    min-width: 100px;
-    max-width: 140px;
-    padding: 9px 25px;
-    background-color: black;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    /* transition: all 0.3s ease 0s; */
-    margin: 5px;
-    outline: none;
-    color:white;
+  min-width: 100px;
+  max-width: 140px;
+  padding: 9px 25px;
+  background-color: black;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  /* transition: all 0.3s ease 0s; */
+  margin: 5px;
+  outline: none;
+  color: white;
 }
 
 .ultra:hover {
+<<<<<<< HEAD
+  background: linear-gradient(-45deg, rgb(0, 70, 15), rgb(0, 70, 15));
+  background-size: 300% 300%;
+  color: white;
+=======
     background-color:#90C2E7;
     background-size: 300% 300%;
     color: black;
+>>>>>>> main
 }
 
 /* Discovery & Navigation*/
 
-
 .allImages {
-    max-width       : 335px;
-    min-width       : 335px;
-    min-height      : auto;
-    height          : 200px;
+  max-width: 335px;
+  min-width: 335px;
+  min-height: auto;
+  height: 200px;
 }
 
 /* Added hover spin effect to allImages */
 .allImages {
-    transition: transform .7s ease-in-out;
-    position:relative;
+  transition: transform 0.7s ease-in-out;
+  position: relative;
 }
 .boxxy:hover .allImages {
+<<<<<<< HEAD
+  opacity: 0.1;
+=======
     opacity: 0.3
+>>>>>>> main
 }
 .boxxy:hover .left {
-    display: block;
+  display: block;
 }
 .boxxy:hover .right {
-    display: block;
+  display: block;
 }
 .boxxy {
-    position: relative;
-    text-align: center;
+  position: relative;
+  text-align: center;
 }
 .left {
+<<<<<<< HEAD
+  display: none;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+.right {
+  display: none;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+/* Added hover spin effect to allImages */
+=======
     display: none;
     color: black;
     font-weight: bolder;
@@ -68,60 +100,71 @@
     transform: translate(-50%, -50%);
 }
   /* Added hover spin effect to allImages */
+>>>>>>> main
 .allImages2:hover {
-    /* transform: rotate(360deg); */
-    /* transform   : rotateX(720deg); */
-    /* transform   : rotateY(360deg); */
-    /* transform: rotateZ(360deg); */
-    animation-name              : spinning2;
-    animation-duration          : 0.3s;
-    /* animation-iteration-count: infinite; */
-    animation-timing-function   : ease-in-out alternate;
-    /* linear | ease | ease-in | ease-out | ease-in-out */
-    opacity: 1;
+  /* transform: rotate(360deg); */
+  /* transform   : rotateX(720deg); */
+  /* transform   : rotateY(360deg); */
+  /* transform: rotateZ(360deg); */
+  animation-name: spinning2;
+  animation-duration: 0.3s;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: ease-in-out alternate;
+  /* linear | ease | ease-in | ease-out | ease-in-out */
+  opacity: 1;
 }
-  /* Added keyframes for spin effect for allImages */
+/* Added keyframes for spin effect for allImages */
 @keyframes spinning2 {
-    from {
-      transform: rotateY(0deg)
-    }
+  from {
+    transform: rotateY(0deg);
+  }
 
-    to {
-      transform: rotateY(180deg)
-    }
+  to {
+    transform: rotateY(180deg);
+  }
 }
 .OuterMost {
-    display       : flex;
-    flex-direction: column;
-    width         : 100%;
-    height        : 100%;
-    color: transparent;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: transparent;
 }
 .outerTop {
-    text-align: center;
-    width     : 100%;
-    height    : 91px;
+  text-align: center;
+  width: 100%;
+  height: 91px;
 }
 .outerTop2 {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    height: 200px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 200px;
 }
 .outerBottom {
-    display       : flex;
-    flex-direction: row;
-    width         : 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 .RightQuad {
-    width: 22%;
+  width: 22%;
 }
 .LeftQuad {
-    width: 24%
+  width: 24%;
 }
 
 .MiddleQuad {
+<<<<<<< HEAD
+  /* Changed width to 65% */
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: rgb(20, 20, 20);
+  /* Added space-around allImages */
+  justify-content: space-around;
+=======
     /* Changed width to 65% */
     width           : 65%;
     display         : flex;
@@ -130,44 +173,64 @@
     background-color: #CED3DC;
     /* Added space-around allImages */
     justify-content : space-around;
+>>>>>>> main
 }
 .RightQuad2 {
-    width         : 22%;
-    display       : flex;
-    flex-direction: column;
+  width: 22%;
+  display: flex;
+  flex-direction: column;
 }
 .nameandphoto {
-    display        : flex;
-    flex-direction : row;
-    justify-content: space-between;
-    color: black;
-    font-weight: bolder;
-    font-size: 20px;
-    width: 700px;
-    height: 100px;
-    align-items: center;
-    margin-left: 10px;
-    margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
+  width: 700px;
+  height: 100px;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 100px;
 }
 .photohere {
+<<<<<<< HEAD
+  height: 75px;
+  width: 75px;
+  border: 2px solid rgb(0, 174, 255);
+  border-radius: 50%;
+=======
     height       : 75px;
     width        : 75px;
     border       : 2px solid #A31621;
     border-radius: 50%;
+>>>>>>> main
 }
 .followbuttons {
-    width          : 150px;
-    height         : 100px;
-    display        : flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    margin-top: 100px;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 100px;
 }
 /* Navigation */
 
 /* TODO Add site wide styles */
 #nav {
+<<<<<<< HEAD
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  height: 100px;
+  background-color: rgb(20, 20, 20);
+  background-size: cover;
+  margin: 0;
+  background-repeat: no-repeat;
+  align-items: center;
+=======
     width: 100%;
     list-style-type: none;
     display: flex;
@@ -178,19 +241,56 @@
     margin: 0;
     background-repeat: no-repeat;
     align-items      : center;
+>>>>>>> main
 }
 #nav A {
-    display        : block;
-    text-decoration: none;
-    margin-right   : 20px;
-    color          : white;
-    font-weight    : bolder;
-    font-size      : 17px;
+  display: block;
+  text-decoration: none;
+  margin-right: 20px;
+  color: white;
+  font-weight: bolder;
+  font-size: 17px;
 }
 /* #nav A:hover, #nav button:hover {
     border-bottom: 3px solid rgb(0, 87, 7);
 } */
 #nav button {
+<<<<<<< HEAD
+  display: block;
+  color: white;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background-color: rgb(20, 20, 20);
+  cursor: pointer;
+  outline: none;
+}
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+.liner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  flex-direction: row;
+  background-color: rgb(20, 20, 20);
+}
+.gif {
+  width: 250px;
+  margin-left: 400px;
+  background-color: rgb(20, 20, 20);
+  background-image: url("./images/doppppe.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+=======
     display         : block;
     color           : white;
     border          : none;
@@ -226,151 +326,164 @@
     background-image: url("./images/doppppe.gif");
     background-size: contain;
     background-repeat: no-repeat;
+>>>>>>> main
 }
 .title {
-    width: 205px;
-    font-size: 35px;
-    font-weight: bolder;
-    font-family: cursive;
-    color: white;
-    margin-top: 40px;
-  }
+  width: 205px;
+  font-size: 35px;
+  font-weight: bolder;
+  font-family: cursive;
+  color: white;
+  margin-top: 40px;
+  font-family: "Raleway", sans-serif;
+}
 .link {
-    text-decoration: none;
+  text-decoration: none;
 }
 .search {
     width: 1000px;
     background-color: #A31621;
 }
 #ez {
-    width            : 40px;
-    height           : 40px;
-    background-image : url("./images/Jungle_icon.png");
-    background-size  : contain;
-    background-repeat: no-repeat;
-    margin-left: 118px;
-    position: relative;
+  width: 40px;
+  height: 40px;
+  background-image: url("./images/Jungle_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 118px;
+  position: relative;
 }
 .tooltip {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 60px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: 20px;
+  visibility: hidden;
+  width: 60px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: 20px;
 }
 .tooltip .tooltiptext2 {
-    visibility: hidden;
-    width: 60px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -40px;
+  visibility: hidden;
+  width: 60px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -40px;
 }
 .tooltip .tooltiptext3 {
-    visibility: hidden;
-    width: 60px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -30px;
+  visibility: hidden;
+  width: 60px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -30px;
 }
 .tooltip:hover .tooltiptext {
-    visibility: visible;
-    }
+  visibility: visible;
+}
 .tooltip:hover .tooltiptext2 {
-    visibility: visible;
-    }
+  visibility: visible;
+}
 .tooltip:hover .tooltiptext3 {
-    visibility: visible;
-    }
+  visibility: visible;
+}
 /* Added hover spin effect to navIcons */
 .navIcon {
-    transition: transform .7s ease-in-out;
+  transition: transform 0.7s ease-in-out;
 }
 /* Added hover spin effect to navIcons */
 .navIcon:hover {
-    /* transform: rotate(360deg); */
-    /* transform   : rotateX(720deg); */
-    /* transform   : rotateY(360deg); */
-    /* transform: rotateZ(360deg); */
-    animation-name           : spinning3;
-    animation-duration       : .5s;
-    /* animation-iteration-count: infinite; */
-    animation-timing-function: linear;
-    cursor:pointer;
-    /* linear | ease | ease-in | ease-out | ease-in-out */
+  /* transform: rotate(360deg); */
+  /* transform   : rotateX(720deg); */
+  /* transform   : rotateY(360deg); */
+  /* transform: rotateZ(360deg); */
+  animation-name: spinning3;
+  animation-duration: 0.5s;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: linear;
+  cursor: pointer;
+  /* linear | ease | ease-in | ease-out | ease-in-out */
 }
 /* Added keyframes for spin effect for navIcons */
 @keyframes spinning {
-    0% {
-        transform: rotateY(0deg)
-    }
-    50% {
-        transform: rotateY(90deg);
-    }
-    100% {
-        transform: rotateY(0deg)
-    }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
 }
 #ez2 {
-    width            : 40px;
-    height           : 40px;
-    background-image : url("./images/Fighter_icon.png");
-    background-size  : contain;
-    background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-image: url("./images/Fighter_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 #ez3 {
-    width            : 40px;
-    height           : 40px;
-    background-image : url("./images/Marksman_icon.png");
-    background-size  : contain;
-    background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-image: url("./images/Marksman_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 #ez4 {
-    width            : 40px;
-    height           : 40px;
-    background-image : url("./images/Tank_icon.png");
-    background-size  : contain;
-    background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-image: url("./images/Tank_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 #ez5 {
-    width            : 40px;
-    height           : 40px;
-    background-image : url("./images/Slayer_icon.png");
-    background-size  : contain;
-    background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-image: url("./images/Slayer_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 #ez6 {
-    width            : 40px;
-    height           : 40px;
-    background-image : url("./images/Controller_icon.png");
-    background-size  : contain;
-    background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-image: url("./images/Controller_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .hidden {
+<<<<<<< HEAD
+  background-color: rgb(20, 20, 20);
+  border: none;
+  outline: none;
+}
+.hidden2 {
+  background-color: rgb(20, 20, 20);
+  color: white;
+  border: 1px solid white;
+  margin-left: 130px;
+=======
     background-color: #A31621;
     border: none;
     outline: none;
@@ -396,25 +509,45 @@
 #header_search {
     color:white;
     text-align: center;
+>>>>>>> main
 }
 /* Personal Feed */
 .personal-feed {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 .feed-container {
+<<<<<<< HEAD
+  width: 50%;
+  background-color: rgb(20, 20, 20);
+  border-right: 2px solid rgb(255, 132, 31);
+}
+.LeftQuad3 {
+  border-right: 3px solid rgb(255, 132, 31);
+=======
     width: 50%;
     background-color: #CED3DC;
 
 
+>>>>>>> main
 }
 
 .RightQuad3 {
-    width: 50%;
-
+  width: 50%;
 }
 .suggestions {
+<<<<<<< HEAD
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  height: 600px;
+  width: 360px;
+  margin-top: 92px;
+  background-color: rgb(20, 20, 20);
+  color: white;
+  border-top: 2px solid rgb(255, 132, 31);
+=======
     display: flex;
     position: fixed;
     flex-direction: column;
@@ -425,23 +558,35 @@
     color: black;
 
 
+>>>>>>> main
 }
 .userspot {
-    height: 80px;
-    width: 300px;
+  height: 80px;
+  width: 300px;
 }
 .topside {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 80px;
-    width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 80px;
+  width: 300px;
 }
 .leftSide {
-    height: 80px;
-    width: 80px;
+  height: 80px;
+  width: 80px;
 }
 .usertitle {
+<<<<<<< HEAD
+  height: 80px;
+  width: 250px;
+  margin-left: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 24px;
+}
+.undertitle {
+  font-size: 16px;
+=======
     height: 80px;
     width: 250px;
     margin-left: 30px;
@@ -453,12 +598,41 @@
 .undertitle {
     font-size: 16px;
     color: black
+>>>>>>> main
 }
 .rightSide {
-    height: 80px;
-    width: 150px;
+  height: 80px;
+  width: 150px;
 }
 .leftPhoto {
+<<<<<<< HEAD
+  height: 80px;
+  width: 80px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 2px solid rgb(0, 174, 255);
+  border-radius: 50%;
+}
+
+.headertext {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  height: 55px;
+  margin-top: 40px;
+  margin-right: 170px;
+}
+.person {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 150px;
+  text-align: start;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 30px;
+  color: white;
+=======
     height: 80px;
     width: 80px;
     margin-top: 10px;
@@ -486,36 +660,63 @@
     font-weight: bold;
     margin-left: 30px;
     color: black;
+>>>>>>> main
 }
 .github {
-    width: 20px;
-    height: 20px;
-    background-image: url('./images/Github-icon.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 10px;
-    color: white;
+  width: 20px;
+  height: 20px;
+  background-image: url("./images/Github-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  color: white;
 }
 .linkedin {
-    width: 20px;
-    height: 20px;
-    background-image: url('./images/Linkedin-icon.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 10px;
-    color: white;
+  width: 20px;
+  height: 20px;
+  background-image: url("./images/Linkedin-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  color: white;
 }
 .angel {
-    width: 20px;
-    height: 20px;
-    background-image: url('./images/Angellist-icon.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-left: 10px;
-    color: white;
-
+  width: 20px;
+  height: 20px;
+  background-image: url("./images/Angellist-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  color: white;
 }
 .github a {
+<<<<<<< HEAD
+  text-decoration: none;
+  font-size: 14px;
+  width: 200px;
+  color: black;
+  cursor: pointer;
+  margin-left: 25px;
+  color: white;
+}
+.linkedin a {
+  text-decoration: none;
+  font-size: 14px;
+  width: 200px;
+  color: black;
+  cursor: pointer;
+  margin-left: 25px;
+  color: white;
+}
+.angel a {
+  text-decoration: none;
+  font-size: 14px;
+  width: 200px;
+  color: black;
+  cursor: pointer;
+  margin-left: 25px;
+  color: white;
+=======
     text-decoration: none;
     font-size: 14px;
     width: 200px;
@@ -538,37 +739,58 @@
     cursor: pointer;
     margin-left: 25px;
     color: black;
+>>>>>>> main
 }
 .LeftQuad3 {
-    width: 28%
+  width: 28%;
 }
 .following-card {
+<<<<<<< HEAD
+  color: white;
+  width: 100%;
+  margin-bottom: 60px;
+  border-bottom: 10px solid rgb(86, 251, 122);
+  border-radius: 3px;
+  background-color: rgb(20, 20, 20);
+=======
     color: black;
     width: 100%;
     margin-bottom: 60px;
     border-bottom: 20px solid white;
     border-radius: 3px;
     background-color: #CED3DC;
+>>>>>>> main
 }
 .card-username {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px;
-    font-size: 20px;
-    font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 800;
 }
 .card-photo img {
-    width: 100%;
-    max-height: 500px;
-
+  width: 100%;
+  max-height: 500px;
 }
 .card-comments {
-    height: 100px;
-    overflow: scroll;
-    overflow-x: hidden;
+  height: 100px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .card-bottom-content {
+<<<<<<< HEAD
+  padding: 16px;
+}
+
+.card-caption {
+  display: flex;
+  height: 50px;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+=======
     padding: 8px;
     padding-bottom: 30px;
 }
@@ -579,6 +801,7 @@
     margin-left: 150px;
     align-items: center;
 
+>>>>>>> main
 }
 .This420 {
     font-size: 18px;
@@ -603,10 +826,52 @@
 margin-left: 10px;
 }
 .btn-div {
-    display: flex;
-    text-align: start;
+  display: flex;
+  text-align: start;
 }
 .like-btn {
+<<<<<<< HEAD
+  display: block;
+  width: 70px;
+  height: 70px;
+  background-image: url("./images/like.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.like-btn2 {
+  display: block;
+  width: 70px;
+  height: 70px;
+  background-image: url("./images/nolike.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.caption-user {
+  visibility: hidden;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+}
+.caption-string {
+  margin-right: 50px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.Link {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+=======
     padding-top: 5px;
     display: block;
     min-width: 50px;
@@ -649,63 +914,68 @@ margin-left: 10px;
     margin-left: 20px;
     color: black;
     text-decoration: none;
+>>>>>>> main
 }
 .title {
-    text-align: center;
+  text-align: center;
 }
 .first-last {
-    text-align: center;
+  text-align: center;
 }
 /* Profile but not used much */
 .MainPage {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .TopLess {
-    width: 100%;
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .BottomMost {
-    width: 100%;
-    height: 75%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .QuadsPage {
-    width: 80%;
-    height: 75%;
-    display: flex;
-    flex-direction: row;
+  width: 80%;
+  height: 75%;
+  display: flex;
+  flex-direction: row;
 }
 .Quad1 {
-    width: 20%;
-    height: 75%;
+  width: 20%;
+  height: 75%;
 }
 .Quad2 {
-    width: 40%;
-    height: 75%;
-    display: flex;
-    flex-wrap: wrap;
+  width: 40%;
+  height: 75%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .Quad3 {
-    width: 20%;
-    height: 75%;
+  width: 20%;
+  height: 75%;
 }
 .image {
-    max-width: 33%;
-    height: auto;
+  max-width: 33%;
+  height: auto;
 }
 .vault-option {
+<<<<<<< HEAD
+  color: white;
+=======
     color: black;
+>>>>>>> main
 }
 /* upload page */
 .upload {
-    margin-top: 150px;
+  margin-top: 150px;
 }
