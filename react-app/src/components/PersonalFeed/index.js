@@ -38,7 +38,6 @@ const PersonalFeed = () => {
     dispatch(unLike({ userId: sessionUser.id, commentId: id }));
   };
 
-
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
     e.target.reset();
@@ -78,7 +77,6 @@ const PersonalFeed = () => {
             </div>
             <div className="card-bottom-content">
               <div className="btn-div">
-                {/* Add click handler */}
                 {Object.values(likes).find(
                   (like) =>
                     like.userId === sessionUser.id && like.postId === post.id
