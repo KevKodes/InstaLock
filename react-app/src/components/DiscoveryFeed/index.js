@@ -12,10 +12,6 @@ const DiscoveryFeed = () => {
   const comments = useSelector((state) => state?.comments?.commentsArray);
   // const post = useSelector((state) => state?.post?.personalPosts);
   const likes = useSelector((state) => state?.likes);
-  console.log("THESE ARE THE LIKES", likes);
-
-  // need user
-  // getAllPosts
 
   useEffect(() => {
     const getPosts = async () => {
