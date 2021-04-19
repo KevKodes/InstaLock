@@ -224,8 +224,10 @@
   background-color: #a31621;
 }
 .gif {
-  width: 250px;
+  min-width: 110px;
+  height: 100px;
   margin-left: 400px;
+  position: relative;
   background-color: #a31621;
   background-image: url("./images/doppppe.gif");
   background-size: contain;
