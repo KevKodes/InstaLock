@@ -58,96 +58,98 @@ const PersonalFeed = () => {
   // create a post component for each of the posts
   const followingPosts =
     (posts && posts?.length) ?
-    (Object.values(posts).map((post) => {
-      let commentCount = 0;
-      let likeCount = 0;
-      comments &&
-        Object.values(comments).map((comment) => {
-          if (comment.postId === post.id) commentCount += 1;
-        });
-      likes &&
-        Object.values(likes).map((like) => {
-          if (like.postId === post.id) likeCount += 1;
-        });
-      return (
-        <div key={post.id} className="following-card">
-          <div className="card-username">
-            <img src={post.profileImage} alt="" className="photohere" />
-            <Link to={`/${post.userName}`} className="Link">
-              {post.userName}
-            </Link>
+      (Object.values(posts).map((post) => {
+        let commentCount = 0;
+        let likeCount = 0;
+        comments &&
+          Object.values(comments).map((comment) => {
+            if (comment.postId === post.id) commentCount += 1;
+          });
+        likes &&
+          Object.values(likes).map((like) => {
+            if (like.postId === post.id) likeCount += 1;
+          });
+        return (
+          <div key={post.id} className="following-card">
+            <div className="card-username">
+              <img src={post.profileImage} alt="" className="photohere" />
+              <Link to={`/${post.userName}`} className="Link">
+                {post.userName}
+              </Link>
 
-          </div>
-          <div className="card-photo">
-            <img src={post.photoURL} alt={post.caption} />
-          </div>
-          <div className="card-bottom-content">
-            <div className="btn-div">
-              {/* Add click handler */}
-              {Object.values(likes).find(
-                (like) =>
-                  like.userId === sessionUser.id && like.postId === post.id
-              ) ? (
-                <button
-                  id="unlike-post"
-                  className="like-btn"
-                  onClick={() => unlikePost(post.id)}
-                ></button>
-              ) : (
-                <button
-                  id="like-post"
-                  className="like-btn2"
-                  onClick={() => likePost(post.id)}
-                ></button>
-              )}
-              {likeCount} Likes &nbsp;&nbsp;
+            </div>
+            <div className="card-photo">
+              <img src={post.photoURL} alt={post.caption} />
+            </div>
+            <div className="card-bottom-content">
+              <div className="btn-div">
+                {/* Add click handler */}
+                {Object.values(likes).find(
+                  (like) =>
+                    like.userId === sessionUser.id && like.postId === post.id
+                ) ? (
+                  <button
+                    id="unlike-post"
+                    className="like-btn"
+                    onClick={() => unlikePost(post.id)}
+                  ></button>
+                ) : (
+                  <button
+                    id="like-post"
+                    className="like-btn2"
+                    onClick={() => likePost(post.id)}
+                  ></button>
+                )}
+                {likeCount} Likes &nbsp;&nbsp;
               {commentCount} Comments
               {/* <button id="like-comment" className="like-btn" onClick={() => likeComment(post.id)}>Like Comment</button> */}
-            </div>
-            <div className="card-likes"></div>
-            <div className="card-caption">
-              <div className="caption-user">{post.userName}</div>
-              <div className="caption-string">{post.caption}</div>
-            </div>
-            <div className="card-comments">
-            {comments &&
-              Object.values(comments).map((comment) => {
-                if (comment.postId === post.id) {
-                  return (
+              </div>
+              <div className="card-likes"></div>
+              <div className="card-caption">
+                {/* Keith - comment out to prevent text overflow into comment box. Wasn't using it due to css visibility hidden.
+                <div className="caption-user">{post.userName}</div> */}
+                <div className="caption-string">{post.caption}</div>
+              </div>
+              <div className="card-comments">
+                {comments &&
+                  Object.values(comments).map((comment) => {
+                    if (comment.postId === post.id) {
+                      return (
 
-                    <div className ="comments69">
-                      <p className= "This420" key={comment.id}>
-                        {comment.userName}
-                      </p>
-                      <p className= "This8008135" key={comment.id}>
-                        {comment.body}
-                        {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
-                        <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
-                        <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'white' }}></i>}
-                      </p>
-                    </div>
+                        <div className="comments69">
+                          <p className="This420" key={comment.id}>
+                            {comment.userName}
+                          </p>
+                          <p className="This8008135" key={comment.id}>
+                            {comment.body}
+                            {Object.values(likes).find((like) => like.userId === sessionUser.id && like.commentId === comment.id) ?
+                              <i onClick={() => unlikeComment(comment.id)} className="fas fa-heart" style={{ color: 'red' }}></i> :
+                              <i onClick={() => likeComment(comment.id)} className="far fa-heart" style={{ color: 'black' }}></i>}
+                            {/* Keith - changed before heart to black outline to show against white background */}
+                          </p>
+                        </div>
 
-                  );
-                }
-              })}
+                      );
+                    }
+                  })}
+              </div>
+              <form
+                className="comment_form"
+                onSubmit={(e) => commentSubmitHandler(e, post.id)}
+              >
+                <input
+                  placeholder="Add a comment.."
+                  onChange={(e) => setComment(e.target.value)}
+                />
+                <button type="submit">Post</button>
+              </form>
+            </div>
           </div>
-          <form
-            className="comment_form"
-            onSubmit={(e) => commentSubmitHandler(e, post.id)}
-          >
-            <input
-              placeholder="Add a comment.."
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <button type="submit">Post</button>
-          </form>
-          </div>
-        </div>
-      );
-    })) :
-    <h2>
-      <NavLink to="/discoveryfeed">
-        Follow</NavLink> a user to see their posts!</h2>
+        );
+      })) :
+      <h2>
+        <NavLink to="/discoveryfeed">
+          Follow</NavLink> a user to see their posts!</h2>
 
   return (
     <div className="personal-feed">
