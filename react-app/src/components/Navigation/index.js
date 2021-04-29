@@ -1,12 +1,15 @@
 import React from "react";
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import "../../index.css"
 
 
-
 const NavBar = ({ setAuthenticated }) => {
+  let history = useHistory();
+  const handleSubmit = (that) => {
+    return history.push(`/${that}`)
+  }
   const sessionUser = useSelector((state) => state?.session?.user);
 
   return (
@@ -25,9 +28,9 @@ const NavBar = ({ setAuthenticated }) => {
             type="text"
             id="header-search"
             placeholder="Search"
-            name="q"
+            
           />
-          <button className="hidden" type="submit"></button>
+          <button className="hidden" type="submit" onClick={() => handleSubmit(document.getElementById('header-search').value)} ></button>
         </form>
       </div>
       <ul id="nav">
