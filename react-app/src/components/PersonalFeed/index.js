@@ -109,11 +109,11 @@ const PersonalFeed = () => {
                   Object.values(comments).map((comment) => {
                     if (comment.postId === post.id) {
                       return (
-                        <div className="comments69">
+                        <div className="comments69" key={comment.id}>
                           <p className="This420" >
                             {comment.userName}
                           </p>
-                          <p className="This8008135" >
+                          <p className="This8008135"  >
                             {comment.body}
                           </p>
                           <p>
