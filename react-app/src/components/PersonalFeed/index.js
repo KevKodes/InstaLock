@@ -110,10 +110,10 @@ const PersonalFeed = () => {
                     if (comment.postId === post.id) {
                       return (
                         <div className="comments69">
-                          <p className="This420" key={comment.id}>
+                          <p className="This420" >
                             {comment.userName}
                           </p>
-                          <p className="This8008135" key={comment.id}>
+                          <p className="This8008135" >
                             {comment.body}
                           </p>
                           <p>
