@@ -8,7 +8,9 @@ import "../../index.css"
 const NavBar = ({ setAuthenticated }) => {
   let history = useHistory();
   const handleSubmit = (that) => {
-    return history.push(`/${that}`)
+    let drop = that.toLowerCase()
+    let update = drop[0].toUpperCase() + drop.substring(1)
+    return history.push(`/${update}`)
   }
   const sessionUser = useSelector((state) => state?.session?.user);
 
@@ -28,7 +30,7 @@ const NavBar = ({ setAuthenticated }) => {
             type="text"
             id="header-search"
             placeholder="Search"
-            
+
           />
           <button className="hidden" type="submit" onClick={() => handleSubmit(document.getElementById('header-search').value)} ></button>
         </form>
