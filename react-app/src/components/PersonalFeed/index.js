@@ -14,7 +14,6 @@ const PersonalFeed = () => {
   const likes = useSelector((state) => state?.likes);
   const comments = useSelector((state) => state?.comments?.commentsArray);
 
-
   useEffect(() => {
     if (sessionUser) {
       dispatch(getFollowingPosts(sessionUser.id));
@@ -28,20 +27,16 @@ const PersonalFeed = () => {
   };
 
   const unlikePost = (id) => {
-
     dispatch(unLike({ userId: sessionUser.id, postId: id }));
   };
-
 
   const likeComment = (id) => {
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
 
   const unlikeComment = (id) => {
-
-    dispatch(unLike({ userId: sessionUser.id, commentId: id }))
-
-  }
+    dispatch(unLike({ userId: sessionUser.id, commentId: id }));
+  };
 
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
@@ -57,8 +52,10 @@ const PersonalFeed = () => {
 
   // create a post component for each of the posts
   const followingPosts =
+
     (posts && posts?.length) ?
       (Object.values(posts).map((post) => {
+
         let commentCount = 0;
         let likeCount = 0;
         comments &&
@@ -76,6 +73,7 @@ const PersonalFeed = () => {
               <Link to={`/${post.userName}`} className="Link">
                 {post.userName}
               </Link>
+
 
             </div>
             <div className="card-photo">
@@ -151,6 +149,7 @@ const PersonalFeed = () => {
         <NavLink to="/discoveryfeed">
           Follow</NavLink> a user to see their posts!</h2>
 
+
   return (
     <div className="personal-feed">
       <div className="LeftQuad3"></div>
@@ -187,7 +186,11 @@ const PersonalFeed = () => {
           <div className="person">
             Daniel Park
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/dpxrk"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
@@ -213,25 +216,32 @@ const PersonalFeed = () => {
           <div className="person">
             Keith Taylor
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/keitay72"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.linkedin.com/in/keith-taylor-16825311/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
-              </a>
-            </div>
-            <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">
-                AngelList
               </a>
             </div>
           </div>
           <div className="person">
             Kevin Pitzer
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/KevKodes"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
@@ -257,17 +267,29 @@ const PersonalFeed = () => {
           <div className="person">
             Robert Vogtritter
             <div className="github">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/RobertVogue"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
             <div className="linkedin">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="www.linkedin.com/in/robertvogtritter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
               </a>
             </div>
             <div className="angel">
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://angel.co/u/robert-c-vogtritter"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 AngelList
               </a>
             </div>

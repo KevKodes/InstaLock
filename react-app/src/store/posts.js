@@ -3,6 +3,7 @@ const LOAD_POSTS = "LOAD_POSTS";
 // const REMOVE_POST = "REMOVE_POST";
 const UPDATE_POST = "UPDATE_POST";
 const LIKE_POST = "LIKE_POST";
+const DELETE_POST = "DELETE_POST";
 
 // ACTION CREATORS
 const load = (posts) => ({
@@ -15,12 +16,23 @@ const updatePost = (post) => ({
   post,
 });
 
-// const removePost = (postId) => ({
-//   type: REMOVE_POST,
-//   postId,
-// });
+const deletePost = (postId) => ({
+  type: DELETE_POST,
+  postId,
+});
 
 // THUNKS
+
+export const getEverySinglePosts = () => async (dispatch) => {
+  const response = await fetch(`/api/posts`);
+  if (response.ok) {
+    const results = await response.json();
+    dispatch(load(results));
+  }
+
+  return response;
+};
+
 export const getAllPosts = (userId) => async (dispatch) => {
   // get all posts of the user's feed
   const response = await fetch(`/api/posts/${userId}`);
@@ -66,6 +78,14 @@ export const updatePostVault = (postId) => async (dispatch) => {
   return response;
 };
 
+export const deleteSinglePost = (postId) => async (dispatch) => {
+  const build = { method: "DELETE" };
+  const response = await fetch(`/api/posts/${postId}`, build);
+  const result = await response.json();
+  dispatch(deletePost(result));
+  return response;
+};
+
 // REDUCER
 const initialState = {};
 const postReducer = (state = initialState, action) => {
@@ -95,6 +115,10 @@ const postReducer = (state = initialState, action) => {
       const index = action.post.id;
       newPosts[index] = action.post;
       return newPosts;
+    case DELETE_POST:
+      const thePosts = { ...state };
+      delete thePosts[action.postId];
+      return thePosts;
     default:
       return state;
   }

@@ -5,6 +5,15 @@ from app.forms import PostForm
 post_routes = Blueprint("posts", __name__)
 
 
+
+@post_routes.route('')
+#Query to get all posts regardless of what session user
+def all_posts():
+    posts = Post.query.all()
+    return {"posts":[post.to_dict() for post in posts]}
+
+
+
 @post_routes.route('/discovery/<int:id>')
 # Query all posts from users that the session user is not following
 def posts(id):
@@ -19,9 +28,9 @@ def posts(id):
     not_following_set = all_user_ids - following_set
 
     # Query posts with a userId in the not_following_set (ordered with newest first)
-    posts = Post.query.filter(Post.userId.in_(not_following_set)).order_by(Post.createdAt.desc()).all()
+    posts = Post.query.filter(Post.userId.in_(not_following_set),
+    Post.vaulted=='false').order_by(Post.createdAt.desc()).all()
 
-    # posts = Post.query.all()
     return {"posts": [post.to_dict() for post in posts]}
 
 
@@ -82,9 +91,13 @@ def following_posts(id):
     return {"posts": [post.to_dict() for post in posts]}
 
 
-# @post_routes.route('/delete/<int:postId>')
-# def delete_post(postId):
-#     pass
+@post_routes.route('/<int:postId>', methods=['DELETE'])
+def delete_post(postId):
+    post = Post.query.get(postId)
+    db.session.delete(post)
+    db.session.commit()
+
+    return post.to_dict()
 
 
 @post_routes.route('/update/<int:postId>')

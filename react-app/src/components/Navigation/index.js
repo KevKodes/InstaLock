@@ -16,7 +16,7 @@ const NavBar = ({ setAuthenticated }) => {
       <div className="title">InstaLock</div>
       </Link>
       <div className="search">
-        <form action="/" method="get">
+        <form action="" method="get">
           <label htmlFor="header-search">
             <span className="visually-hidden"></span>
           </label>
@@ -25,7 +25,7 @@ const NavBar = ({ setAuthenticated }) => {
             type="text"
             id="header-search"
             placeholder="Search"
-            name="s"
+            name="q"
           />
           <button className="hidden" type="submit"></button>
         </form>

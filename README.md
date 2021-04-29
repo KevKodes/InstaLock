@@ -1,98 +1,95 @@
-# Flask React Project
+<h1 align="center">InstaLock</h1>
 
-This is the backend for the Flask React project.
+<p align="center">See our site hosted on heroku
+<br><a href="https://instalock.herokuapp.com/">InstaLock</a></br></p>
+&nbsp
 
-## Getting started
+## About
+---
 
-1. Clone this repository (only this branch)
+Instalock is a spin-off to Instagram. By signing up, it allows users to view other users' profiles and see what posts have been uploaded to our database.
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+<p align="center">
+  <img src="readme-assets/personal-feed.png">
+</p>
 
-2. Install dependencies
+## Technologies Used
+---
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+-   JavaScript
+-   Flask
+-   Flask-Migrate
+-   Flask-SQLAlchemy
+-   Npm
+-   Reactjs
+-   Redux
+-   All styling was done with raw CSS, no frameworks were used.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## How To Use
+---
+```
+# Clone this repository
+$ git clone https://github.com/KevKodes/InstaLock.git
 
-   ```bash
-   pipenv shell
-   ```
+# Install flask dependencies in root directory
+$ pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
 
-   ```bash
-   flask db upgrade
-   ```
+# Install dependencies in react-app directory
+$ cd react-app
+$ npm install
 
-   ```bash
-   flask seed all
-   ```
+# Run back end server from pipenv shell
+$ pipenv shell
+$ flask run
 
-   ```bash
-   flask run
-   ```
+# Run front end server
+$ npm start
+```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+## Development Environment
+---
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+The database should be generated and seeded with the  commands:
+-   `flask db init`
+-   `flask db migrate`
+-   `flask db upgrade`
+-   `flask seed all`
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
 
-## Deploy to Heroku
+## Wiki Documentation
+---
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+-   [User Stories](https://github.com/KevKodes/InstaLock/wiki/User-Stories)
+-   [Front End Routes](https://github.com/KevKodes/InstaLock/wiki/Frontend-Routes)
+-   [Database Schema](https://github.com/KevKodes/InstaLock/wiki/Database-Schema)
+-   [Feature List](https://github.com/KevKodes/open-eats/wiki/Features)
 
-   ```bash
-   heroku login
-   ```
+## Key Technical Features
+---
+Setting up a route for users to explore for new friends required querying our database in two steps. We first had to query for users not followed by the session user and create a set of those ids. We then returned all the posts for the new set of unfollowed users. In the future, there is the option to only return a specific number of posts at a time. As users scroll through their feed, an unlimited scroll feature would update the page when the user gets to the bottom. This would limit the size of queries and maintain a responsive site for a larger user base.
 
-5. Login to the heroku container registry
+```python
+@post_routes.route('/discovery/<int:id>')
+def posts(id):
+    all_user_ids = set([x for (x,) in db.session.query(User.id).all()])
+    following = db.session.query(follows).filter_by(follower_id=id).all()
+    following_ids = [y for x,y in following]
 
-   ```bash
-   heroku container:login
-   ```
+    following_ids.append(id)
+    following_set = set(following_ids)
+    not_following_set = all_user_ids - following_set
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
-git pull
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+    posts = Post.query.filter(Post.userId.in_(not_following_set),
+    Post.vaulted=='false').order_by(Post.createdAt.desc()).all()
 
-8. Release your docker container to heroku
+    return {"posts": [post.to_dict() for post in posts]}
+```
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
 
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
+## Future Improvements
+---
+Future development possibilities for InstaLock include:
+- hashtags - allow users to tag their posts with topics to create a stronger social aspect.
+- direct messaging - currently users can only communicate through comments on posts. We aim to include direct messaging between users.

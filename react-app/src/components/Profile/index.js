@@ -4,13 +4,15 @@ import { getAllPosts, updatePostVault } from "../../store/posts";
 import { getAllFollowers, getAllFollowedBy } from "../../store/follow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import "../../index.css";
 import { newFollowUser, newUnfollowUser } from "../../store/follow";
 import { getComments } from "../../store/comments";
 import { getLikes } from "../../store/likes";
+import { deleteSinglePost } from "../../store/posts";
 
 function Profile() {
+  const history = useHistory();
   const { userName } = useParams();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
@@ -29,6 +31,8 @@ function Profile() {
   useEffect(() => {
     if (sessionUser?.userName === userName) {
       setIsOwnProfile(true);
+    } else {
+      setIsOwnProfile(false);
     }
   }, [sessionUser, userName]);
 
@@ -44,8 +48,8 @@ function Profile() {
       });
       return returnBool;
     };
-      const followingBoolean = checkFollowing(followers);
-      setIsFollowing(followingBoolean);
+    const followingBoolean = checkFollowing(followers);
+    setIsFollowing(followingBoolean);
   }, [followers, sessionUser]);
 
   // update the numFollowers and numFollowing
@@ -90,69 +94,86 @@ function Profile() {
     dispatch(updatePostVault(postId));
   };
 
+  const handleDeletePostButton = (e) => {
+    const postId = e.target.value;
+    dispatch(deleteSinglePost(postId));
+    history.go(0);
+  };
+
   const postComponents =
-    (posts && posts?.length) ? 
-    Object.values(posts).map((post) => {
-      let commentCount = 0;
-      let likeCount = 0;
-      comments &&
-        comments.map((comment) => {
-          if (comment.postId === post.id) commentCount += 1;
-        });
-      likes &&
-        Object.values(likes).map((like) => {
-          if (like.postId === post.id) likeCount += 1;
-        });
-      return (
-        <div className="boxxy" key={post.id}>
-
-          { isOwnProfile ? (
-            <>
-              <div className="vault-option">
-
+    posts && posts?.length ? (
+      Object.values(posts).map((post) => {
+        let commentCount = 0;
+        let likeCount = 0;
+        comments &&
+          comments.map((comment) => {
+            if (comment.postId === post.id) commentCount += 1;
+          });
+        likes &&
+          Object.values(likes).map((like) => {
+            if (like.postId === post.id) likeCount += 1;
+          });
+        return (
+          <div className="boxxy" key={post.id}>
+            {isOwnProfile ? (
+              <>
+                <div className="vault-option">
+                  {post.vaulted ? (
+                    <button
+                      className="ultra"
+                      value={post.id}
+                      onClick={handleVaultClick}
+                    >
+                      Unvault Post
+                    </button>
+                  ) : (
+                    <button
+                      className="ultra"
+                      value={post.id}
+                      onClick={handleVaultClick}
+                    >
+                      Vault Post
+                    </button>
+                  )}
+                </div>
+                <div>
+                  <button
+                    className="ultra"
+                    value={post.id}
+                    onClick={handleDeletePostButton}
+                  >
+                    Delete Post
+                  </button>
+                </div>
+                <img src={post.photoURL} className="allImages" alt="photoURL" />
+                <div className="left">{likeCount}: Likes</div>
+                <div className="right">{commentCount}: Comments</div>
+              </>
+            ) : (
+              <div className="visitor">
                 {post.vaulted ? (
-                  <button
-                    className="ultra"
-                    value={post.id}
-                    onClick={handleVaultClick}
-                  >
-                    Unvault Photo
-                  </button>
+                  <></>
                 ) : (
-                  <button
-                    className="ultra"
-                    value={post.id}
-                    onClick={handleVaultClick}
-                  >
-                    Vault Photo
-                  </button>
+                  <>
+                    <img
+                      src={post.photoURL}
+                      className="allImages"
+                      alt="photoURL"
+                    />
+                    <div className="left">{likeCount}: Likes</div>
+                    <div className="right">{commentCount}: Comments</div>
+                  </>
                 )}
-
               </div>
-              <img src={post.photoURL} className="allImages" alt="photoURL" />
-              <div className="left">{likeCount}: Likes</div>
-              <div className="right">{commentCount}: Comments</div>
-            </>
-          ) : (
-            <div className='visitor'>
-              { post.vaulted ? (
-                <></>
-              ) : (
-                <>
-                  <img src={post.photoURL} className="allImages" alt="photoURL" />
-                  <div className="left">{likeCount}: Likes</div>
-                  <div className="right">{commentCount}: Comments</div>
-                </>
-              )}
-            </div>
-          )}
-          
-        </div>
-      );
-    }) :
+            )}
+          </div>
+        );
+      })
+    ) : (
       <h2>
-        <NavLink to="/upload">
-          Add</NavLink> a post to your profile!</h2>
+        <NavLink to="/upload">Add</NavLink> a post to your profile!
+      </h2>
+    );
 
   return (
     <div className="OuterMost">

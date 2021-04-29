@@ -16,7 +16,7 @@ const Upload = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const maxNumber = 1;
   // console.log('image url: ', image[0]?.data_url)
-  console.log("vaulted: ", vaulted);
+  // console.log("vaulted: ", vaulted);
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
