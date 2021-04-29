@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
-import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import "../../index.css"
 
 
 const NavBar = ({ setAuthenticated }) => {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch(`/api/users/`).then(response => response.json().then(data=> {
+      let usernameArray = []
+      const names = Object.values(data)
+      const userinfo = names[0]
+      const supervalues = Object.values(userinfo)
+
+      for(let i = 0; i < supervalues.length; i++){
+        const valuepoint = Object.values(supervalues[i])
+        usernameArray.push(valuepoint[5])
+      }
+      setUsers(usernameArray)
+
+    }))
+  }, [])
+
+
   let history = useHistory();
   const handleSubmit = (that) => {
     let drop = that.toLowerCase()
     let update = drop[0].toUpperCase() + drop.substring(1)
-    return history.push(`/${update}`)
+    if (users.includes(update)){
+      return history.push(`/${update}`)
+    }
+    else {
+      alert("user doesn't exist")
+    }
+
   }
   const sessionUser = useSelector((state) => state?.session?.user);
 
