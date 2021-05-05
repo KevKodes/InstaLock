@@ -35,12 +35,10 @@ const PersonalFeed = () => {
   };
 
   const likeComment = (id) => {
-    // console.log("WE MADE IT HERE");
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
 
   const unlikeComment = (id) => {
-    // console.log("THE OTHER SIDE");
     dispatch(unLike({ userId: sessionUser.id, commentId: id }));
   };
 
@@ -125,33 +123,31 @@ const PersonalFeed = () => {
                         <div className="comments69" key={comment.id}>
                           <p className="This420">{comment.userName}</p>
                           <p className="This8008135">{comment.body}</p>
-                          <p>
-                            {Object.values(likes).find(
-                              (like) =>
-                                like.userId === sessionUser.id &&
-                                like.commentId === comment.id
-                            ) ? (
-                              <button
-                                id="unlike-comment"
-                                onClick={() =>unlikeComment(comment.id)}
-                                className="fas fa-heart"
-                                style={{ color: "red" }}
-                              />
-                            ) : (
-                              <button
-                                id="like-comment"
-                                onClick={() =>likeComment(comment.id)}
-                                className="far fa-heart"
-                                style={{ color: "black" }}
-                              />
-                            )}
-                          </p>
+                          {Object.values(likes).find(
+                            (like) =>
+                              like.userId === sessionUser.id &&
+                              like.commentId === comment.id
+                          ) ? (
+                            <i
+                              id="unlike-comment"
+                              className="fas fa-heart"
+                              onClick={(e) => unlikeComment(comment.id)}
+                              style={{ color: "red" }}
+                            />
+                          ) : (
+                            <i
+                              id="like-comment"
+                              className="far fa-heart"
+                              onClick={(e) => likeComment(comment.id)}
+                              style={{ color: "black" }}
+                            />
+                          )}
                           {sessionUser.id === comment.userId && (
-                            <button
+                            <i
                               id="trashBin"
                               className="fa fa-trash"
                               aria-hidden="true"
-                              onClick={() => deleteSingleComment(comment.id)}
+                              onClick={(e) => deleteSingleComment(comment.id)}
                             />
                           )}
                         </div>
