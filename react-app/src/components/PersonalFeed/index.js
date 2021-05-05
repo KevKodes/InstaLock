@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { createLike, getLikes, unLike } from "../../store/likes";
-import { getComments, createComment } from "../../store/comments";
+import {
+  getComments,
+  createComment,
+  deleteComment,
+} from "../../store/comments";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -36,6 +40,10 @@ const PersonalFeed = () => {
 
   const unlikeComment = (id) => {
     dispatch(unLike({ userId: sessionUser.id, commentId: id }));
+  };
+
+  const deleteSingleComment = (id) => {
+    dispatch(deleteComment(id));
   };
 
   const commentSubmitHandler = (e, id) => {
@@ -122,18 +130,28 @@ const PersonalFeed = () => {
                                 like.commentId === comment.id
                             ) ? (
                               <i
+                                id="unlike-comment"
                                 onClick={() => unlikeComment(comment.id)}
                                 className="fas fa-heart"
                                 style={{ color: "red" }}
-                              ></i>
+                              />
                             ) : (
                               <i
+                                id="like-comment"
                                 onClick={() => likeComment(comment.id)}
                                 className="far fa-heart"
                                 style={{ color: "black" }}
-                              ></i>
+                              />
                             )}
                           </p>
+                          {sessionUser.id === comment.userId && (
+                            <i
+                              id="trashBin"
+                              className="fa fa-trash"
+                              aria-hidden="true"
+                              onClick={() => deleteSingleComment(comment.id)}
+                            ></i>
+                          )}
                         </div>
                       );
                     }

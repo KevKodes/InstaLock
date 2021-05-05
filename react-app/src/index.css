@@ -690,6 +690,21 @@
   cursor: pointer;
 }
 
+#trashBin {
+  margin-left: 15px;
+}
+#trashBin:hover {
+  cursor: pointer;
+}
+
+#unlike-comment:hover {
+  cursor: pointer;
+}
+
+#like-comment:hover {
+  cursor: pointer;
+}
+
 .Link {
   margin-left: 20px;
   color: black;

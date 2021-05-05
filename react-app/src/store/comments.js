@@ -42,12 +42,12 @@ export const createComment = (userId, postId, body) => async (dispatch) => {
 };
 
 // Deleting a comment
-export const deleteComment = (postId) => async (dispatch) => {
+export const deleteComment = (commentId) => async (dispatch) => {
   const build = {
     method: "DELETE",
   };
-  const response = await fetch(`/api/comments/${postId}/`, build);
-  const result = response.json();
+  const response = await fetch(`/api/comments/${commentId}`, build);
+  const result = await response.json();
   dispatch(deleteComments(result));
   return response;
 };
