@@ -562,7 +562,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 16px;
+  /* padding: 16px; */
   font-size: 20px;
   font-weight: 800;
 }
@@ -577,19 +577,20 @@
 }
 .card-bottom-content {
   padding: 8px;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
 .comments69 {
   display: flex;
   width: 500px;
   text-align: left;
-  margin-left: 150px;
+  margin-left: 80px;
   align-items: center;
+  height: 40px;
 }
 .This420 {
   font-size: 18px;
   font-weight: bolder;
-  padding-right: 20px;
+  padding-right: 10px;
 }
 .This8008135 {
   padding-right: 20px;
@@ -598,11 +599,11 @@
 }
 
 .card-caption {
-  height: 90px;
+  height: 40px;
   align-items: flex-start;
   justify-content: flex-start;
   text-align: start;
-  margin-left: 150px;
+  margin-left: 60px;
   overflow: hidden;
 }
 .lastdiv {
@@ -640,14 +641,14 @@
   cursor: pointer;
 }
 .caption-user {
-  visibility: hidden;
+  /* visibility: hidden; */
   font-size: 20px;
   font-weight: 800;
   color: black;
 }
 .caption-string {
   font-family: "Raleway", sans-serif;
-  font-size: 25px;
+  font-size: 16px;
   font-weight: bolder;
   text-align: start;
   width: 400px;

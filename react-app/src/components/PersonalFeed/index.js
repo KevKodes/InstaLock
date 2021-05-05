@@ -101,8 +101,11 @@ const PersonalFeed = () => {
               </div>
               <div className="card-likes"></div>
               <div className="card-caption">
-                <div className="caption-user">{post.userName}</div>
-                <div className="caption-string">{post.caption}</div>
+                <div className="caption-user">
+                  {post.userName}{" "}
+                  <span className="caption-string">{post.caption}</span>
+                </div>
+                <hr />
               </div>
               <div className="card-comments">
                 {comments &&
@@ -110,12 +113,8 @@ const PersonalFeed = () => {
                     if (comment.postId === post.id) {
                       return (
                         <div className="comments69" key={comment.id}>
-                          <p className="This420" >
-                            {comment.userName}
-                          </p>
-                          <p className="This8008135"  >
-                            {comment.body}
-                          </p>
+                          <p className="This420">{comment.userName}</p>
+                          <p className="This8008135">{comment.body}</p>
                           <p>
                             {Object.values(likes).find(
                               (like) =>
