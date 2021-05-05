@@ -242,27 +242,7 @@ const PersonalFeed = () => {
               </a>
             </div>
           </div>
-          <div className="person">
-            Keith Taylor
-            <div className="github">
-              <a
-                href="https://github.com/keitay72"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-            </div>
-            <div className="linkedin">
-              <a
-                href="https://www.linkedin.com/in/keith-taylor-16825311/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
+
           <div className="person">
             Kevin Pitzer
             <div className="github">
@@ -318,8 +298,29 @@ const PersonalFeed = () => {
                 href="https://angel.co/u/robert-c-vogtritter"
                 target="_blank"
                 rel="noopener noreferrer"
-              >
+                >
                 AngelList
+              </a>
+            </div>
+            </div>
+            <div className="person">
+            Keith Taylor
+            <div className="github">
+              <a
+                href="https://github.com/keitay72"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
+            <div className="linkedin">
+              <a
+                href="https://www.linkedin.com/in/keith-taylor-16825311/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
               </a>
             </div>
           </div>
