@@ -35,10 +35,12 @@ const PersonalFeed = () => {
   };
 
   const likeComment = (id) => {
+    // console.log("WE MADE IT HERE");
     dispatch(createLike({ userId: sessionUser.id, commentId: id }));
   };
 
   const unlikeComment = (id) => {
+    // console.log("THE OTHER SIDE");
     dispatch(unLike({ userId: sessionUser.id, commentId: id }));
   };
 
@@ -129,28 +131,28 @@ const PersonalFeed = () => {
                                 like.userId === sessionUser.id &&
                                 like.commentId === comment.id
                             ) ? (
-                              <i
+                              <button
                                 id="unlike-comment"
-                                onClick={() => unlikeComment(comment.id)}
+                                onClick={() =>unlikeComment(comment.id)}
                                 className="fas fa-heart"
                                 style={{ color: "red" }}
                               />
                             ) : (
-                              <i
+                              <button
                                 id="like-comment"
-                                onClick={() => likeComment(comment.id)}
+                                onClick={() =>likeComment(comment.id)}
                                 className="far fa-heart"
                                 style={{ color: "black" }}
                               />
                             )}
                           </p>
                           {sessionUser.id === comment.userId && (
-                            <i
+                            <button
                               id="trashBin"
                               className="fa fa-trash"
                               aria-hidden="true"
                               onClick={() => deleteSingleComment(comment.id)}
-                            ></i>
+                            />
                           )}
                         </div>
                       );
