@@ -553,7 +553,7 @@
 .following-card {
   color: black;
   width: 100%;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
   border-bottom: 20px solid white;
   border-radius: 3px;
   background-color: #ced3dc;
@@ -577,19 +577,22 @@
 }
 .card-bottom-content {
   padding: 8px;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
 .comments69 {
   display: flex;
   width: 500px;
   text-align: left;
-  margin-left: 150px;
+  margin-left: 80px;
   align-items: center;
+  height: 30px;
 }
 .This420 {
   font-size: 18px;
   font-weight: bolder;
-  padding-right: 20px;
+  padding-right: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
 }
 .This8008135 {
   padding-right: 20px;
@@ -598,11 +601,11 @@
 }
 
 .card-caption {
-  height: 90px;
+  height: 40px;
   align-items: flex-start;
   justify-content: flex-start;
   text-align: start;
-  margin-left: 150px;
+  margin-left: 60px;
   overflow: hidden;
 }
 .lastdiv {
@@ -640,17 +643,66 @@
   cursor: pointer;
 }
 .caption-user {
-  visibility: hidden;
+  /* visibility: hidden; */
+  font-family: "Raleway", sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: black;
 }
 .caption-string {
   font-family: "Raleway", sans-serif;
-  font-size: 25px;
+  font-size: 16px;
   font-weight: bolder;
   text-align: start;
   width: 400px;
+}
+
+.commentInput {
+  border: none;
+  border-color: transparent;
+  width: 75%;
+  height: 100%;
+  background-color: #ced3dc;
+  /* color: black; */
+  /* font-family: "Raleway", sans-serif; */
+  border-right: 1px;
+}
+
+.commentInput:focus {
+  outline: none;
+}
+
+.comment_form {
+  height: 25px;
+}
+
+.postButton {
+  border: none;
+  background-color: transparent;
+  margin-left: 15px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  color: black;
+  border-left: 5px;
+}
+
+.postButton:hover {
+  cursor: pointer;
+}
+
+#trashBin {
+  margin-left: 15px;
+}
+#trashBin:hover {
+  cursor: pointer;
+}
+
+#unlike-comment:hover {
+  cursor: pointer;
+}
+
+#like-comment:hover {
+  cursor: pointer;
 }
 
 .Link {

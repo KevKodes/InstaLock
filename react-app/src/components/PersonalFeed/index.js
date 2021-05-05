@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { getFollowingPosts } from "../../store/posts";
 import { createLike, getLikes, unLike } from "../../store/likes";
-import { getComments, createComment } from "../../store/comments";
+import {
+  getComments,
+  createComment,
+  deleteComment,
+} from "../../store/comments";
 import "../../index.css";
 
 const PersonalFeed = () => {
@@ -38,10 +42,14 @@ const PersonalFeed = () => {
     dispatch(unLike({ userId: sessionUser.id, commentId: id }));
   };
 
+  const deleteSingleComment = (id) => {
+    dispatch(deleteComment(id));
+  };
+
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
     e.target.reset();
-    if (!comment) return alert("There is an error");
+    if (!comment) return alert("Please add a comment");
     const postId = id;
     const userId = sessionUser.id;
     const newComment = dispatch(createComment(userId, postId, comment));
@@ -101,54 +109,65 @@ const PersonalFeed = () => {
               </div>
               <div className="card-likes"></div>
               <div className="card-caption">
-                <div className="caption-user">{post.userName}</div>
-                <div className="caption-string">{post.caption}</div>
+                <div className="caption-user">
+                  {post.userName}{" "}
+                  <span className="caption-string">{post.caption}</span>
+                </div>
               </div>
+
               <div className="card-comments">
                 {comments &&
                   Object.values(comments).map((comment) => {
                     if (comment.postId === post.id) {
                       return (
                         <div className="comments69" key={comment.id}>
-                          <p className="This420" >
-                            {comment.userName}
-                          </p>
-                          <p className="This8008135"  >
-                            {comment.body}
-                          </p>
-                          <p>
-                            {Object.values(likes).find(
-                              (like) =>
-                                like.userId === sessionUser.id &&
-                                like.commentId === comment.id
-                            ) ? (
-                              <i
-                                onClick={() => unlikeComment(comment.id)}
-                                className="fas fa-heart"
-                                style={{ color: "red" }}
-                              ></i>
-                            ) : (
-                              <i
-                                onClick={() => likeComment(comment.id)}
-                                className="far fa-heart"
-                                style={{ color: "black" }}
-                              ></i>
-                            )}
-                          </p>
+                          <p className="This420">{comment.userName}</p>
+                          <p className="This8008135">{comment.body}</p>
+                          {Object.values(likes).find(
+                            (like) =>
+                              like.userId === sessionUser.id &&
+                              like.commentId === comment.id
+                          ) ? (
+                            <i
+                              id="unlike-comment"
+                              className="fas fa-heart"
+                              onClick={(e) => unlikeComment(comment.id)}
+                              style={{ color: "red" }}
+                            />
+                          ) : (
+                            <i
+                              id="like-comment"
+                              className="far fa-heart"
+                              onClick={(e) => likeComment(comment.id)}
+                              style={{ color: "black" }}
+                            />
+                          )}
+                          {sessionUser.id === comment.userId && (
+                            <i
+                              id="trashBin"
+                              className="fa fa-trash"
+                              aria-hidden="true"
+                              onClick={(e) => deleteSingleComment(comment.id)}
+                            />
+                          )}
                         </div>
                       );
                     }
                   })}
               </div>
+              <hr className="lineBelowComments" />
               <form
                 className="comment_form"
                 onSubmit={(e) => commentSubmitHandler(e, post.id)}
               >
                 <input
+                  className="commentInput"
                   placeholder="Add a comment.."
                   onChange={(e) => setComment(e.target.value)}
                 />
-                <button type="submit">Post</button>
+                <button className="postButton" type="submit">
+                  Post
+                </button>
               </form>
             </div>
           </div>
