@@ -105,8 +105,8 @@ const PersonalFeed = () => {
                   {post.userName}{" "}
                   <span className="caption-string">{post.caption}</span>
                 </div>
-                <hr />
               </div>
+
               <div className="card-comments">
                 {comments &&
                   Object.values(comments).map((comment) => {
@@ -139,6 +139,7 @@ const PersonalFeed = () => {
                     }
                   })}
               </div>
+              <hr className="lineBelowComments" />
               <form
                 className="comment_form"
                 onSubmit={(e) => commentSubmitHandler(e, post.id)}
