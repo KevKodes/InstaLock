@@ -585,12 +585,14 @@
   text-align: left;
   margin-left: 80px;
   align-items: center;
-  height: 40px;
+  height: 30px;
 }
 .This420 {
   font-size: 18px;
   font-weight: bolder;
   padding-right: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
 }
 .This8008135 {
   padding-right: 20px;
@@ -642,6 +644,7 @@
 }
 .caption-user {
   /* visibility: hidden; */
+  font-family: "Raleway", sans-serif;
   font-size: 20px;
   font-weight: 800;
   color: black;
@@ -652,6 +655,39 @@
   font-weight: bolder;
   text-align: start;
   width: 400px;
+}
+
+.commentInput {
+  border: none;
+  border-color: transparent;
+  width: 75%;
+  height: 100%;
+  background-color: #ced3dc;
+  /* color: black; */
+  /* font-family: "Raleway", sans-serif; */
+  border-right: 1px;
+}
+
+.commentInput:focus {
+  outline: none;
+}
+
+.comment_form {
+  height: 25px;
+}
+
+.postButton {
+  border: none;
+  background-color: transparent;
+  margin-left: 15px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  color: black;
+  border-left: 5px;
+}
+
+.postButton:hover {
+  cursor: pointer;
 }
 
 .Link {

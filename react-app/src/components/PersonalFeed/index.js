@@ -41,7 +41,7 @@ const PersonalFeed = () => {
   const commentSubmitHandler = (e, id) => {
     e.preventDefault();
     e.target.reset();
-    if (!comment) return alert("There is an error");
+    if (!comment) return alert("Please add a comment");
     const postId = id;
     const userId = sessionUser.id;
     const newComment = dispatch(createComment(userId, postId, comment));
@@ -145,10 +145,13 @@ const PersonalFeed = () => {
                 onSubmit={(e) => commentSubmitHandler(e, post.id)}
               >
                 <input
+                  className="commentInput"
                   placeholder="Add a comment.."
                   onChange={(e) => setComment(e.target.value)}
                 />
-                <button type="submit">Post</button>
+                <button className="postButton" type="submit">
+                  Post
+                </button>
               </form>
             </div>
           </div>
